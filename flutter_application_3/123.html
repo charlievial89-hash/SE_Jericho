@@ -1,0 +1,4500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Science Quest - Adventure Learning</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --blue:#2563eb;
+    --dark:#0f172a;
+    --dark2:#172033;
+    --cyan:#22d3ee;
+    --green:#22c55e;
+    --red:#ef4444;
+    --yellow:#facc15;
+    --purple:#8b5cf6;
+    --white:#fff;
+    --muted:#94a3b8;
+}
+
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:
+        radial-gradient(circle at top,#243b67 0,#101827 45%,#070b13 100%);
+    color:white;
+    min-height:100vh;
+}
+
+button,input{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.hidden{
+    display:none!important;
+}
+
+.screen{
+    min-height:100vh;
+    padding:25px;
+}
+
+.container{
+    width:min(1100px,100%);
+    margin:auto;
+}
+
+/* ================= HEADER ================= */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:25px;
+    padding:15px 20px;
+    background:rgba(15,23,42,.85);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+    backdrop-filter:blur(12px);
+}
+
+.logo{
+    font-size:22px;
+    font-weight:900;
+}
+
+.coin-box{
+    background:#241d08;
+    border:1px solid #725c16;
+    padding:9px 15px;
+    border-radius:30px;
+    color:#facc15;
+    font-weight:800;
+}
+
+/* ================= CARDS ================= */
+
+.card{
+    background:rgba(15,23,42,.88);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+.hero{
+    text-align:center;
+    padding:60px 20px;
+}
+
+.hero .big-icon{
+    font-size:80px;
+    margin-bottom:15px;
+}
+
+.hero h1{
+    font-size:clamp(38px,7vw,70px);
+    font-weight:1000;
+    background:linear-gradient(90deg,#60a5fa,#22d3ee,#a78bfa);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    color:#cbd5e1;
+    margin:15px auto 30px;
+    max-width:650px;
+    font-size:18px;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn{
+    border:0;
+    padding:13px 20px;
+    border-radius:14px;
+    font-weight:900;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.btn-primary{
+    background:linear-gradient(135deg,#2563eb,#06b6d4);
+    color:white;
+}
+
+.btn-success{
+    background:linear-gradient(135deg,#16a34a,#22c55e);
+    color:white;
+}
+
+.btn-danger{
+    background:#dc2626;
+    color:white;
+}
+
+.btn-dark{
+    background:#1e293b;
+    color:white;
+}
+
+.btn-purple{
+    background:linear-gradient(135deg,#7c3aed,#a855f7);
+    color:white;
+}
+
+.btn-large{
+    padding:16px 30px;
+    font-size:17px;
+}
+
+/* ================= MENU ================= */
+
+.menu-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:18px;
+    margin-top:30px;
+}
+
+.menu-card{
+    padding:25px;
+    text-align:center;
+    border-radius:22px;
+    background:#172033;
+    border:1px solid rgba(255,255,255,.1);
+    transition:.2s;
+    cursor:pointer;
+}
+
+.menu-card:hover{
+    transform:translateY(-5px);
+    border-color:#38bdf8;
+}
+
+.menu-card .icon{
+    font-size:45px;
+    margin-bottom:10px;
+}
+
+.menu-card h3{
+    margin-bottom:7px;
+}
+
+.menu-card p{
+    color:#94a3b8;
+    font-size:14px;
+}
+
+/* ================= NAME ================= */
+
+.name-box{
+    max-width:600px;
+    margin:50px auto;
+    text-align:center;
+}
+
+.name-box .icon{
+    font-size:70px;
+}
+
+.input{
+    width:100%;
+    padding:15px 18px;
+    border-radius:14px;
+    border:1px solid #334155;
+    background:#0f172a;
+    color:white;
+    outline:none;
+    margin:15px 0;
+}
+
+.input:focus{
+    border-color:#38bdf8;
+}
+
+/* ================= GRADES ================= */
+
+.grade-list{
+    display:grid;
+    gap:15px;
+}
+
+.grade-card{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    background:#172033;
+    border:1px solid rgba(255,255,255,.08);
+    padding:20px;
+    border-radius:20px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.grade-card:hover{
+    transform:translateX(5px);
+    border-color:#38bdf8;
+}
+
+.grade-character{
+    font-size:55px;
+    width:80px;
+    text-align:center;
+}
+
+.grade-info{
+    flex:1;
+}
+
+.grade-top{
+    display:flex;
+    justify-content:space-between;
+    color:#93c5fd;
+    font-size:13px;
+    font-weight:900;
+}
+
+.grade-info h2{
+    margin:7px 0;
+}
+
+.grade-info p{
+    color:#94a3b8;
+}
+
+.progress-bar{
+    height:9px;
+    background:#334155;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:10px;
+}
+
+.progress-bar div{
+    height:100%;
+    background:linear-gradient(90deg,#22c55e,#22d3ee);
+}
+
+/* ================= GUARDIAN ================= */
+
+.guardian{
+    max-width:800px;
+    margin:40px auto;
+    text-align:center;
+}
+
+.guardian-character{
+    font-size:110px;
+    margin:20px;
+}
+
+.dialogue{
+    background:#172033;
+    border-radius:20px;
+    padding:22px;
+    margin:20px 0;
+    color:#cbd5e1;
+    line-height:1.6;
+}
+
+/* ================= LESSON ================= */
+
+.lesson-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.objectives li{
+    margin:12px 0;
+    color:#cbd5e1;
+}
+
+.concepts{
+    display:grid;
+    gap:10px;
+}
+
+.concept{
+    padding:15px;
+    background:#172033;
+    border-radius:14px;
+}
+
+.concept strong{
+    color:#38bdf8;
+    margin-right:10px;
+}
+
+/* ================= QUIZ ================= */
+
+.quiz-header{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.quiz-stat{
+    padding:9px 14px;
+    background:#172033;
+    border-radius:12px;
+    font-weight:800;
+}
+
+.timer{
+    color:#facc15;
+}
+
+.battle{
+    background:rgba(15,23,42,.95);
+    border-radius:25px;
+    padding:20px;
+    border:1px solid rgba(255,255,255,.1);
+}
+
+.battle-top{
+    display:grid;
+    grid-template-columns:1fr 100px 1fr;
+    align-items:center;
+    gap:15px;
+}
+
+.battle-side{
+    text-align:center;
+}
+
+.battle-character{
+    font-size:70px;
+}
+
+.battle-vs{
+    text-align:center;
+    font-size:28px;
+    font-weight:1000;
+    color:#f87171;
+}
+
+.hp{
+    width:min(220px,100%);
+    height:13px;
+    background:#334155;
+    border-radius:20px;
+    overflow:hidden;
+    margin:8px auto;
+}
+
+.hp div{
+    height:100%;
+    transition:.4s;
+}
+
+.player-hp{
+    background:#22c55e;
+}
+
+.enemy-hp{
+    background:#ef4444;
+}
+
+.stage{
+    text-align:center;
+    margin:20px 0;
+    font-weight:1000;
+    color:#67e8f9;
+}
+
+.battle-log{
+    text-align:center;
+    color:#cbd5e1;
+}
+
+.question-card{
+    margin-top:20px;
+    background:#172033;
+    border-radius:22px;
+    padding:25px;
+}
+
+.question-number{
+    color:#60a5fa;
+    font-weight:900;
+}
+
+.question{
+    font-size:25px;
+    font-weight:900;
+    margin:15px 0 22px;
+}
+
+.answers{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:13px;
+}
+
+.answer{
+    padding:17px;
+    background:#0f172a;
+    color:white;
+    border:2px solid #334155;
+    border-radius:15px;
+    text-align:left;
+    display:flex;
+    gap:12px;
+    align-items:center;
+    transition:.2s;
+}
+
+.answer:hover{
+    border-color:#38bdf8;
+}
+
+.answer.correct{
+    background:#064e3b;
+    border-color:#22c55e;
+}
+
+.answer.wrong{
+    background:#7f1d1d;
+    border-color:#ef4444;
+}
+
+.answer-letter{
+    width:32px;
+    height:32px;
+    display:grid;
+    place-items:center;
+    border-radius:9px;
+    background:#334155;
+    font-weight:900;
+}
+
+.feedback{
+    margin-top:18px;
+    padding:18px;
+    border-radius:15px;
+    background:#0f172a;
+}
+
+.feedback.good{
+    border:1px solid #22c55e;
+}
+
+.feedback.bad{
+    border:1px solid #ef4444;
+}
+
+/* ================= RESULTS ================= */
+
+.result{
+    max-width:700px;
+    margin:40px auto;
+    text-align:center;
+}
+
+.result-icon{
+    font-size:90px;
+}
+
+.result-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin:25px 0;
+}
+
+.result-stat{
+    padding:18px;
+    background:#172033;
+    border-radius:16px;
+}
+
+.result-stat strong{
+    display:block;
+    font-size:25px;
+    color:#38bdf8;
+}
+
+/* ================= ACHIEVEMENTS ================= */
+
+.achievement-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:15px;
+}
+
+.achievement{
+    text-align:center;
+    padding:20px;
+    background:#172033;
+    border-radius:18px;
+    border:1px solid #334155;
+}
+
+.achievement.locked{
+    opacity:.45;
+    filter:grayscale(1);
+}
+
+.badge{
+    font-size:50px;
+}
+
+/* ================= ADMIN ================= */
+
+.admin-login{
+    max-width:450px;
+    margin:60px auto;
+}
+
+.admin-header{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.dashboard-stat{
+    padding:20px;
+    background:#172033;
+    border-radius:18px;
+}
+
+.dashboard-stat span{
+    color:#94a3b8;
+}
+
+.dashboard-stat strong{
+    display:block;
+    font-size:30px;
+    margin-top:7px;
+    color:#38bdf8;
+}
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:13px;
+    border-bottom:1px solid #334155;
+    text-align:left;
+}
+
+th{
+    color:#67e8f9;
+}
+
+/* ================= CERTIFICATE ================= */
+
+.certificate-page{
+    max-width:1000px;
+    margin:auto;
+}
+
+.certificate-canvas-wrap{
+    display:flex;
+    justify-content:center;
+    margin:25px 0;
+}
+
+#certificateCanvas{
+    width:100%;
+    max-width:900px;
+    height:auto;
+    background:white;
+    box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+
+.certificate-actions{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#172033;
+    border:1px solid #334155;
+    padding:15px 20px;
+    border-radius:15px;
+    z-index:1000;
+    box-shadow:0 15px 30px rgba(0,0,0,.4);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:700px){
+
+    .screen{
+        padding:12px;
+    }
+
+    .topbar{
+        flex-wrap:wrap;
+    }
+
+    .hero{
+        padding:35px 10px;
+    }
+
+    .lesson-grid{
+        grid-template-columns:1fr;
+    }
+
+    .answers{
+        grid-template-columns:1fr;
+    }
+
+    .battle-top{
+        grid-template-columns:1fr 50px 1fr;
+    }
+
+    .battle-character{
+        font-size:48px;
+    }
+
+    .battle-vs{
+        font-size:20px;
+    }
+
+    .grade-card{
+        align-items:flex-start;
+    }
+
+    .grade-character{
+        font-size:40px;
+        width:55px;
+    }
+
+    .result-grid{
+        grid-template-columns:1fr;
+    }
+
+    .dashboard-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:450px){
+    .dashboard-grid{
+        grid-template-columns:1fr;
+    }
+
+    .question{
+        font-size:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     MAIN MENU
+========================================================= -->
+
+<section id="mainMenu" class="screen">
+
+<div class="container">
+
+<div class="topbar">
+    <div class="logo">🧪 SCIENCE QUEST</div>
+    <div class="coin-box">🪙 <span id="mainCoins">0</span></div>
+</div>
+
+<div class="hero card">
+    <div class="big-icon">🧑‍🔬</div>
+
+    <h1>SCIENCE QUEST</h1>
+
+    <p>
+        Learn science, defeat monsters, earn coins,
+        unlock achievements and become a Science Guardian!
+    </p>
+
+    <button class="btn btn-primary btn-large"
+            onclick="openStudentName()">
+        🚀 START ADVENTURE
+    </button>
+</div>
+
+<div class="menu-grid">
+
+    <div class="menu-card" onclick="openGrades()">
+        <div class="icon">🎮</div>
+        <h3>Missions</h3>
+        <p>Choose your science adventure.</p>
+    </div>
+
+    <div class="menu-card" onclick="openAchievements()">
+        <div class="icon">🏆</div>
+        <h3>Achievements</h3>
+        <p>View your unlocked badges.</p>
+    </div>
+
+    <div class="menu-card" onclick="openCertificate()">
+        <div class="icon">📜</div>
+        <h3>Certificate</h3>
+        <p>View and save your certificate.</p>
+    </div>
+
+    <div class="menu-card" onclick="openAdmin()">
+        <div class="icon">👨‍🏫</div>
+        <h3>Teacher Admin</h3>
+        <p>Teacher dashboard and results.</p>
+    </div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     STUDENT NAME
+========================================================= -->
+
+<section id="nameScreen" class="screen hidden">
+
+<div class="container">
+
+<div class="card name-box">
+
+    <div class="icon">👨‍🔬</div>
+
+    <h1>Welcome, Young Scientist!</h1>
+
+    <p style="color:#94a3b8;margin-top:10px;">
+        Enter your name before starting your adventure.
+    </p>
+
+    <input
+        id="studentNameInput"
+        class="input"
+        type="text"
+        placeholder="Enter your full name"
+        maxlength="60"
+    >
+
+    <button class="btn btn-primary btn-large"
+            onclick="saveStudentName()">
+        CONTINUE →
+    </button>
+
+    <br><br>
+
+    <button class="btn btn-dark"
+            onclick="showScreen('mainMenu')">
+        ← Back
+    </button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     GRADES
+========================================================= -->
+
+<section id="gradeScreen" class="screen hidden">
+
+<div class="container">
+
+<div class="topbar">
+    <div>
+        <strong id="welcomeStudent">Young Scientist</strong>
+    </div>
+
+    <div class="coin-box">
+        🪙 <span id="gradeCoins">0</span>
+    </div>
+</div>
+
+<div class="card">
+    <h1>🎮 Choose Your Mission</h1>
+    <p style="color:#94a3b8;margin:8px 0 20px;">
+        Choose a grade and defeat its guardian.
+    </p>
+
+    <div id="gradeList" class="grade-list"></div>
+
+    <br>
+
+    <button class="btn btn-dark"
+            onclick="showScreen('mainMenu')">
+        ← Main Menu
+    </button>
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     GUARDIAN
+========================================================= -->
+
+<section id="guardianScreen" class="screen hidden">
+
+<div class="container">
+
+<div class="card guardian">
+
+    <div id="guardianGrade"
+         style="color:#60a5fa;font-weight:900;">
+    </div>
+
+    <div id="guardianCharacter"
+         class="guardian-character">
+        🧬
+    </div>
+
+    <h1 id="guardianName">Professor Bio</h1>
+
+    <div id="guardianDialogue"
+         class="dialogue">
+    </div>
+
+    <button class="btn btn-primary btn-large"
+            onclick="openLesson()">
+        📖 LEARN FIRST
+    </button>
+
+    <br><br>
+
+    <button class="btn btn-success btn-large"
+            onclick="startQuiz()">
+        ⚔️ START BATTLE
+    </button>
+
+    <br><br>
+
+    <button class="btn btn-dark"
+            onclick="openGrades()">
+        ← Missions
+    </button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     LESSON
+========================================================= -->
+
+<section id="lessonScreen" class="screen hidden">
+
+<div class="container">
+
+<div class="card">
+
+    <div style="font-size:60px;" id="lessonEmoji">🧬</div>
+
+    <h1 id="lessonTitle">Introduction to Cells</h1>
+
+    <p id="lessonDescription"
+       style="color:#cbd5e1;margin:15px 0;">
+    </p>
+
+    <div class="lesson-grid">
+
+        <div class="card">
+
+            <h2>🎯 Learning Objectives</h2>
+
+            <ul id="learningObjectives"
+                class="objectives"
+                style="margin:15px 0 0 20px;">
+            </ul>
+
+        </div>
+
+        <div class="card">
+
+            <h2>🧠 Key Concepts</h2>
+
+            <div id="keyConcepts"
+                 class="concepts"
+                 style="margin-top:15px;">
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+
+        <h2>📚 Summary</h2>
+
+        <p id="lessonSummary"
+           style="color:#cbd5e1;line-height:1.7;margin-top:12px;">
+        </p>
+
+    </div>
+
+    <br>
+
+    <button class="btn btn-success btn-large"
+            onclick="startQuiz()">
+        ⚔️ I'M READY — BATTLE!
+    </button>
+
+    <button class="btn btn-dark"
+            onclick="selectGrade(state.selectedGrade)">
+        ← Back
+    </button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     QUIZ / BATTLE
+========================================================= -->
+
+<section id="quizScreen" class="screen hidden">
+
+<div class="container">
+
+<div class="quiz-header">
+
+    <div class="quiz-stat">
+        ❤️ <span id="quizLives">3</span>
+    </div>
+
+    <div class="quiz-stat">
+        ⭐ <span id="quizScore">0</span>
+    </div>
+
+    <div class="quiz-stat timer">
+        ⏱️ <span id="quizTimer">30</span>
+    </div>
+
+</div>
+
+<div class="battle">
+
+    <div class="battle-top">
+
+        <div class="battle-side">
+
+            <div class="battle-character">
+                🧑‍🔬
+            </div>
+
+            <strong>YOU</strong>
+
+            <div class="hp">
+                <div id="playerHpBar"
+                     class="player-hp"
+                     style="width:100%;">
+                </div>
+            </div>
+
+            <small id="playerHpText">
+                3 / 3 HP
+            </small>
+
+        </div>
+
+        <div class="battle-vs">
+            VS
+        </div>
+
+        <div class="battle-side">
+
+            <div id="enemyEmoji"
+                 class="battle-character">
+                👾
+            </div>
+
+            <strong id="enemyName">
+                MINION
+            </strong>
+
+            <div class="hp">
+                <div id="enemyHpBar"
+                     class="enemy-hp"
+                     style="width:100%;">
+                </div>
+            </div>
+
+            <small id="enemyHpText">
+                1 / 1 HP
+            </small>
+
+        </div>
+
+    </div>
+
+    <div id="battleStage"
+         class="stage">
+        ⚔️ MINION BATTLE
+    </div>
+
+    <div id="battleLog"
+         class="battle-log">
+        Answer correctly to attack!
+    </div>
+
+</div>
+
+
+<div class="question-card">
+
+    <div id="questionCounter"
+         class="question-number">
+        Battle Question 1 of 5
+    </div>
+
+    <div class="progress-bar">
+        <div id="quizProgress"
+             style="width:20%;">
+        </div>
+    </div>
+
+    <div id="questionText"
+         class="question">
+    </div>
+
+    <div id="answerContainer"
+         class="answers">
+    </div>
+
+    <div id="answerFeedback"
+         class="feedback hidden">
+    </div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     RESULT
+========================================================= -->
+
+<section id="completeScreen" class="screen hidden">
+
+<div class="container">
+
+<div class="card result">
+
+    <div class="result-icon">🏆</div>
+
+    <h1 id="completeTitle">MISSION COMPLETE!</h1>
+
+    <p id="completeMessage"
+       style="color:#cbd5e1;margin:15px;">
+    </p>
+
+    <div class="result-grid">
+
+        <div class="result-stat">
+            <span>Score</span>
+            <strong id="resultScore">0</strong>
+        </div>
+
+        <div class="result-stat">
+            <span>Correct</span>
+            <strong id="correctAnswers">0</strong>
+        </div>
+
+        <div class="result-stat">
+            <span>Wrong</span>
+            <strong id="wrongAnswers">0</strong>
+        </div>
+
+        <div class="result-stat">
+            <span>Accuracy</span>
+            <strong id="accuracy">0%</strong>
+        </div>
+
+        <div class="result-stat">
+            <span>Coins</span>
+            <strong id="earnedCoins">+0</strong>
+        </div>
+
+        <div class="result-stat">
+            <span>Student</span>
+            <strong id="resultStudent"
+                    style="font-size:16px;">
+            </strong>
+        </div>
+
+    </div>
+
+    <button class="btn btn-primary btn-large"
+            onclick="openCertificate()">
+        📜 VIEW CERTIFICATE
+    </button>
+
+    <br><br>
+
+    <button class="btn btn-success"
+            onclick="startQuiz()">
+        🔄 PLAY AGAIN
+    </button>
+
+    <button class="btn btn-dark"
+            onclick="openGrades()">
+        🎮 MISSIONS
+    </button>
+
+    <button class="btn btn-dark"
+            onclick="showScreen('mainMenu')">
+        🏠 MAIN MENU
+    </button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     ACHIEVEMENTS
+========================================================= -->
+
+<section id="achievementScreen" class="screen hidden">
+
+<div class="container">
+
+<div class="card">
+
+<h1>🏆 Achievements</h1>
+
+<p style="color:#94a3b8;margin:8px 0 20px;">
+Unlocked: <strong id="achievementCount">0</strong>
+</p>
+
+<div id="achievementGrid"
+     class="achievement-grid">
+</div>
+
+<br>
+
+<button class="btn btn-dark"
+        onclick="showScreen('mainMenu')">
+    ← Main Menu
+</button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     CERTIFICATE
+========================================================= -->
+
+<section id="certificateScreen" class="screen hidden">
+
+<div class="container certificate-page">
+
+<div class="card">
+
+    <h1 style="text-align:center;">
+        📜 Certificate of Achievement
+    </h1>
+
+    <p style="text-align:center;color:#94a3b8;margin-top:8px;">
+        Your certificate can be saved as a PNG image.
+    </p>
+
+    <div class="certificate-canvas-wrap">
+        <canvas id="certificateCanvas"
+                width="1600"
+                height="1100">
+        </canvas>
+    </div>
+
+    <div class="certificate-actions">
+
+        <button class="btn btn-primary btn-large"
+                onclick="downloadCertificatePNG()">
+            🖼️ SAVE AS PNG
+        </button>
+
+        <button class="btn btn-success"
+                onclick="printCertificate()">
+            🖨️ PRINT
+        </button>
+
+        <button class="btn btn-dark"
+                onclick="showScreen('mainMenu')">
+            ← BACK
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     ADMIN LOGIN
+========================================================= -->
+
+<section id="adminLoginScreen" class="screen hidden">
+
+<div class="container">
+
+<div class="card admin-login">
+
+    <div style="text-align:center;font-size:65px;">
+        👨‍🏫
+    </div>
+
+    <h1 style="text-align:center;">
+        Teacher Admin
+    </h1>
+
+    <p style="text-align:center;color:#94a3b8;margin:10px 0;">
+        Login to view student performance.
+    </p>
+
+    <input id="adminUsername"
+           class="input"
+           placeholder="Username">
+
+    <input id="adminPassword"
+           class="input"
+           type="password"
+           placeholder="Password">
+
+    <button class="btn btn-primary btn-large"
+            style="width:100%;"
+            onclick="adminLogin()">
+        🔐 LOGIN
+    </button>
+
+    <p style="text-align:center;color:#64748b;margin-top:15px;font-size:13px;">
+        Demo: teacher / admin123
+    </p>
+
+    <br>
+
+    <button class="btn btn-dark"
+            onclick="showScreen('mainMenu')">
+        ← Back
+    </button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- =========================================================
+     ADMIN DASHBOARD
+========================================================= -->
+
+<section id="adminScreen" class="screen hidden">
+
+<div class="container">
+
+<div class="admin-header">
+
+    <div>
+        <h1>👨‍🏫 Teacher Dashboard</h1>
+        <p style="color:#94a3b8;">
+            Science Quest Student Results
+        </p>
+    </div>
+
+    <button class="btn btn-danger"
+            onclick="adminLogout()">
+        Logout
+    </button>
+
+</div>
+
+<div class="dashboard-grid">
+
+    <div class="dashboard-stat">
+        <span>Students</span>
+        <strong id="adminStudents">0</strong>
+    </div>
+
+    <div class="dashboard-stat">
+        <span>Missions</span>
+        <strong id="adminMissions">0</strong>
+    </div>
+
+    <div class="dashboard-stat">
+        <span>Average Score</span>
+        <strong id="adminAverageScore">0</strong>
+    </div>
+
+    <div class="dashboard-stat">
+        <span>Average Accuracy</span>
+        <strong id="adminAverageAccuracy">0%</strong>
+    </div>
+
+</div>
+
+<div class="card">
+
+    <div style="
+        display:flex;
+        justify-content:space-between;
+        gap:10px;
+        flex-wrap:wrap;
+        margin-bottom:20px;
+    ">
+
+        <h2>📊 Student Results</h2>
+
+        <input id="adminSearch"
+               class="input"
+               style="max-width:300px;margin:0;"
+               placeholder="Search student..."
+               oninput="renderAdminResults()">
+
+    </div>
+
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th>Grade</th>
+                    <th>Score</th>
+                    <th>Accuracy</th>
+                    <th>Correct</th>
+                    <th>Wrong</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+
+            <tbody id="adminResultsBody">
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <br>
+
+    <button class="btn btn-success"
+            onclick="exportResultsCSV()">
+        📥 EXPORT CSV
+    </button>
+
+    <button class="btn btn-danger"
+            onclick="clearAllResults()">
+        🗑️ CLEAR RESULTS
+    </button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- TOAST -->
+
+<div id="toast"
+     class="toast hidden">
+</div>
+
+
+<script>
+/* =========================================================
+   SCIENCE QUEST DATA
+========================================================= */
+
+const grades = {
+
+7:{
+name:"Young Biology Guardian",
+guardian:"Professor Bio",
+emoji:"🧬",
+mission:"Living Things",
+reward:100,
+title:"Introduction to Cells",
+description:"Explore the basic unit of life and understand how cells help living organisms survive.",
+dialogue:"Welcome, Young Scientist! Defeat the minions and the Cell Beast by answering science questions!",
+objectives:[
+"Understand what a cell is.",
+"Identify basic cell structures.",
+"Explain why cells are important to living things."
+],
+concepts:["Cell","Cell Membrane","Nucleus"],
+summary:"Cells are the basic structural and functional units of living organisms. Different cells perform different functions that help organisms live and grow.",
+questions:[
+{
+q:"What is the basic unit of life?",
+options:["Atom","Cell","Tissue","Organ"],
+answer:1,
+explanation:"The cell is the basic structural and functional unit of life."
+},
+{
+q:"Which structure controls many activities of a cell?",
+options:["Nucleus","Cell wall","Vacuole","Cytoplasm"],
+answer:0,
+explanation:"The nucleus controls many activities of the cell and contains genetic material."
+},
+{
+q:"Which organisms are made of cells?",
+options:["Only animals","Only plants","Living organisms","Only bacteria"],
+answer:2,
+explanation:"All living organisms are made of one or more cells."
+},
+{
+q:"Which organelle is commonly known as the powerhouse of the cell?",
+options:["Nucleus","Mitochondria","Ribosome","Vacuole"],
+answer:1,
+explanation:"Mitochondria produce much of the usable energy needed by cells."
+},
+{
+q:"Which cell structure controls what enters and leaves the cell?",
+options:["Cell membrane","Nucleus","Mitochondria","Ribosome"],
+answer:0,
+explanation:"The cell membrane controls what substances enter and leave the cell."
+}
+]
+},
+
+8:{
+name:"Earth Science Guardian",
+guardian:"Professor Terra",
+emoji:"🌎",
+mission:"Earth and Environment",
+reward:120,
+title:"Our Dynamic Earth",
+description:"Discover Earth's systems, environment, and the processes that shape our planet.",
+dialogue:"Greetings, Young Scientist! Defeat the Earth minions and the Earth Titan with your science knowledge!",
+objectives:[
+"Identify Earth's major systems.",
+"Understand environmental processes.",
+"Recognize ways people can protect Earth."
+],
+concepts:["Geosphere","Atmosphere","Environment"],
+summary:"Earth is a dynamic planet made up of interacting systems. Human activities can affect these systems, making environmental awareness important.",
+questions:[
+{
+q:"Which layer of Earth do we live on?",
+options:["Crust","Core","Inner core","Mantle"],
+answer:0,
+explanation:"We live on Earth's crust, the thin outermost solid layer."
+},
+{
+q:"Which gas is most abundant in Earth's atmosphere?",
+options:["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],
+answer:1,
+explanation:"Nitrogen makes up about 78% of Earth's atmosphere."
+},
+{
+q:"What is the process by which water changes into vapor?",
+options:["Condensation","Evaporation","Freezing","Melting"],
+answer:1,
+explanation:"Evaporation happens when liquid water changes into water vapor."
+},
+{
+q:"Which is an example of renewable energy?",
+options:["Coal","Oil","Solar energy","Natural gas"],
+answer:2,
+explanation:"Solar energy comes from the Sun and is naturally replenished."
+},
+{
+q:"What protects Earth from much of the Sun's harmful ultraviolet radiation?",
+options:["Ozone layer","Clouds","Oceans","Soil"],
+answer:0,
+explanation:"The ozone layer absorbs much of the Sun's harmful ultraviolet radiation."
+}
+]
+},
+
+9:{
+name:"Chemistry Guardian",
+guardian:"Professor Chem",
+emoji:"🧪",
+mission:"Matter and Reactions",
+reward:150,
+title:"Matter and Chemical Reactions",
+description:"Learn about matter, elements, compounds, and the changes that happen during reactions.",
+dialogue:"Welcome to the laboratory! Defeat the chemical minions and the Reaction Beast using your science knowledge!",
+objectives:[
+"Identify different forms of matter.",
+"Distinguish elements and compounds.",
+"Understand basic chemical reactions."
+],
+concepts:["Matter","Element","Chemical Reaction"],
+summary:"Matter has mass and occupies space. Elements and compounds make up many substances, while chemical reactions transform substances into new products.",
+questions:[
+{
+q:"Which state of matter has a definite volume but no definite shape?",
+options:["Solid","Liquid","Gas","Plasma"],
+answer:1,
+explanation:"A liquid has a definite volume but takes the shape of its container."
+},
+{
+q:"What is the smallest unit of an element that retains its properties?",
+options:["Atom","Cell","Molecule","Tissue"],
+answer:0,
+explanation:"An atom is the smallest unit of an element that retains its chemical properties."
+},
+{
+q:"Which is an example of a chemical change?",
+options:["Melting ice","Cutting paper","Rusting iron","Breaking glass"],
+answer:2,
+explanation:"Rusting forms a new substance, iron oxide, so it is a chemical change."
+},
+{
+q:"What is H₂O commonly called?",
+options:["Oxygen","Hydrogen","Water","Salt"],
+answer:2,
+explanation:"H₂O is the chemical formula for water."
+},
+{
+q:"Which particle has a negative charge?",
+options:["Proton","Neutron","Electron","Nucleus"],
+answer:2,
+explanation:"Electrons have a negative electrical charge."
+}
+]
+},
+
+10:{
+name:"Space Science Guardian",
+guardian:"Professor Nova",
+emoji:"🪐",
+mission:"Universe and Astronomy",
+reward:200,
+title:"Journey Through the Universe",
+description:"Explore planets, stars, galaxies, and the amazing scale of our universe.",
+dialogue:"Prepare for launch! Defeat the space minions and the Galaxy Overlord by mastering astronomy!",
+objectives:[
+"Identify objects in our solar system.",
+"Understand basic astronomy concepts.",
+"Explore the relationship between Earth and the Sun."
+],
+concepts:["Solar System","Planet","Galaxy"],
+summary:"Our solar system contains the Sun, planets, moons, and other objects. Beyond it are countless stars and galaxies across the universe.",
+questions:[
+{
+q:"Which star is at the center of our solar system?",
+options:["Sirius","Polaris","The Sun","Alpha Centauri"],
+answer:2,
+explanation:"The Sun is the star at the center of our solar system."
+},
+{
+q:"Which planet is known as the Red Planet?",
+options:["Venus","Mars","Jupiter","Mercury"],
+answer:1,
+explanation:"Mars appears reddish because of iron minerals in its surface material."
+},
+{
+q:"What force keeps planets in orbit around the Sun?",
+options:["Friction","Gravity","Magnetism","Pressure"],
+answer:1,
+explanation:"Gravity from the Sun keeps planets in their orbits."
+},
+{
+q:"Which is the largest planet in our solar system?",
+options:["Earth","Saturn","Jupiter","Neptune"],
+answer:2,
+explanation:"Jupiter is the largest planet in our solar system."
+},
+{
+q:"What galaxy contains our solar system?",
+options:["Andromeda","Milky Way","Whirlpool","Sombrero"],
+answer:1,
+explanation:"Our solar system is located in the Milky Way galaxy."
+}
+]
+}
+
+};
+
+
+/* =========================================================
+   STUDENT PROFILE STORAGE
+   Each student name gets an independent progress profile.
+========================================================= */
+
+function sqProfileKey(name, field){
+    const safeName = String(name || '').trim().toLowerCase();
+    return 'scienceQuestProfile_' + encodeURIComponent(safeName) + '_' + field;
+}
+
+function sqReadProfile(name, field, fallback){
+    if(!name) return fallback;
+    const raw = localStorage.getItem(sqProfileKey(name, field));
+    if(raw === null) return fallback;
+    try { return JSON.parse(raw); } catch(e) { return fallback; }
+}
+
+function sqWriteProfile(name, field, value){
+    if(!name) return;
+    localStorage.setItem(sqProfileKey(name, field), JSON.stringify(value));
+}
+
+/* =========================================================
+   STATE
+========================================================= */
+
+const state = {
+
+studentName:
+localStorage.getItem("scienceQuestStudent") || "",
+
+selectedGrade:null,
+
+questionIndex:0,
+
+lives:3,
+maxLives:3,
+
+playerHP:3,
+
+score:0,
+correct:0,
+wrong:0,
+
+answered:false,
+timer:30,
+timerInterval:null,
+
+// Battle lifecycle guards
+battleEnded:false,
+resultSaved:false,
+resultScreenShown:false,
+missionStartTime:null,
+totalAnswered:0,
+
+// Randomized quiz session data (keeps original grade question bank untouched)
+quizQuestions:[],
+
+coins:Number(sqReadProfile(localStorage.getItem("scienceQuestStudent") || "", "coins", 0)) || 0,
+
+completedGrades:sqReadProfile(localStorage.getItem("scienceQuestStudent") || "", "completed", []),
+
+lastReward:Number(sqReadProfile(localStorage.getItem("scienceQuestStudent") || "", "lastReward", 0)) || 0,
+
+battleStage:"minion",
+enemyIndex:0,
+
+enemyHP:1,
+enemyMaxHP:1,
+
+achievements:sqReadProfile(
+localStorage.getItem("scienceQuestStudent") || "",
+"achievements",
+{"firstMission":false,"perfectScore":false,"scienceExplorer":false,"biologyMaster":false,"earthExpert":false,"chemistryGenius":false,"spaceExplorer":false,"allGrades":false,"speedScientist":false}
+)
+
+};
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const $ = id => document.getElementById(id);
+
+const minions = [
+["👾","Cell Minion"],
+["🦂","Science Minion"],
+["🧟","Lab Minion"]
+];
+
+const bosses = {
+7:["👹","Cell Beast"],
+8:["🌋","Earth Titan"],
+9:["🐲","Reaction Beast"],
+10:["👽","Galaxy Overlord"]
+};
+
+
+function showScreen(id){
+
+document.querySelectorAll(".screen")
+.forEach(s=>s.classList.add("hidden"));
+
+const target=$(id);
+
+if(target){
+target.classList.remove("hidden");
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+}
+
+
+function toast(message){
+
+const el=$("toast");
+
+el.textContent=message;
+
+el.classList.remove("hidden");
+
+clearTimeout(window.toastTimer);
+
+window.toastTimer=setTimeout(()=>{
+el.classList.add("hidden");
+},2500);
+
+}
+
+
+function saveState(){
+
+localStorage.setItem(
+"scienceQuestStudent",
+state.studentName
+);
+
+sqWriteProfile(state.studentName, "coins", state.coins);
+sqWriteProfile(state.studentName, "completed", state.completedGrades);
+sqWriteProfile(state.studentName, "lastReward", state.lastReward);
+sqWriteProfile(state.studentName, "achievements", state.achievements);
+
+}
+
+
+function updateCoins(){
+
+document.querySelectorAll(
+"#mainCoins,#gradeCoins"
+).forEach(el=>{
+el.textContent=state.coins;
+});
+
+}
+
+
+/* =========================================================
+   STUDENT
+========================================================= */
+
+function openStudentName(){
+
+$("studentNameInput").value=state.studentName;
+
+showScreen("nameScreen");
+
+}
+
+
+function saveStudentName(){
+
+const name=$("studentNameInput").value.trim();
+
+if(!name){
+
+toast("⚠️ Please enter your name.");
+
+return;
+
+}
+
+const oldName = state.studentName;
+state.studentName=name;
+
+/* A new name starts with a completely separate profile.
+   Returning to an existing name restores that student's own progress. */
+state.coins = Number(sqReadProfile(name, "coins", 0)) || 0;
+state.completedGrades = sqReadProfile(name, "completed", []);
+state.lastReward = Number(sqReadProfile(name, "lastReward", 0)) || 0;
+state.achievements = sqReadProfile(name, "achievements", {firstMission:false,perfectScore:false,scienceExplorer:false,biologyMaster:false,earthExpert:false,chemistryGenius:false,spaceExplorer:false,allGrades:false,speedScientist:false});
+
+if(typeof window.sqSwitchStudent === "function") window.sqSwitchStudent(name);
+saveState();
+updateCoins();
+
+$("welcomeStudent").textContent=
+"👨‍🔬 "+state.studentName;
+
+openGrades();
+
+}
+
+
+function openGrades(){
+
+if(!state.studentName){
+
+openStudentName();
+
+return;
+
+}
+
+renderGrades();
+
+showScreen("gradeScreen");
+
+}
+
+
+/* =========================================================
+   GRADES
+========================================================= */
+
+function renderGrades(){
+
+const container=$("gradeList");
+
+container.innerHTML="";
+
+Object.entries(grades).forEach(([id,grade])=>{
+
+const gradeId=Number(id);
+
+const completed=
+state.completedGrades.includes(gradeId);
+
+const card=document.createElement("div");
+
+card.className="grade-card";
+
+card.innerHTML=`
+
+<div class="grade-character">
+${grade.emoji}
+</div>
+
+<div class="grade-info">
+
+<div class="grade-top">
+<span>GRADE ${id}</span>
+<span>🪙 +${grade.reward}</span>
+</div>
+
+<h2>${grade.name}</h2>
+
+<p>${grade.mission}</p>
+
+<div style="margin-top:10px;">
+${completed?"🏆 COMPLETED":"⚔️ READY FOR BATTLE"}
+</div>
+
+<div class="progress-bar">
+<div style="width:${completed?100:0}%"></div>
+</div>
+
+</div>
+`;
+
+card.onclick=()=>{
+selectGrade(gradeId);
+};
+
+container.appendChild(card);
+
+});
+
+updateCoins();
+
+}
+
+
+function selectGrade(id){
+
+if(!grades[id])return;
+
+state.selectedGrade=id;
+
+const grade=grades[id];
+
+$("guardianGrade").textContent=
+"GRADE "+id;
+
+$("guardianName").textContent=
+grade.guardian;
+
+$("guardianCharacter").textContent=
+grade.emoji;
+
+$("guardianDialogue").textContent=
+grade.dialogue;
+
+showScreen("guardianScreen");
+
+}
+
+
+/* =========================================================
+   LESSON
+========================================================= */
+
+function openLesson(){
+
+const grade=grades[state.selectedGrade];
+
+$("lessonEmoji").textContent=grade.emoji;
+$("lessonTitle").textContent=grade.title;
+$("lessonDescription").textContent=grade.description;
+$("lessonSummary").textContent=grade.summary;
+
+const obj=$("learningObjectives");
+
+obj.innerHTML="";
+
+grade.objectives.forEach(x=>{
+
+const li=document.createElement("li");
+
+li.textContent=x;
+
+obj.appendChild(li);
+
+});
+
+
+const concepts=$("keyConcepts");
+
+concepts.innerHTML="";
+
+grade.concepts.forEach((x,i)=>{
+
+const div=document.createElement("div");
+
+div.className="concept";
+
+div.innerHTML=`
+<strong>0${i+1}</strong>
+${x}
+`;
+
+concepts.appendChild(div);
+
+});
+
+showScreen("lessonScreen");
+
+}
+
+
+/* =========================================================
+   QUIZ
+========================================================= */
+
+function startQuiz(){
+
+if(!state.selectedGrade)return;
+clearInterval(state.timerInterval);
+
+const grade=grades[state.selectedGrade];
+if(!grade || !Array.isArray(grade.questions) || !grade.questions.length){
+    toast("⚠️ This mission has no questions available.");
+    return;
+}
+
+/* =========================================================
+   RANDOMIZE ALGORITHM
+   - Shuffles question order for every new battle.
+   - Shuffles choices for every question.
+   - Recalculates the correct-answer index after choices move.
+   - Does NOT modify the original grades question bank.
+========================================================= */
+state.quizQuestions=grade.questions.map(q=>({
+    ...q,
+    options:Array.isArray(q.options)?q.options.slice():[]
+}));
+
+// Fisher-Yates shuffle: unbiased in-place randomization.
+function shuffleArray(arr){
+    for(let i=arr.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [arr[i],arr[j]]=[arr[j],arr[i]];
+    }
+    return arr;
+}
+
+// Randomize question sequence.
+shuffleArray(state.quizQuestions);
+
+// Randomize each question's choices while preserving its correct answer.
+state.quizQuestions.forEach(q=>{
+    const correctValue=q.options[q.answer];
+    shuffleArray(q.options);
+    q.answer=q.options.indexOf(correctValue);
+});
+
+state.questionIndex=0;
+state.lives=3;
+state.maxLives=3;
+state.playerHP=3;
+state.score=0;
+state.correct=0;
+state.wrong=0;
+state.totalAnswered=0;
+state.answered=false;
+state.battleEnded=false;
+state.resultSaved=false;
+state.resultScreenShown=false;
+state.missionStartTime=Date.now();
+state.timer=30;
+state.battleStage="minion";
+state.enemyIndex=0;
+state.enemyHP=1;
+state.enemyMaxHP=1;
+
+showScreen("quizScreen");
+loadQuestion();
+
+}
+
+function loadQuestion(){
+
+if(state.battleEnded)return;
+
+const grade=grades[state.selectedGrade];
+const total=state.quizQuestions.length;
+const question=state.quizQuestions[state.questionIndex];
+
+if(!question){
+    victory();
+    return;
+}
+
+state.answered=false;
+
+// Show that this battle uses a newly randomized question set.
+let randomBadge=$("sqRandomBadge");
+if(!randomBadge){
+    randomBadge=document.createElement("div");
+    randomBadge.id="sqRandomBadge";
+    randomBadge.style.cssText="display:inline-block;margin:0 0 10px;padding:6px 10px;border-radius:999px;background:rgba(37,99,235,.16);border:1px solid rgba(96,165,250,.35);color:#93c5fd;font-size:12px;font-weight:900;";
+    const questionCard=document.querySelector("#quizScreen .question-card");
+    if(questionCard) questionCard.insertBefore(randomBadge,questionCard.firstChild);
+}
+randomBadge.textContent="🔀 RANDOMIZED BATTLE";
+
+$("answerFeedback").classList.add("hidden");
+$("questionCounter").textContent=`Battle Question ${state.questionIndex+1} of ${total}`;
+$("quizProgress").style.width=((state.questionIndex+1)/total*100)+"%";
+$("questionText").textContent=question.q;
+$("quizLives").textContent=Math.max(0,state.lives);
+$("quizScore").textContent=state.score;
+updateBattleUI();
+
+const container=$("answerContainer");
+container.innerHTML="";
+question.options.forEach((option,index)=>{
+    const button=document.createElement("button");
+    button.className="answer";
+    button.innerHTML=`<span class="answer-letter">${String.fromCharCode(65+index)}</span><span>${option}</span>`;
+    button.onclick=()=>checkAnswer(index,button);
+    container.appendChild(button);
+});
+
+startTimer();
+
+}
+
+function startTimer(){
+
+clearInterval(state.timerInterval);
+state.timerInterval=null;
+if(state.battleEnded)return;
+
+state.timer=30;
+$("quizTimer").textContent=state.timer;
+state.timerInterval=setInterval(()=>{
+    if(state.battleEnded || state.answered){
+        clearInterval(state.timerInterval);
+        state.timerInterval=null;
+        return;
+    }
+    state.timer=Math.max(0,state.timer-1);
+    $("quizTimer").textContent=state.timer;
+    if(state.timer===0){
+        clearInterval(state.timerInterval);
+        state.timerInterval=null;
+        if(!state.answered)resolveAnswer(-1,null,true);
+    }
+},1000);
+
+}
+
+function checkAnswer(index,button){
+if(state.battleEnded || state.answered)return;
+resolveAnswer(index,button,false);
+}
+
+function resolveAnswer(index,button,timeout){
+
+if(state.battleEnded || state.answered)return;
+
+const grade=grades[state.selectedGrade];
+const question=state.quizQuestions[state.questionIndex];
+if(!question)return;
+
+state.answered=true;
+state.totalAnswered++;
+clearInterval(state.timerInterval);
+state.timerInterval=null;
+
+const buttons=document.querySelectorAll(".answer");
+buttons.forEach(b=>b.disabled=true);
+
+const correct=!timeout && index===question.answer;
+const feedback=$("answerFeedback");
+feedback.classList.remove("hidden");
+
+if(correct){
+    if(button)button.classList.add("correct");
+    state.correct++;
+    state.score+=10;
+    state.enemyHP=Math.max(0,state.enemyHP-1);
+    feedback.className="feedback good";
+    feedback.innerHTML=`<strong>⚔️ DIRECT HIT!</strong><p style="margin-top:8px;">Correct answer!</p><p style="margin-top:7px;color:#94a3b8;">${question.explanation}</p>`;
+    $("battleLog").textContent="💥 Your science knowledge damaged the enemy!";
+}else{
+    if(button)button.classList.add("wrong");
+    if(buttons[question.answer])buttons[question.answer].classList.add("correct");
+    state.wrong++;
+    state.lives=Math.max(0,state.lives-1);
+    state.playerHP=Math.max(0,state.playerHP-1);
+    feedback.className="feedback bad";
+    feedback.innerHTML=`<strong>${timeout?"⏰ TIME'S UP!":"💔 WRONG ANSWER!"}</strong><p style="margin-top:8px;">Correct answer: <strong>${question.options[question.answer]}</strong></p><p style="margin-top:7px;color:#94a3b8;">${question.explanation}</p>`;
+    $("battleLog").textContent="💔 The enemy attacked you!";
+}
+
+updateBattleUI();
+updateCoins();
+saveState();
+setTimeout(()=>advanceBattle(),1000);
+
+}
+
+function advanceBattle(){
+
+if(state.battleEnded)return;
+
+const grade=grades[state.selectedGrade];
+const total=state.quizQuestions.length;
+
+// Wrong/timeout branch: player HP decides whether the battle continues.
+if(state.playerHP<=0){
+    gameOver();
+    return;
+}
+
+// Correct branch: enemy HP decides whether the current enemy is defeated.
+if(state.enemyHP<=0){
+    if(state.questionIndex>=total-1){
+        victory();
+        return;
+    }
+
+    if(state.questionIndex===2){
+        state.battleStage="boss";
+        state.enemyHP=2;
+        state.enemyMaxHP=2;
+        $("battleLog").textContent="👹 THE BOSS HAS APPEARED!";
+    }else{
+        state.enemyIndex++;
+        state.enemyHP=1;
+        state.enemyMaxHP=1;
+    }
+}
+
+// Explicit last-question branch prevents loops and unanswered decisions.
+if(state.questionIndex>=total-1){
+    victory();
+    return;
+}
+
+state.questionIndex++;
+loadQuestion();
+
+}
+
+/* =========================================================
+   BATTLE UI
+========================================================= */
+
+function updateBattleUI(){
+
+let enemy;
+
+if(state.battleStage==="boss"){
+
+enemy=bosses[state.selectedGrade];
+
+}else{
+
+enemy=minions[
+Math.min(
+state.enemyIndex,
+minions.length-1
+)
+];
+
+}
+
+$("enemyEmoji").textContent=
+enemy[0];
+
+$("enemyName").textContent=
+enemy[1];
+
+state.playerHP=Math.max(0,Math.min(3,state.playerHP));
+state.enemyHP=Math.max(0,Math.min(state.enemyMaxHP,state.enemyHP));
+
+$("playerHpText").textContent=
+`${state.playerHP} / 3 HP`;
+
+$("enemyHpText").textContent=
+`${Math.max(0,state.enemyHP)} / ${state.enemyMaxHP} HP`;
+
+$("playerHpBar").style.width=
+Math.max(0,state.playerHP/3*100)+"%";
+
+$("enemyHpBar").style.width=
+Math.max(0,state.enemyHP/state.enemyMaxHP*100)+"%";
+
+$("battleStage").textContent=
+state.battleStage==="boss"
+?"👹 BOSS BATTLE"
+:`⚔️ MINION ${state.enemyIndex+1} OF 3`;
+
+}
+
+
+/* =========================================================
+   GAME OVER
+========================================================= */
+
+function gameOver(){
+
+if(state.battleEnded)return;
+state.battleEnded=true;
+clearInterval(state.timerInterval);
+state.timerInterval=null;
+state.playerHP=Math.max(0,state.playerHP);
+
+const grade=grades[state.selectedGrade];
+const total=grade.questions.length;
+const accuracy=total ? Math.round(state.correct/total*100) : 0;
+
+// A failed battle still produces one final result record.
+saveResult(accuracy);
+state.lastReward=0;
+saveState();
+
+$("completeTitle").textContent="GAME OVER";
+$("completeMessage").textContent=`${state.studentName}, your HP reached zero. Train again and try the mission!`;
+$("resultScore").textContent=state.score;
+$("correctAnswers").textContent=state.correct;
+$("wrongAnswers").textContent=state.wrong;
+$("accuracy").textContent=accuracy+"%";
+$("earnedCoins").textContent="+0";
+$("resultStudent").textContent=state.studentName;
+
+if(!state.resultScreenShown){
+    state.resultScreenShown=true;
+    showScreen("completeScreen");
+}
+
+}
+
+function victory(){
+
+if(state.battleEnded)return;
+state.battleEnded=true;
+clearInterval(state.timerInterval);
+state.timerInterval=null;
+
+const grade=grades[state.selectedGrade];
+const total=grade.questions.length;
+const accuracy=total ? Math.round(state.correct/total*100) : 0;
+
+// Mission reward is granted only after the battle has ended.
+const earned=Number(grade.reward)||0;
+state.coins+=earned;
+state.lastReward=earned;
+
+if(!state.completedGrades.includes(state.selectedGrade)){
+    state.completedGrades.push(state.selectedGrade);
+}
+
+const completedCount=state.completedGrades.length;
+state.achievements.firstMission=true;
+if(accuracy===100)state.achievements.perfectScore=true;
+if(completedCount>=2)state.achievements.scienceExplorer=true;
+if(state.selectedGrade===7)state.achievements.biologyMaster=true;
+if(state.selectedGrade===8)state.achievements.earthExpert=true;
+if(state.selectedGrade===9)state.achievements.chemistryGenius=true;
+if(state.selectedGrade===10)state.achievements.spaceExplorer=true;
+if(completedCount>=4)state.achievements.allGrades=true;
+
+const elapsedSeconds=state.missionStartTime
+    ? Math.round((Date.now()-state.missionStartTime)/1000)
+    : Infinity;
+if(state.wrong===0 && elapsedSeconds<=total*15){
+    state.achievements.speedScientist=true;
+}
+
+saveResult(accuracy);
+saveState();
+
+$("resultScore").textContent=state.score;
+$("correctAnswers").textContent=state.correct;
+$("wrongAnswers").textContent=state.wrong;
+$("accuracy").textContent=accuracy+"%";
+$("earnedCoins").textContent="+"+earned;
+$("resultStudent").textContent=state.studentName;
+$("completeTitle").textContent="MISSION COMPLETE!";
+$("completeMessage").textContent=`🏆 Victory! ${grade.guardian} is proud of you! You defeated all enemies and completed ${grade.mission}!`;
+
+renderGrades();
+renderAchievements();
+updateCoins();
+
+if(!state.resultScreenShown){
+    state.resultScreenShown=true;
+    showScreen("completeScreen");
+}
+
+}
+
+/* =========================================================
+   RESULTS
+========================================================= */
+
+function getResults(){
+
+try{
+    const results=JSON.parse(
+        localStorage.getItem("scienceQuestResults")||"[]"
+    );
+    return Array.isArray(results) ? results : [];
+}catch(e){
+    return [];
+}
+
+}
+
+
+function saveResult(accuracy){
+
+if(state.resultSaved)return;
+
+let results=getResults();
+if(!Array.isArray(results))results=[];
+
+results.push({
+    id:Date.now(),
+    studentName:state.studentName,
+    grade:state.selectedGrade,
+    mission:grades[state.selectedGrade].mission,
+    score:state.score,
+    correct:state.correct,
+    wrong:state.wrong,
+    accuracy:Number.isFinite(Number(accuracy)) ? Number(accuracy) : 0,
+    date:new Date().toLocaleString()
+});
+
+localStorage.setItem("scienceQuestResults",JSON.stringify(results));
+state.resultSaved=true;
+
+}
+
+/* =========================================================
+   ACHIEVEMENTS
+========================================================= */
+
+const achievementData=[
+
+[
+"firstMission",
+"🚀",
+"First Mission",
+"Complete your first mission."
+],
+
+[
+"perfectScore",
+"⭐",
+"Perfect Score",
+"Answer every question correctly."
+],
+
+[
+"scienceExplorer",
+"🔬",
+"Science Explorer",
+"Complete missions from different grades."
+],
+
+[
+"biologyMaster",
+"🧬",
+"Biology Master",
+"Complete Grade 7."
+],
+
+[
+"earthExpert",
+"🌎",
+"Earth Expert",
+"Complete Grade 8."
+],
+
+[
+"chemistryGenius",
+"🧪",
+"Chemistry Genius",
+"Complete Grade 9."
+],
+
+[
+"spaceExplorer",
+"🪐",
+"Space Explorer",
+"Complete Grade 10."
+],
+
+[
+"allGrades",
+"🏆",
+"Master Scientist",
+"Complete Grades 7–10."
+],
+
+[
+"speedScientist",
+"⚡",
+"Speed Scientist",
+"Complete a mission quickly with no wrong answers."
+]
+
+];
+
+
+function renderAchievements(){
+
+const grid=$("achievementGrid");
+
+grid.innerHTML="";
+
+let unlocked=0;
+
+achievementData.forEach(
+([id,icon,title,description])=>{
+
+const yes=
+state.achievements[id];
+
+if(yes)unlocked++;
+
+const div=
+document.createElement("div");
+
+div.className=
+"achievement "+
+(yes?"unlocked":"locked");
+
+div.innerHTML=`
+
+<div class="badge">
+${icon}
+</div>
+
+<h3>${title}</h3>
+
+<p style="color:#94a3b8;margin-top:8px;">
+${description}
+</p>
+
+<strong style="
+display:block;
+margin-top:12px;
+color:${yes?"#22c55e":"#94a3b8"};
+">
+${yes?"✓ UNLOCKED":"🔒 LOCKED"}
+</strong>
+`;
+
+grid.appendChild(div);
+
+});
+
+$("achievementCount").textContent=
+unlocked;
+
+}
+
+
+function openAchievements(){
+
+renderAchievements();
+
+showScreen("achievementScreen");
+
+}
+
+
+/* =========================================================
+   CERTIFICATE
+========================================================= */
+
+function openCertificate(){
+
+if(
+!state.studentName ||
+state.completedGrades.length===0
+){
+
+toast(
+"🔒 Complete a mission first to unlock your certificate."
+);
+
+return;
+
+}
+
+drawCertificate();
+
+showScreen("certificateScreen");
+
+}
+
+
+/*
+   Native Canvas Certificate
+   No external library required.
+*/
+
+function drawCertificate(){
+
+const canvas=$("certificateCanvas");
+
+const ctx=
+canvas.getContext("2d");
+
+const W=canvas.width;
+const H=canvas.height;
+
+
+/* Background */
+
+const gradient=
+ctx.createLinearGradient(
+0,0,W,H
+);
+
+gradient.addColorStop(
+0,
+"#f8fafc"
+);
+
+gradient.addColorStop(
+1,
+"#e0f2fe"
+);
+
+ctx.fillStyle=gradient;
+
+ctx.fillRect(
+0,0,W,H
+);
+
+
+/* Outer border */
+
+ctx.strokeStyle="#1d4ed8";
+
+ctx.lineWidth=25;
+
+ctx.strokeRect(
+30,
+30,
+W-60,
+H-60
+);
+
+
+/* Inner border */
+
+ctx.strokeStyle="#f59e0b";
+
+ctx.lineWidth=6;
+
+ctx.strokeRect(
+60,
+60,
+W-120,
+H-120
+);
+
+
+/* Header */
+
+ctx.textAlign="center";
+
+ctx.fillStyle="#1e3a8a";
+
+ctx.font=
+"bold 72px Georgia";
+
+ctx.fillText(
+"SCIENCE QUEST",
+W/2,
+180
+);
+
+ctx.fillStyle="#475569";
+
+ctx.font=
+"32px Arial";
+
+ctx.fillText(
+"CERTIFICATE OF ACHIEVEMENT",
+W/2,
+240
+);
+
+
+/* Trophy */
+
+ctx.font="90px Arial";
+
+ctx.fillText(
+"🏆",
+W/2,
+350
+);
+
+
+/* Presented to */
+
+ctx.fillStyle="#475569";
+
+ctx.font="28px Arial";
+
+ctx.fillText(
+"This certificate is proudly presented to",
+W/2,
+425
+);
+
+
+/* Student name */
+
+ctx.fillStyle="#0f172a";
+
+ctx.font=
+"bold 64px Georgia";
+
+ctx.fillText(
+state.studentName.toUpperCase(),
+W/2,
+510
+);
+
+
+/* Line */
+
+ctx.strokeStyle="#94a3b8";
+
+ctx.lineWidth=2;
+
+ctx.beginPath();
+
+ctx.moveTo(400,535);
+ctx.lineTo(1200,535);
+
+ctx.stroke();
+
+
+const grade=
+grades[state.selectedGrade];
+
+const accuracy=
+Math.round(
+state.correct/
+grade.questions.length*100
+);
+
+
+/* Mission */
+
+ctx.fillStyle="#1e3a8a";
+
+ctx.font=
+"bold 35px Arial";
+
+ctx.fillText(
+`Grade ${state.selectedGrade} — ${grade.mission}`,
+W/2,
+610
+);
+
+
+/* Details */
+
+ctx.fillStyle="#334155";
+
+ctx.font="28px Arial";
+
+ctx.fillText(
+`Score: ${state.score}`,
+W/2,
+675
+);
+
+ctx.fillText(
+`Accuracy: ${accuracy}%`,
+W/2,
+720
+);
+
+ctx.fillText(
+`Reward: +${grade.reward} Coins`,
+W/2,
+765
+);
+
+ctx.fillText(
+`Date: ${new Date().toLocaleDateString()}`,
+W/2,
+810
+);
+
+
+/* Guardian */
+
+ctx.fillStyle="#475569";
+
+ctx.font="24px Arial";
+
+ctx.fillText(
+`Guardian: ${grade.guardian}`,
+W/2,
+885
+);
+
+
+/* Footer */
+
+ctx.fillStyle="#1d4ed8";
+
+ctx.font=
+"bold 26px Arial";
+
+ctx.fillText(
+"Keep exploring. Keep learning. Keep discovering!",
+W/2,
+960
+);
+
+
+/* Certificate ID */
+
+ctx.fillStyle="#64748b";
+
+ctx.font="18px Arial";
+
+ctx.fillText(
+"Certificate ID: SQ-"+state.selectedGrade+"-"+Date.now(),
+W/2,
+1015
+);
+
+}
+
+
+/* =========================================================
+   DOWNLOAD PNG
+========================================================= */
+
+function downloadCertificatePNG(){
+
+if(
+!state.studentName ||
+state.completedGrades.length===0
+){
+
+toast(
+"🔒 Complete a mission first."
+);
+
+return;
+
+}
+
+drawCertificate();
+
+const canvas=$("certificateCanvas");
+
+const link=
+document.createElement("a");
+
+const safeName=
+state.studentName
+.replace(/[^a-z0-9]/gi,"_")
+.toLowerCase();
+
+link.download=
+`ScienceQuest_Certificate_${safeName}.png`;
+
+link.href=
+canvas.toDataURL("image/png");
+
+link.click();
+
+toast(
+"🖼️ Certificate saved as PNG!"
+);
+
+}
+
+
+/* =========================================================
+   PRINT CERTIFICATE
+========================================================= */
+
+function printCertificate(){
+
+drawCertificate();
+
+const canvas=$("certificateCanvas");
+
+const data=
+canvas.toDataURL("image/png");
+
+const win=
+window.open("","_blank");
+
+if(!win){
+
+toast(
+"⚠️ Please allow popups to print."
+);
+
+return;
+
+}
+
+win.document.write(`
+
+<html>
+
+<head>
+
+<title>Science Quest Certificate</title>
+
+<style>
+
+body{
+margin:0;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+background:#fff;
+}
+
+img{
+width:95%;
+max-width:1200px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<img src="${data}">
+
+<script>
+
+window.onload=function(){
+window.print();
+}
+
+<\/script>
+
+</body>
+
+</html>
+
+`);
+
+win.document.close();
+
+}
+
+
+/* =========================================================
+   ADMIN
+========================================================= */
+
+function openAdmin(){
+
+showScreen("adminLoginScreen");
+
+}
+
+
+function adminLogin(){
+
+const username=
+$("adminUsername").value.trim();
+
+const password=
+$("adminPassword").value;
+
+if(
+username==="teacher" &&
+password==="admin123"
+){
+
+sessionStorage.setItem(
+"scienceQuestAdmin",
+"true"
+);
+
+renderAdminDashboard();
+
+showScreen("adminScreen");
+
+toast(
+"👨‍🏫 Welcome, Teacher!"
+);
+
+}else{
+
+toast(
+"❌ Invalid username or password."
+);
+
+}
+
+}
+
+
+function adminLogout(){
+
+sessionStorage.removeItem(
+"scienceQuestAdmin"
+);
+
+showScreen("mainMenu");
+
+}
+
+
+function renderAdminDashboard(){
+
+if(
+sessionStorage.getItem(
+"scienceQuestAdmin"
+)!=="true"
+){
+
+openAdmin();
+
+return;
+
+}
+
+const results=
+getResults();
+
+const students=
+new Set(
+results.map(r=>r.studentName)
+);
+
+$("adminStudents").textContent=
+students.size;
+
+$("adminMissions").textContent=
+results.length;
+
+let avgScore=0;
+let avgAccuracy=0;
+
+if(results.length){
+
+avgScore=
+Math.round(
+results.reduce(
+(sum,r)=>sum+Number(r.score),
+0
+)/results.length
+);
+
+avgAccuracy=
+Math.round(
+results.reduce(
+(sum,r)=>sum+Number(r.accuracy),
+0
+)/results.length
+);
+
+}
+
+$("adminAverageScore").textContent=
+avgScore;
+
+$("adminAverageAccuracy").textContent=
+avgAccuracy+"%";
+
+renderAdminResults();
+
+}
+
+
+function renderAdminResults(){
+
+const body=
+$("adminResultsBody");
+
+const search=
+($("adminSearch").value||"")
+.toLowerCase();
+
+const results=
+getResults().filter(r=>
+r.studentName
+.toLowerCase()
+.includes(search)
+);
+
+body.innerHTML="";
+
+if(!results.length){
+
+body.innerHTML=`
+
+<tr>
+
+<td colspan="7"
+style="text-align:center;color:#94a3b8;">
+
+No student results found.
+
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+results
+.slice()
+.reverse()
+.forEach(r=>{
+
+const tr=
+document.createElement("tr");
+
+tr.innerHTML=`
+
+<td>
+<strong>${escapeHTML(r.studentName)}</strong>
+</td>
+
+<td>Grade ${r.grade}</td>
+
+<td>${r.score}</td>
+
+<td>
+<strong style="color:${
+r.accuracy>=80
+?"#22c55e"
+:"#facc15"
+}">
+${r.accuracy}%
+</strong>
+</td>
+
+<td>${r.correct}</td>
+
+<td>${r.wrong}</td>
+
+<td>${escapeHTML(r.date)}</td>
+
+`;
+
+body.appendChild(tr);
+
+});
+
+}
+
+
+function escapeHTML(str){
+
+return String(str)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================================
+   CSV EXPORT
+========================================================= */
+
+function exportResultsCSV(){
+
+const results=getResults();
+
+if(!results.length){
+
+toast(
+"📊 No student results to export."
+);
+
+return;
+
+}
+
+const headers=[
+"Student",
+"Grade",
+"Mission",
+"Score",
+"Correct",
+"Wrong",
+"Accuracy",
+"Date"
+];
+
+const rows=
+results.map(r=>[
+r.studentName,
+r.grade,
+r.mission,
+r.score,
+r.correct,
+r.wrong,
+r.accuracy+"%",
+r.date
+]);
+
+let csv=
+headers.join(",")+"\n";
+
+rows.forEach(row=>{
+
+csv+=row.map(value=>
+`"${String(value).replace(/"/g,'""')}"`
+).join(",")+"\n";
+
+});
+
+const blob=
+new Blob(
+[csv],
+{type:"text/csv;charset=utf-8;"}
+);
+
+const url=
+URL.createObjectURL(blob);
+
+const link=
+document.createElement("a");
+
+link.href=url;
+
+link.download=
+"ScienceQuest_Student_Results.csv";
+
+link.click();
+
+URL.revokeObjectURL(url);
+
+toast(
+"📥 Results exported successfully!"
+);
+
+}
+
+
+/* =========================================================
+   CLEAR ADMIN RESULTS
+========================================================= */
+
+function clearAllResults(){
+
+const confirmDelete=
+confirm(
+"Delete ALL student results? This cannot be undone."
+);
+
+if(!confirmDelete)return;
+
+localStorage.removeItem(
+"scienceQuestResults"
+);
+
+renderAdminDashboard();
+
+toast(
+"🗑️ All results deleted."
+);
+
+}
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+function init(){
+
+if(state.studentName){
+
+$("welcomeStudent").textContent=
+"👨‍🔬 "+state.studentName;
+
+}
+
+updateCoins();
+
+renderGrades();
+
+renderAchievements();
+
+}
+
+init();
+
+</script>
+
+<!-- =========================================================
+     SCIENCE QUEST GAMIFICATION ENHANCEMENT
+     ADD-ON ONLY: Original game logic is preserved.
+     Features: animations, sound effects, points HUD, badges,
+     timer effects, progress display, rewards, level-up, leaderboard.
+========================================================= -->
+
+<style>
+/* ---------- GAMIFICATION ANIMATIONS ---------- */
+@keyframes sqFloat {
+    0%,100% { transform:translateY(0); }
+    50% { transform:translateY(-7px); }
+}
+@keyframes sqPulse {
+    0%,100% { transform:scale(1); }
+    50% { transform:scale(1.08); }
+}
+@keyframes sqShake {
+    0%,100% { transform:translateX(0); }
+    20% { transform:translateX(-8px); }
+    40% { transform:translateX(8px); }
+    60% { transform:translateX(-6px); }
+    80% { transform:translateX(6px); }
+}
+@keyframes sqCorrect {
+    0% { transform:scale(1); box-shadow:0 0 0 rgba(34,197,94,0); }
+    45% { transform:scale(1.05); box-shadow:0 0 28px rgba(34,197,94,.55); }
+    100% { transform:scale(1); box-shadow:0 0 0 rgba(34,197,94,0); }
+}
+@keyframes sqWrong {
+    0%,100% { transform:translateX(0); }
+    25% { transform:translateX(-8px); }
+    75% { transform:translateX(8px); }
+}
+@keyframes sqLevelUp {
+    0% { opacity:0; transform:translate(-50%,-45%) scale(.6); }
+    60% { opacity:1; transform:translate(-50%,-50%) scale(1.08); }
+    100% { opacity:1; transform:translate(-50%,-50%) scale(1); }
+}
+@keyframes sqBadgePop {
+    0% { opacity:0; transform:scale(.3) rotate(-12deg); }
+    70% { opacity:1; transform:scale(1.12) rotate(3deg); }
+    100% { opacity:1; transform:scale(1) rotate(0); }
+}
+@keyframes sqShimmer {
+    0% { background-position:-300px 0; }
+    100% { background-position:300px 0; }
+}
+
+.sq-float { animation:sqFloat 2.2s ease-in-out infinite; }
+.sq-pulse { animation:sqPulse .65s ease-in-out; }
+.sq-correct { animation:sqCorrect .7s ease; }
+.sq-wrong { animation:sqWrong .5s ease; }
+
+.sq-hud {
+    position:fixed;
+    left:18px;
+    bottom:18px;
+    z-index:900;
+    width:min(310px,calc(100vw - 36px));
+    background:rgba(15,23,42,.94);
+    border:1px solid rgba(96,165,250,.35);
+    border-radius:18px;
+    padding:13px 15px;
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+    backdrop-filter:blur(12px);
+}
+.sq-hud-top {
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    align-items:center;
+    font-weight:900;
+}
+.sq-level {
+    color:#67e8f9;
+}
+.sq-xp-text {
+    color:#cbd5e1;
+    font-size:12px;
+}
+.sq-xp-bar {
+    height:8px;
+    background:#334155;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:8px;
+}
+.sq-xp-bar div {
+    height:100%;
+    width:0;
+    background:linear-gradient(90deg,#8b5cf6,#22d3ee);
+    transition:width .45s ease;
+}
+.sq-points-line {
+    display:flex;
+    justify-content:space-between;
+    margin-top:8px;
+    color:#facc15;
+    font-size:13px;
+}
+
+.sq-quiz-progress {
+    margin:0 0 14px;
+    background:#0f172a;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:15px;
+    padding:10px 12px;
+}
+.sq-quiz-progress-top {
+    display:flex;
+    justify-content:space-between;
+    color:#cbd5e1;
+    font-size:12px;
+    font-weight:800;
+}
+.sq-mini-bar {
+    height:7px;
+    background:#334155;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:7px;
+}
+.sq-mini-bar div {
+    height:100%;
+    width:0;
+    background:linear-gradient(90deg,#22c55e,#22d3ee);
+    transition:width .35s ease;
+}
+
+.sq-timer-danger {
+    color:#fb7185 !important;
+    animation:sqPulse .7s infinite;
+}
+.sq-timer-warning {
+    color:#facc15 !important;
+    animation:sqPulse 1s infinite;
+}
+
+.sq-overlay {
+    position:fixed;
+    inset:0;
+    z-index:2000;
+    display:none;
+    place-items:center;
+    background:rgba(2,6,23,.72);
+    backdrop-filter:blur(5px);
+}
+.sq-overlay.show { display:grid; }
+
+.sq-level-card, .sq-badge-card {
+    width:min(450px,calc(100vw - 30px));
+    text-align:center;
+    background:linear-gradient(145deg,#172033,#0f172a);
+    border:1px solid rgba(103,232,249,.4);
+    border-radius:28px;
+    padding:34px 25px;
+    box-shadow:0 25px 80px rgba(0,0,0,.55);
+    animation:sqLevelUp .55s ease forwards;
+}
+.sq-level-icon { font-size:75px; animation:sqFloat 1.5s ease-in-out infinite; }
+.sq-level-card h1 { margin:10px 0; color:#67e8f9; }
+.sq-level-card p { color:#cbd5e1; line-height:1.6; }
+
+.sq-reward-box {
+    margin:18px 0;
+    padding:16px;
+    border-radius:18px;
+    background:#241d08;
+    border:1px solid #725c16;
+    color:#facc15;
+    font-weight:900;
+}
+.sq-reward-row {
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:8px;
+}
+
+.sq-leaderboard {
+    display:grid;
+    gap:12px;
+    margin-top:20px;
+}
+.sq-rank {
+    display:grid;
+    grid-template-columns:50px 1fr auto;
+    align-items:center;
+    gap:12px;
+    background:#172033;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:16px;
+    padding:13px 15px;
+}
+.sq-rank-num {
+    font-size:22px;
+    font-weight:1000;
+    text-align:center;
+}
+.sq-rank-name { font-weight:900; }
+.sq-rank-meta { color:#94a3b8; font-size:12px; margin-top:3px; }
+.sq-rank-score { color:#67e8f9; font-weight:1000; }
+
+.sq-new-badge {
+    display:inline-block;
+    margin-top:12px;
+    padding:6px 10px;
+    border-radius:999px;
+    background:#312e81;
+    color:#ddd6fe;
+    font-size:12px;
+    font-weight:900;
+}
+
+@media(max-width:600px){
+    .sq-hud {
+        left:10px;
+        bottom:10px;
+        width:calc(100vw - 20px);
+    }
+}
+</style>
+
+
+<!-- =========================================================
+     EXTRA VISUAL + AUDIO PACK
+     Added only; original game logic is kept intact.
+========================================================= -->
+<style id="sqExtraStyle">
+/* Phone-style presentation even when opened on desktop */
+@media (min-width: 801px){
+    body{background:#020617;}
+    .screen > .container{
+        width:100%;
+        max-width:500px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    #quizScreen > .container{max-width:470px;}
+    #mainMenu .menu-grid{grid-template-columns:1fr 1fr;}
+}
+
+/* Keep the phone layout comfortable on smaller screens */
+@media (max-width: 500px){
+    .screen > .container{width:100%;}
+    .battle{padding:14px;}
+    .battle-top{grid-template-columns:1fr 55px 1fr;gap:8px;}
+    .battle-character{font-size:58px;}
+    .battle-vs{font-size:20px;}
+    .question-card{padding:18px;}
+    .question{font-size:21px;}
+    .answers{grid-template-columns:1fr;}
+}
+
+/* Music control */
+.sq-music-control{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    z-index:1900;
+    border:1px solid rgba(103,232,249,.35);
+    background:rgba(15,23,42,.94);
+    color:#e2e8f0;
+    border-radius:999px;
+    padding:10px 14px;
+    font-weight:900;
+    cursor:pointer;
+    box-shadow:0 12px 35px rgba(0,0,0,.35);
+    backdrop-filter:blur(10px);
+}
+.sq-music-control.on{animation:sqMusicGlow 1.2s ease-in-out infinite;}
+@keyframes sqMusicGlow{50%{transform:translateY(-2px);box-shadow:0 0 24px rgba(34,211,238,.35);}}
+
+/* Character action animations */
+.sq-character-attack{animation:sqCharacterAttack .55s ease;}
+.sq-character-hit{animation:sqCharacterHit .55s ease;}
+@keyframes sqCharacterAttack{
+    0%{transform:translateX(0) scale(1)}
+    35%{transform:translateX(18px) scale(1.08)}
+    70%{transform:translateX(-4px) scale(1)}
+    100%{transform:translateX(0) scale(1)}
+}
+@keyframes sqCharacterHit{
+    0%,100%{transform:translateX(0)}
+    20%{transform:translateX(-9px)}
+    40%{transform:translateX(9px)}
+    60%{transform:translateX(-6px)}
+    80%{transform:translateX(6px)}
+}
+
+/* Non-graphic sci-fi laser effect */
+.sq-laser{
+    position:fixed;
+    height:6px;
+    border-radius:999px;
+    z-index:2500;
+    pointer-events:none;
+    transform-origin:left center;
+    background:linear-gradient(90deg,#fef08a,#22d3ee,#a78bfa);
+    box-shadow:0 0 7px #67e8f9,0 0 18px #22d3ee,0 0 35px rgba(167,139,250,.8);
+    animation:sqLaserFire .42s cubic-bezier(.2,.8,.2,1) forwards;
+}
+.sq-laser::after{
+    content:"";
+    position:absolute;
+    right:-8px;
+    top:50%;
+    width:16px;
+    height:16px;
+    transform:translateY(-50%);
+    border-radius:50%;
+    background:#fff;
+    box-shadow:0 0 8px #fff,0 0 20px #22d3ee;
+}
+.sq-laser.wrong{
+    background:linear-gradient(90deg,#fecaca,#fb7185,#f97316);
+    box-shadow:0 0 7px #fb7185,0 0 18px #f43f5e,0 0 35px rgba(249,115,22,.8);
+}
+@keyframes sqLaserFire{from{opacity:1;transform:rotate(var(--angle)) scaleX(0)}to{opacity:0;transform:rotate(var(--angle)) scaleX(1)}}
+.sq-impact{
+    position:fixed;
+    width:28px;height:28px;
+    border:4px solid #67e8f9;
+    border-radius:50%;
+    z-index:2501;
+    pointer-events:none;
+    animation:sqImpact .45s ease-out forwards;
+}
+.sq-impact.wrong{border-color:#fb7185;}
+@keyframes sqImpact{0%{opacity:1;transform:translate(-50%,-50%) scale(.2)}70%{opacity:.9;transform:translate(-50%,-50%) scale(1.5)}100%{opacity:0;transform:translate(-50%,-50%) scale(2.2)}}
+
+/* Small status banner */
+.sq-action-banner{
+    position:fixed;
+    left:50%;
+    top:18%;
+    transform:translateX(-50%) scale(.8);
+    z-index:2400;
+    opacity:0;
+    pointer-events:none;
+    padding:10px 18px;
+    border-radius:999px;
+    font-weight:1000;
+    letter-spacing:.5px;
+    background:rgba(15,23,42,.95);
+    border:1px solid rgba(255,255,255,.15);
+    box-shadow:0 12px 40px rgba(0,0,0,.4);
+}
+.sq-action-banner.show{animation:sqBanner .8s ease forwards;}
+.sq-action-banner.good{color:#67e8f9;border-color:#22d3ee;}
+.sq-action-banner.bad{color:#fb7185;border-color:#fb7185;}
+@keyframes sqBanner{0%{opacity:0;transform:translateX(-50%) translateY(8px) scale(.8)}20%,75%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}100%{opacity:0;transform:translateX(-50%) translateY(-12px) scale(.95)}}
+
+@media (max-width:600px){
+    .sq-music-control{right:10px;bottom:10px;padding:9px 12px;font-size:12px;}
+    .sq-action-banner{top:12%;font-size:12px;}
+}
+</style>
+
+<button id="sqMusicControl" class="sq-music-control" type="button" onclick="sqToggleMusic()">🎵 Music OFF</button>
+<div id="sqActionBanner" class="sq-action-banner"></div>
+
+<script id="sqExtraScript">
+(function(){
+    let musicCtx=null;
+    let musicGain=null;
+    let musicTimer=null;
+    let musicOn=false;
+    let beatStep=0;
+
+    function getAudio(){
+        const AC=window.AudioContext||window.webkitAudioContext;
+        if(!AC) return null;
+        if(!musicCtx) musicCtx=new AC();
+        if(musicCtx.state==='suspended') musicCtx.resume();
+        return musicCtx;
+    }
+
+    function beat(freq,duration,volume,type){
+        const ctx=getAudio();
+        if(!ctx) return;
+        const osc=ctx.createOscillator();
+        const gain=ctx.createGain();
+        osc.type=type||'sine';
+        osc.frequency.setValueAtTime(freq,ctx.currentTime);
+        gain.gain.setValueAtTime(.0001,ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(volume,ctx.currentTime+.008);
+        gain.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+duration);
+        osc.connect(gain);gain.connect(musicGain||ctx.destination);
+        osc.start();osc.stop(ctx.currentTime+duration+.02);
+    }
+
+    function musicTick(){
+        if(!musicOn) return;
+        const ctx=getAudio();
+        if(!ctx) return;
+        const s=beatStep%8;
+        if(s===0||s===4) beat(95,.18,.085,'sine');
+        if(s===2||s===6) beat(150,.09,.042,'triangle');
+        if(s===1||s===3||s===5||s===7) beat(800,.045,.020,'square');
+        beatStep++;
+    }
+
+    window.sqToggleMusic=function(){
+        const ctx=getAudio();
+        if(!ctx) return;
+        if(!musicGain){
+            musicGain=ctx.createGain();
+            musicGain.gain.value=.85;
+            musicGain.connect(ctx.destination);
+        }
+        musicOn=!musicOn;
+        const btn=document.getElementById('sqMusicControl');
+        if(musicOn){
+            beatStep=0;
+            musicTick();
+            clearInterval(musicTimer);
+            musicTimer=setInterval(musicTick,180);
+            if(btn){btn.textContent='🎵 Music ON';btn.classList.add('on');}
+            localStorage.setItem('sqMusicEnabled','1');
+        }else{
+            clearInterval(musicTimer);
+            musicTimer=null;
+            if(musicGain) musicGain.gain.setTargetAtTime(.0001,ctx.currentTime,.05);
+            if(btn){btn.textContent='🔇 Music OFF';btn.classList.remove('on');}
+            localStorage.setItem('sqMusicEnabled','0');
+        }
+    };
+
+    function pos(el){
+        if(!el) return null;
+        const r=el.getBoundingClientRect();
+        return {x:r.left+r.width/2,y:r.top+r.height/2};
+    }
+
+    function laser(from,to,wrong){
+        if(!from||!to) return;
+        const a=pos(from), b=pos(to);
+        if(!a||!b) return;
+        const dx=b.x-a.x,dy=b.y-a.y;
+        const len=Math.sqrt(dx*dx+dy*dy);
+        const angle=Math.atan2(dy,dx)*180/Math.PI;
+        const line=document.createElement('div');
+        line.className='sq-laser'+(wrong?' wrong':'');
+        line.style.left=a.x+'px';
+        line.style.top=(a.y-3)+'px';
+        line.style.width=len+'px';
+        line.style.setProperty('--angle',angle+'deg');
+        document.body.appendChild(line);
+        setTimeout(()=>line.remove(),500);
+
+        const impact=document.createElement('div');
+        impact.className='sq-impact'+(wrong?' wrong':'');
+        impact.style.left=b.x+'px';
+        impact.style.top=b.y+'px';
+        document.body.appendChild(impact);
+        setTimeout(()=>impact.remove(),500);
+    }
+
+    function animateCharacter(el,cls){
+        if(!el) return;
+        el.classList.remove(cls);
+        void el.offsetWidth;
+        el.classList.add(cls);
+        setTimeout(()=>el.classList.remove(cls),650);
+    }
+
+    function banner(text,good){
+        const b=document.getElementById('sqActionBanner');
+        if(!b) return;
+        b.textContent=text;
+        b.className='sq-action-banner show '+(good?'good':'bad');
+        setTimeout(()=>b.className='sq-action-banner',850);
+    }
+
+    window.sqBattleLaser=function(isWrong){
+        const battle=document.querySelector('.battle');
+        if(!battle) return;
+        const chars=battle.querySelectorAll('.battle-character');
+        if(chars.length<2) return;
+        const player=chars[0], enemy=chars[1];
+        if(isWrong){
+            laser(enemy,player,true);
+            animateCharacter(enemy,'sq-character-attack');
+            animateCharacter(player,'sq-character-hit');
+            banner('⚡ LASER HIT!',false);
+        }else{
+            laser(player,enemy,false);
+            animateCharacter(player,'sq-character-attack');
+            animateCharacter(enemy,'sq-character-hit');
+            banner('⚡ SCIENCE LASER!',true);
+        }
+    };
+
+    /* Start music only after a user action; browser autoplay rules are respected. */
+    document.addEventListener('click',function(e){
+        if(e.target.closest('#sqMusicControl')) return;
+        if(localStorage.getItem('sqMusicEnabled')==='1' && !musicOn){
+            window.sqToggleMusic();
+        }
+    },{passive:true});
+
+    /* Hook into the already-added answer wrapper without replacing original logic. */
+    const wait=setInterval(function(){
+        if(typeof window.resolveAnswer==='function' && !window.resolveAnswer.__sqLaserWrapped){
+            const old=window.resolveAnswer;
+            function wrapped(index,button,timeout){
+                const beforeCorrect=state.correct;
+                const beforeWrong=state.wrong;
+                old.apply(this,arguments);
+                setTimeout(function(){
+                    if(state.correct>beforeCorrect){
+                        window.sqBattleLaser(false);
+                    }else if(state.wrong>beforeWrong){
+                        window.sqBattleLaser(true);
+                    }
+                },70);
+            }
+            wrapped.__sqLaserWrapped=true;
+            window.resolveAnswer=wrapped;
+            clearInterval(wait);
+        }
+    },50);
+
+    document.addEventListener('DOMContentLoaded',function(){
+        if(localStorage.getItem('sqMusicEnabled')==='1'){
+            /* Do not autoplay: the first click will enable it. */
+            const btn=document.getElementById('sqMusicControl');
+            if(btn) btn.textContent='🎵 Music READY';
+        }
+    });
+})();
+</script>
+
+<!-- Floating progression HUD -->
+<div id="sqGameHUD" class="sq-hud">
+    <div class="sq-hud-top">
+        <span>🧪 SCIENCE QUEST</span>
+        <span class="sq-level">LEVEL <b id="sqLevel">1</b></span>
+    </div>
+    <div class="sq-xp-text">
+        XP <span id="sqXP">0</span> / <span id="sqNextXP">100</span>
+    </div>
+    <div class="sq-xp-bar"><div id="sqXPBar"></div></div>
+    <div class="sq-points-line">
+        <span>⭐ Points: <b id="sqTotalPoints">0</b></span>
+        <span>🏅 Badges: <b id="sqBadgeTotal">0</b></span>
+    </div>
+</div>
+
+<!-- Level-up / reward overlay -->
+<div id="sqLevelOverlay" class="sq-overlay">
+    <div class="sq-level-card">
+        <div class="sq-level-icon">🎉</div>
+        <h1 id="sqLevelTitle">LEVEL UP!</h1>
+        <p id="sqLevelMessage">You reached a new Science Guardian level!</p>
+        <div id="sqRewardBox" class="sq-reward-box"></div>
+        <button class="btn btn-primary btn-large" onclick="sqCloseOverlay()">CONTINUE 🚀</button>
+    </div>
+</div>
+
+<!-- Badge overlay -->
+<div id="sqBadgeOverlay" class="sq-overlay">
+    <div class="sq-badge-card">
+        <div id="sqBadgeIcon" class="sq-level-icon">🏅</div>
+        <h1>BADGE UNLOCKED!</h1>
+        <h2 id="sqBadgeTitle">Science Champion</h2>
+        <p id="sqBadgeDescription">You earned a new achievement.</p>
+        <button class="btn btn-purple btn-large" onclick="sqCloseBadge()">AWESOME! 🏆</button>
+    </div>
+</div>
+
+<!-- Leaderboard screen -->
+<section id="leaderboardScreen" class="screen hidden">
+    <div class="container">
+        <div class="card">
+            <h1>🏆 Science Quest Leaderboard</h1>
+            <p style="color:#94a3b8;margin:8px 0 20px;">
+                Top scores saved on this browser.
+            </p>
+            <div id="sqLeaderboard" class="sq-leaderboard"></div>
+            <br>
+            <button class="btn btn-dark" onclick="showScreen('mainMenu')">
+                ← Main Menu
+            </button>
+        </div>
+    </div>
+</section>
+
+<script>
+/* =========================================================
+   ADD-ON STATE
+   Original state and functions are NOT removed or rewritten.
+========================================================= */
+
+(function(){
+
+    function sqGamificationKey(name){
+        const safeName = String(name || '').trim().toLowerCase();
+        return "scienceQuestGamification_" + encodeURIComponent(safeName || "guest");
+    }
+
+    let SQ_KEY = sqGamificationKey(state.studentName);
+    let sqData = JSON.parse(
+        localStorage.getItem(SQ_KEY) ||
+        '{"xp":0,"level":1,"totalPoints":0,"bonusRewards":0}'
+    );
+
+    function sqSave(){
+        localStorage.setItem(SQ_KEY, JSON.stringify(sqData));
+    }
+
+    window.sqSwitchStudent = function(name){
+        SQ_KEY = sqGamificationKey(name);
+        try{
+            sqData = JSON.parse(localStorage.getItem(SQ_KEY) || '{"xp":0,"level":1,"totalPoints":0,"bonusRewards":0}');
+        }catch(e){
+            sqData = {xp:0,level:1,totalPoints:0,bonusRewards:0};
+        }
+        sqUpdateHUD();
+    };
+
+    function sqNextXP(){
+        return sqData.level * 100;
+    }
+
+    function sqUpdateHUD(){
+        const level = Math.max(1, Number(sqData.level) || 1);
+        const xp = Math.max(0, Number(sqData.xp) || 0);
+        const next = sqNextXP();
+        const within = xp % next;
+        const percent = Math.min(100, (within / next) * 100);
+
+        const l = document.getElementById("sqLevel");
+        const x = document.getElementById("sqXP");
+        const n = document.getElementById("sqNextXP");
+        const b = document.getElementById("sqXPBar");
+        const p = document.getElementById("sqTotalPoints");
+        const badge = document.getElementById("sqBadgeTotal");
+
+        if(l) l.textContent = level;
+        if(x) x.textContent = xp;
+        if(n) n.textContent = next;
+        if(b) b.style.width = percent + "%";
+        if(p) p.textContent = sqData.totalPoints;
+
+        if(badge && typeof state !== "undefined"){
+            badge.textContent = Object.values(state.achievements || {})
+                .filter(Boolean).length;
+        }
+    }
+
+    function sqPlayTone(type){
+        try{
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if(!AudioCtx) return;
+
+            const ctx = new AudioCtx();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+
+            const now = ctx.currentTime;
+
+            if(type === "correct"){
+                osc.frequency.setValueAtTime(660, now);
+                osc.frequency.exponentialRampToValueAtTime(990, now + .12);
+            }else if(type === "wrong"){
+                osc.frequency.setValueAtTime(220, now);
+                osc.frequency.exponentialRampToValueAtTime(120, now + .18);
+            }else if(type === "level"){
+                osc.frequency.setValueAtTime(523, now);
+                osc.frequency.setValueAtTime(659, now + .12);
+                osc.frequency.setValueAtTime(784, now + .24);
+            }else if(type === "reward"){
+                osc.frequency.setValueAtTime(784, now);
+                osc.frequency.setValueAtTime(988, now + .13);
+            }else{
+                osc.frequency.setValueAtTime(440, now);
+            }
+
+            gain.gain.setValueAtTime(.0001, now);
+            gain.gain.exponentialRampToValueAtTime(.08, now + .02);
+            gain.gain.exponentialRampToValueAtTime(.0001, now + .28);
+
+            osc.start(now);
+            osc.stop(now + .3);
+
+            setTimeout(()=>ctx.close(),400);
+        }catch(e){}
+    }
+
+    function sqAnimateCorrect(button){
+        if(button){
+            button.classList.remove("sq-correct");
+            void button.offsetWidth;
+            button.classList.add("sq-correct");
+        }
+        const battle = document.querySelector(".battle");
+        if(battle){
+            battle.classList.remove("sq-pulse");
+            void battle.offsetWidth;
+            battle.classList.add("sq-pulse");
+        }
+    }
+
+    function sqAnimateWrong(button){
+        if(button){
+            button.classList.remove("sq-wrong");
+            void button.offsetWidth;
+            button.classList.add("sq-wrong");
+        }
+        const battle = document.querySelector(".battle");
+        if(battle){
+            battle.classList.remove("sq-wrong");
+            void battle.offsetWidth;
+            battle.classList.add("sq-wrong");
+        }
+    }
+
+    window.sqCloseOverlay = function(){
+        document.getElementById("sqLevelOverlay").classList.remove("show");
+    };
+
+    window.sqCloseBadge = function(){
+        document.getElementById("sqBadgeOverlay").classList.remove("show");
+    };
+
+    function sqShowLevelUp(oldLevel, newLevel, reward){
+        if(newLevel <= oldLevel) return;
+
+        sqPlayTone("level");
+
+        const overlay = document.getElementById("sqLevelOverlay");
+        const title = document.getElementById("sqLevelTitle");
+        const message = document.getElementById("sqLevelMessage");
+        const rewardBox = document.getElementById("sqRewardBox");
+
+        if(title) title.textContent = "🎉 LEVEL " + newLevel + " UNLOCKED!";
+        if(message){
+            message.textContent =
+                "Amazing work, " + (state.studentName || "Young Scientist") +
+                "! Your science knowledge is getting stronger.";
+        }
+        if(rewardBox){
+            rewardBox.innerHTML =
+                "🎁 LEVEL-UP REWARD" +
+                '<div class="sq-reward-row">' +
+                "<span>⭐ +" + (newLevel * 25) + " Points</span>" +
+                "<span>🪙 +" + (newLevel * 10) + " Coins</span>" +
+                "</div>";
+        }
+
+        state.coins += newLevel * 10;
+        sqData.bonusRewards += newLevel * 10;
+        saveState();
+        sqSave();
+        updateCoins();
+
+        if(overlay) overlay.classList.add("show");
+    }
+
+    function sqAddXP(amount, points){
+        const oldLevel = sqData.level;
+
+        sqData.xp += Math.max(0, amount);
+        sqData.totalPoints += Math.max(0, points);
+
+        let newLevel = Math.floor(sqData.xp / 100) + 1;
+
+        if(newLevel > 99) newLevel = 99;
+
+        sqData.level = newLevel;
+
+        sqSave();
+        sqUpdateHUD();
+
+        if(newLevel > oldLevel){
+            sqShowLevelUp(oldLevel, newLevel, 0);
+        }
+    }
+
+    function sqGetBadgeList(){
+        return [
+            ["firstMission","🚀","First Mission","Complete your first mission."],
+            ["perfectScore","⭐","Perfect Score","Answer every question correctly."],
+            ["scienceExplorer","🔬","Science Explorer","Complete missions from different grades."],
+            ["biologyMaster","🧬","Biology Master","Complete Grade 7."],
+            ["earthExpert","🌎","Earth Expert","Complete Grade 8."],
+            ["chemistryGenius","🧪","Chemistry Genius","Complete Grade 9."],
+            ["spaceExplorer","🪐","Space Explorer","Complete Grade 10."],
+            ["allGrades","🏆","Master Scientist","Complete Grades 7–10."],
+            ["speedScientist","⚡","Speed Scientist","Complete a mission quickly with no wrong answers."]
+        ];
+    }
+
+    function sqCheckNewBadges(before){
+        if(typeof state === "undefined") return;
+
+        const list = sqGetBadgeList();
+
+        for(const item of list){
+            const [id,icon,title,description] = item;
+
+            if(!before[id] && state.achievements[id]){
+                const overlay = document.getElementById("sqBadgeOverlay");
+                document.getElementById("sqBadgeIcon").textContent = icon;
+                document.getElementById("sqBadgeTitle").textContent = title;
+                document.getElementById("sqBadgeDescription").textContent = description;
+
+                sqPlayTone("reward");
+
+                if(overlay){
+                    overlay.classList.add("show");
+                    break;
+                }
+            }
+        }
+
+        sqUpdateHUD();
+    }
+
+    /* ---------- Wrap original answer function ---------- */
+    const originalResolveAnswer = window.resolveAnswer;
+
+    if(typeof originalResolveAnswer === "function"){
+        window.resolveAnswer = function(index, button, timeout){
+
+            const oldCorrect = state.correct;
+            const oldWrong = state.wrong;
+
+            originalResolveAnswer.apply(this, arguments);
+
+            if(state.correct > oldCorrect){
+                sqPlayTone("correct");
+                sqAnimateCorrect(button);
+                sqAddXP(20, 10);
+
+                const floating = document.getElementById("sqTotalPoints");
+                if(floating){
+                    floating.classList.remove("sq-pulse");
+                    void floating.offsetWidth;
+                    floating.classList.add("sq-pulse");
+                }
+            }
+
+            if(state.wrong > oldWrong){
+                sqPlayTone("wrong");
+                sqAnimateWrong(button);
+                sqAddXP(5, 0);
+            }
+
+            sqUpdateHUD();
+        };
+    }
+
+    /* ---------- Wrap original victory function ---------- */
+    const originalVictory = window.victory;
+
+    if(typeof originalVictory === "function"){
+        window.victory = function(){
+
+            const beforeBadges = Object.assign({}, state.achievements);
+
+            const oldXP = sqData.xp;
+            const grade = grades[state.selectedGrade];
+            const accuracy = Math.round(
+                state.correct / grade.questions.length * 100
+            );
+
+            /* Extra XP/points are additive; original reward logic remains intact. */
+            const missionXP = 50 + state.correct * 10 + Math.round(accuracy / 10);
+            const bonusPoints = accuracy === 100 ? 50 : 25;
+
+            sqData.xp += missionXP;
+            sqData.totalPoints += state.score + bonusPoints;
+
+            const oldLevel = sqData.level;
+            sqData.level = Math.min(99, Math.floor(sqData.xp / 100) + 1);
+
+            const rewardCoins = accuracy === 100 ? 30 : 15;
+            state.coins += rewardCoins;
+            sqData.bonusRewards += rewardCoins;
+
+            sqSave();
+            saveState();
+
+            originalVictory.apply(this, arguments);
+
+            updateCoins();
+            sqUpdateHUD();
+
+            /* Show level-up after the original victory screen. */
+            if(sqData.level > oldLevel){
+                setTimeout(function(){
+                    sqShowLevelUp(oldLevel, sqData.level, rewardCoins);
+                }, 350);
+            }
+
+            setTimeout(function(){
+                sqCheckNewBadges(beforeBadges);
+            }, sqData.level > oldLevel ? 900 : 350);
+
+            /* Add reward summary to the existing result screen. */
+            const result = document.querySelector("#completeScreen .result");
+            if(result){
+                let box = document.getElementById("sqMissionReward");
+                if(!box){
+                    box = document.createElement("div");
+                    box.id = "sqMissionReward";
+                    box.className = "sq-reward-box";
+                    const stats = result.querySelector(".result-grid");
+                    if(stats) stats.insertAdjacentElement("afterend", box);
+                }
+
+                box.innerHTML =
+                    "🎁 EXTRA REWARDS" +
+                    '<div class="sq-reward-row">' +
+                    "<span>⭐ +" + missionXP + " XP</span>" +
+                    "<span>✨ +" + bonusPoints + " Bonus Points</span>" +
+                    "<span>🪙 +" + rewardCoins + " Bonus Coins</span>" +
+                    "</div>";
+            }
+        };
+    }
+
+    /* ---------- Add leaderboard button to main menu ---------- */
+    function sqAddLeaderboardButton(){
+        const menu = document.querySelector("#mainMenu .menu-grid");
+        if(!menu || document.getElementById("sqLeaderboardMenuCard")) return;
+
+        const card = document.createElement("div");
+        card.id = "sqLeaderboardMenuCard";
+        card.className = "menu-card";
+        card.innerHTML =
+            '<div class="icon">🥇</div>' +
+            "<h3>Leaderboard</h3>" +
+            "<p>See the top Science Quest scores.</p>";
+
+        card.onclick = function(){
+            sqRenderLeaderboard();
+            showScreen("leaderboardScreen");
+        };
+
+        menu.appendChild(card);
+    }
+
+    function sqRenderLeaderboard(){
+        const target = document.getElementById("sqLeaderboard");
+        if(!target) return;
+
+        let results = [];
+
+        try{
+            results = JSON.parse(
+                localStorage.getItem("scienceQuestResults") || "[]"
+            );
+        }catch(e){
+            results = [];
+        }
+
+        /* Include the current browser profile's cumulative points. */
+        const byStudent = {};
+
+        results.forEach(r=>{
+            const name = r.studentName || "Young Scientist";
+            if(!byStudent[name]) {
+                byStudent[name] = {
+                    name:name,
+                    score:0,
+                    missions:0,
+                    accuracy:0
+                };
+            }
+
+            byStudent[name].score += Number(r.score) || 0;
+            byStudent[name].missions++;
+            byStudent[name].accuracy += Number(r.accuracy) || 0;
+        });
+
+        Object.values(byStudent).forEach(x=>{
+            x.avgAccuracy = x.missions
+                ? Math.round(x.accuracy / x.missions)
+                : 0;
+        });
+
+        if(state.studentName && !byStudent[state.studentName]){
+            byStudent[state.studentName] = {
+                name:state.studentName,
+                score:sqData.totalPoints,
+                missions:0,
+                avgAccuracy:0
+            };
+        }
+
+        const rows = Object.values(byStudent)
+            .sort((a,b)=>b.score-a.score)
+            .slice(0,10);
+
+        target.innerHTML = "";
+
+        if(!rows.length){
+            target.innerHTML =
+                '<div class="card" style="text-align:center;color:#94a3b8;">' +
+                "No scores yet. Complete a mission to enter the leaderboard! 🧪" +
+                "</div>";
+            return;
+        }
+
+        rows.forEach((row,i)=>{
+            const rank = i + 1;
+            const div = document.createElement("div");
+            div.className = "sq-rank";
+
+            const medal =
+                rank === 1 ? "🥇" :
+                rank === 2 ? "🥈" :
+                rank === 3 ? "🥉" : "#" + rank;
+
+            div.innerHTML =
+                '<div class="sq-rank-num">' + medal + "</div>" +
+                '<div>' +
+                    '<div class="sq-rank-name">' +
+                        escapeHTML(row.name) +
+                    "</div>" +
+                    '<div class="sq-rank-meta">' +
+                        row.missions + " mission(s) • " +
+                        row.avgAccuracy + "% avg. accuracy" +
+                    "</div>" +
+                "</div>" +
+                '<div class="sq-rank-score">' +
+                    "⭐ " + row.score +
+                "</div>";
+
+            target.appendChild(div);
+        });
+    }
+
+    window.sqRenderLeaderboard = sqRenderLeaderboard;
+
+    /* ---------- Enhance existing timer visually without replacing it ---------- */
+    let timerMonitor = null;
+    const originalStartTimer = window.startTimer;
+
+    if(typeof originalStartTimer === "function"){
+        window.startTimer = function(){
+
+            if(timerMonitor) clearInterval(timerMonitor);
+
+            originalStartTimer.apply(this, arguments);
+
+            timerMonitor = setInterval(function(){
+                const timerEl = document.getElementById("quizTimer");
+                if(!timerEl || document.getElementById("quizScreen").classList.contains("hidden")){
+                    return;
+                }
+
+                const t = Number(state.timer);
+
+                timerEl.classList.remove("sq-timer-danger","sq-timer-warning");
+
+                if(t <= 5 && t > 0){
+                    timerEl.classList.add("sq-timer-danger");
+                }else if(t <= 10){
+                    timerEl.classList.add("sq-timer-warning");
+                }
+            }, 200);
+        };
+    }
+
+    /* ---------- Add progress mini-panel to quiz screen ---------- */
+    function sqAddQuizProgress(){
+        const questionCard = document.querySelector("#quizScreen .question-card");
+        if(!questionCard || document.getElementById("sqQuizProgress")) return;
+
+        const panel = document.createElement("div");
+        panel.id = "sqQuizProgress";
+        panel.className = "sq-quiz-progress";
+        panel.innerHTML =
+            '<div class="sq-quiz-progress-top">' +
+                "<span>MISSION PROGRESS</span>" +
+                '<span id="sqQuestionPercent">0%</span>' +
+            "</div>" +
+            '<div class="sq-mini-bar"><div id="sqMiniProgress"></div></div>';
+
+        questionCard.insertBefore(panel, questionCard.firstChild);
+    }
+
+    function sqUpdateQuizProgress(){
+        const grade = grades[state.selectedGrade];
+        if(!grade) return;
+
+        const percent = Math.min(
+            100,
+            ((state.questionIndex + 1) / grade.questions.length) * 100
+        );
+
+        const bar = document.getElementById("sqMiniProgress");
+        const text = document.getElementById("sqQuestionPercent");
+
+        if(bar) bar.style.width = percent + "%";
+        if(text) text.textContent = Math.round(percent) + "%";
+    }
+
+    /* ---------- Wrap loadQuestion for progress/animation ---------- */
+    const originalLoadQuestion = window.loadQuestion;
+
+    if(typeof originalLoadQuestion === "function"){
+        window.loadQuestion = function(){
+            originalLoadQuestion.apply(this, arguments);
+            sqAddQuizProgress();
+            sqUpdateQuizProgress();
+
+            const question = document.getElementById("questionText");
+            if(question){
+                question.classList.remove("sq-float");
+                void question.offsetWidth;
+                question.classList.add("sq-float");
+            }
+
+            sqUpdateHUD();
+        };
+    }
+
+    /* ---------- Wrap startQuiz to refresh HUD ---------- */
+    const originalStartQuiz = window.startQuiz;
+
+    if(typeof originalStartQuiz === "function"){
+        window.startQuiz = function(){
+            originalStartQuiz.apply(this, arguments);
+            sqAddQuizProgress();
+            sqUpdateQuizProgress();
+            sqUpdateHUD();
+        };
+    }
+
+    /* ---------- Refresh on existing screen changes ---------- */
+    const originalShowScreen = window.showScreen;
+
+    if(typeof originalShowScreen === "function"){
+        window.showScreen = function(id){
+            originalShowScreen.apply(this, arguments);
+
+            if(id === "leaderboardScreen"){
+                sqRenderLeaderboard();
+            }
+
+            sqUpdateHUD();
+            sqAddLeaderboardButton();
+            sqAddQuizProgress();
+        };
+    }
+
+    /* ---------- Initial setup ---------- */
+    document.addEventListener("DOMContentLoaded", function(){
+        sqSave();
+        sqUpdateHUD();
+        sqAddLeaderboardButton();
+        sqAddQuizProgress();
+    });
+
+    /* Also run immediately because original script is before this add-on. */
+    sqSave();
+    sqUpdateHUD();
+    sqAddLeaderboardButton();
+    sqAddQuizProgress();
+
+})();
+</script>
+
+
+</body>
+</html>
