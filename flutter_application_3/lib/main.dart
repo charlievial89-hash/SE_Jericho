@@ -78,6 +78,7 @@ class _ScienceQuestAppState extends State<ScienceQuestApp> {
     Widget currentWidget;
 
     switch (currentRoute) {
+      case 'terms':
       case 'grades':
         currentWidget = GradeSelectionScreen(
           quizController: quizController,

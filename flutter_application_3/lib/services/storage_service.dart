@@ -112,4 +112,27 @@ class StorageService {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(_keyAdmin, loggedIn);
   }
+
+  static const String _keyTermUnlockConfig = "scienceQuestTermUnlockConfig";
+
+  // Load configurable term unlock settings
+  static Future<TermUnlockConfig> getTermUnlockConfig() async {
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getString(_keyTermUnlockConfig);
+    if (raw == null) {
+      return TermUnlockConfig.defaultConfig();
+    }
+    try {
+      final Map<String, dynamic> data = jsonDecode(raw);
+      return TermUnlockConfig.fromJson(data);
+    } catch (_) {
+      return TermUnlockConfig.defaultConfig();
+    }
+  }
+
+  // Save configurable term unlock settings
+  static Future<void> saveTermUnlockConfig(TermUnlockConfig config) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_keyTermUnlockConfig, jsonEncode(config.toJson()));
+  }
 }

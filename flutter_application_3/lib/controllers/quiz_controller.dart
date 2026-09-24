@@ -21,7 +21,7 @@ class LevelUpNotification {
 class QuizController extends ChangeNotifier {
   StudentProfile profile;
 
-  GradeMission? selectedGrade;
+  TermMission? selectedGrade;
   List<Question> quizQuestions = [];
   int questionIndex = 0;
 
@@ -40,10 +40,9 @@ class QuizController extends ChangeNotifier {
   bool resultSaved = false;
   DateTime? missionStartTime;
 
-  String battleStage = "minion"; // "minion" or "boss"
-  int enemyIndex = 0;
-  int enemyHP = 1;
-  int enemyMaxHP = 1;
+  String battleStage = "guardian"; // Battle against Guardian
+  int enemyHP = 10;
+  int enemyMaxHP = 10;
 
   int? selectedAnswerIndex;
   bool lastAnswerWasCorrect = false;
@@ -54,14 +53,34 @@ class QuizController extends ChangeNotifier {
   bool isLaserActive = false;
   bool isLaserWrong = false;
 
-  QuizController({required this.profile});
+  int currentStreak = 0;
+  int bestStreak = 0;
+  int streakBonusCoins = 0;
+  bool isCounterAttacking = false;
+
+  TermUnlockConfig unlockConfig = TermUnlockConfig.defaultConfig();
+
+  QuizController({required this.profile}) {
+    loadUnlockConfig();
+  }
+
+  Future<void> loadUnlockConfig() async {
+    unlockConfig = await StorageService.getTermUnlockConfig();
+    notifyListeners();
+  }
+
+  Future<void> updateUnlockConfig(TermUnlockConfig newConfig) async {
+    unlockConfig = newConfig;
+    await StorageService.saveTermUnlockConfig(newConfig);
+    notifyListeners();
+  }
 
   void updateProfile(StudentProfile newProfile) {
     profile = newProfile;
     notifyListeners();
   }
 
-  void startQuiz(GradeMission grade) {
+  void startQuiz(TermMission grade) {
     _timerTicker?.cancel();
     selectedGrade = grade;
 
@@ -108,10 +127,14 @@ class QuizController extends ChangeNotifier {
     resultSaved = false;
     missionStartTime = DateTime.now();
 
-    battleStage = "minion";
-    enemyIndex = 0;
-    enemyHP = 1;
-    enemyMaxHP = 1;
+    currentStreak = 0;
+    bestStreak = 0;
+    streakBonusCoins = 0;
+    isCounterAttacking = false;
+
+    battleStage = "guardian";
+    enemyMaxHP = grade.guardianMaxHP;
+    enemyHP = enemyMaxHP;
     selectedAnswerIndex = null;
 
     loadQuestion();
@@ -168,13 +191,48 @@ class QuizController extends ChangeNotifier {
     if (isCorrect) {
       correct++;
       score += 10;
+      currentStreak++;
+      if (currentStreak > bestStreak) {
+        bestStreak = currentStreak;
+      }
+
+      // Check for Clutch Biologist (< 5s on clock)
+      if (timer < 5) {
+        unlockAchievement("clutchAnswer");
+      }
+
+      // Check for Combo Master (>= 3x Biology Streak)
+      if (currentStreak >= 3) {
+        unlockAchievement("streakMaster");
+      }
+
+      // Bonus rewards for Biology Streaks!
+      int bonusCoinsEarned = 0;
+      if (currentStreak >= 2) {
+        bonusCoinsEarned = currentStreak * 2;
+        streakBonusCoins += bonusCoinsEarned;
+        profile.coins += bonusCoinsEarned;
+        score += bonusCoinsEarned;
+      }
+
+      // Correct answer damages Cell Guardian
       enemyHP = max(0, enemyHP - 1);
-      addXP(20, 10);
+      addXP(20 + (currentStreak >= 2 ? currentStreak * 5 : 0), 10 + bonusCoinsEarned);
     } else {
       wrong++;
+      currentStreak = 0;
+      // Trigger non-violent Cell Guardian counter-attack bubbles towards player
+      isCounterAttacking = true;
+
+      // Incorrect answer does not damage Cell Guardian; player loses life
       lives = max(0, lives - 1);
       playerHP = max(0, playerHP - 1);
       addXP(5, 0);
+
+      Future.delayed(const Duration(milliseconds: 900), () {
+        isCounterAttacking = false;
+        notifyListeners();
+      });
     }
 
     notifyListeners();
@@ -186,7 +244,7 @@ class QuizController extends ChangeNotifier {
     });
 
     // Advance battle after short delay
-    Future.delayed(const Duration(milliseconds: 1200), () {
+    Future.delayed(const Duration(milliseconds: 1300), () {
       advanceBattle();
     });
   }
@@ -199,24 +257,8 @@ class QuizController extends ChangeNotifier {
       return;
     }
 
-    if (enemyHP <= 0) {
-      if (questionIndex >= quizQuestions.length - 1) {
-        victory();
-        return;
-      }
-
-      if (questionIndex == 2) {
-        battleStage = "boss";
-        enemyHP = 2;
-        enemyMaxHP = 2;
-      } else {
-        enemyIndex++;
-        enemyHP = 1;
-        enemyMaxHP = 1;
-      }
-    }
-
-    if (questionIndex >= quizQuestions.length - 1) {
+    // If guardian HP drops to 0 or we completed all 10 questions
+    if (enemyHP <= 0 || questionIndex >= quizQuestions.length - 1) {
       victory();
       return;
     }
@@ -237,27 +279,18 @@ class QuizController extends ChangeNotifier {
     profile.coins += reward;
     profile.lastReward = reward;
 
-    if (selectedGrade != null && !profile.completedGrades.contains(selectedGrade!.id)) {
-      profile.completedGrades.add(selectedGrade!.id);
+    if (selectedGrade != null && !profile.completedGrades.contains(selectedGrade!.termNumber)) {
+      profile.completedGrades.add(selectedGrade!.termNumber);
     }
 
     final beforeAchievements = Map<String, bool>.from(profile.achievements);
 
-    // Achievements verification
+    // Achievements verification for Grade 7
     profile.achievements["firstMission"] = true;
     if (accuracy == 100) profile.achievements["perfectScore"] = true;
-    if (profile.completedGrades.length >= 2) profile.achievements["scienceExplorer"] = true;
-    if (selectedGrade?.id == 7) profile.achievements["biologyMaster"] = true;
-    if (selectedGrade?.id == 8) profile.achievements["earthExpert"] = true;
-    if (selectedGrade?.id == 9) profile.achievements["chemistryGenius"] = true;
-    if (selectedGrade?.id == 10) profile.achievements["spaceExplorer"] = true;
-    if (profile.completedGrades.length >= 4) profile.achievements["allGrades"] = true;
-
-    final elapsedSeconds = missionStartTime != null
-        ? DateTime.now().difference(missionStartTime!).inSeconds
-        : 999;
-    if (wrong == 0 && elapsedSeconds <= totalQ * 15) {
-      profile.achievements["speedScientist"] = true;
+    if (enemyHP <= 0 || selectedGrade?.termNumber == 1) profile.achievements["cellMaster"] = true;
+    if (selectedGrade?.termNumber == 1 && accuracy >= 70) {
+      profile.achievements["termMaster"] = true;
     }
 
     // Extra mission XP
@@ -299,8 +332,8 @@ class QuizController extends ChangeNotifier {
     final result = QuizResult(
       id: DateTime.now().millisecondsSinceEpoch,
       studentName: profile.name,
-      grade: selectedGrade!.id,
-      mission: selectedGrade!.mission,
+      grade: selectedGrade!.termNumber,
+      mission: "${selectedGrade!.title}: ${selectedGrade!.topic}",
       score: score,
       correct: correct,
       wrong: wrong,
@@ -354,6 +387,16 @@ class QuizController extends ChangeNotifier {
   void clearBadgeNotification() {
     pendingBadgeUnlocked = null;
     notifyListeners();
+  }
+
+  void unlockAchievement(String id) {
+    if (profile.achievements[id] != true) {
+      final before = Map<String, bool>.from(profile.achievements);
+      profile.achievements[id] = true;
+      StorageService.saveStudentProfile(profile);
+      _checkNewBadges(before);
+      notifyListeners();
+    }
   }
 
   @override

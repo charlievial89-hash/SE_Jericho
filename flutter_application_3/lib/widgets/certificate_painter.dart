@@ -91,7 +91,7 @@ class CertificatePainter extends CustomPainter {
     canvas.drawLine(Offset(W * 0.22, H * 0.52), Offset(W * 0.78, H * 0.52), linePaint);
 
     // 8. Mission details
-    drawText("Grade ${gradeMission.id} — ${gradeMission.mission}", H * 0.58, fontSize: W * 0.028, color: const Color(0xFF1E3A8A), fontWeight: FontWeight.bold);
+    drawText("Grade 7 ${gradeMission.title} — ${gradeMission.topic}", H * 0.58, fontSize: W * 0.028, color: const Color(0xFF1E3A8A), fontWeight: FontWeight.bold);
     drawText("Score: $score", H * 0.65, fontSize: W * 0.022, color: const Color(0xFF334155));
     drawText("Accuracy: $accuracy%", H * 0.70, fontSize: W * 0.022, color: const Color(0xFF334155));
     drawText("Reward: +${gradeMission.reward} Coins", H * 0.75, fontSize: W * 0.022, color: const Color(0xFF334155));
@@ -104,7 +104,7 @@ class CertificatePainter extends CustomPainter {
     drawText("Keep exploring. Keep learning. Keep discovering!", H * 0.92, fontSize: W * 0.022, color: const Color(0xFF1D4ED8), fontWeight: FontWeight.bold);
 
     // 11. Certificate ID
-    drawText("Certificate ID: SQ-${gradeMission.id}-${profile.name.hashCode.abs()}", H * 0.96, fontSize: W * 0.015, color: const Color(0xFF64748B));
+    drawText("Certificate ID: SQ-G7T${gradeMission.termNumber}-${profile.name.hashCode.abs()}", H * 0.96, fontSize: W * 0.015, color: const Color(0xFF64748B));
   }
 
   @override
