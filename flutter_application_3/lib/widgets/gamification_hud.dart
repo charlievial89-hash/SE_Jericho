@@ -10,13 +10,16 @@ class GamificationHud extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final hudWidth = (screenWidth - 32).clamp(200.0, 300.0);
+
     return Positioned(
       left: 16,
       bottom: 16,
       child: Material(
         color: Colors.transparent,
         child: Container(
-          width: 300,
+          width: hudWidth,
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
           decoration: BoxDecoration(
             color: AppTheme.darkBg.withValues(alpha: 0.92),
@@ -36,10 +39,11 @@ class GamificationHud extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Flexible(
+                  const Expanded(
                     child: Text(
                       "🧪 SCIENCE QUEST",
                       overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w900,
@@ -47,7 +51,7 @@ class GamificationHud extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 4),
+                  const SizedBox(width: 8),
                   Text(
                     "LEVEL ${profile.level}",
                     style: const TextStyle(
@@ -62,9 +66,13 @@ class GamificationHud extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "XP ${profile.xp} / ${profile.nextXP}",
-                    style: const TextStyle(color: AppTheme.mutedText, fontSize: 11),
+                  Expanded(
+                    child: Text(
+                      "XP ${profile.xp} / ${profile.nextXP}",
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: const TextStyle(color: AppTheme.mutedText, fontSize: 11),
+                    ),
                   ),
                 ],
               ),
@@ -82,20 +90,30 @@ class GamificationHud extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "⭐ Points: ${profile.totalPoints}",
-                    style: const TextStyle(
-                      color: AppTheme.yellowAccent,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
+                  Expanded(
+                    child: Text(
+                      "⭐ Points: ${profile.totalPoints}",
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: const TextStyle(
+                        color: AppTheme.yellowAccent,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
                     ),
                   ),
-                  Text(
-                    "🏅 Badges: ${profile.achievements.values.where((v) => v).length}",
-                    style: const TextStyle(
-                      color: AppTheme.yellowAccent,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      "🏅 Badges: ${profile.achievements.values.where((v) => v).length}",
+                      textAlign: TextAlign.end,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: const TextStyle(
+                        color: AppTheme.yellowAccent,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
                     ),
                   ),
                 ],
@@ -172,18 +190,9 @@ class LevelUpDialog extends StatelessWidget {
                     style: TextStyle(color: AppTheme.yellowAccent, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 6),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        "⭐ +${notification.bonusPoints} Points",
-                        style: const TextStyle(color: AppTheme.yellowAccent, fontSize: 13),
-                      ),
-                      Text(
-                        "🪙 +${notification.bonusCoins} Coins",
-                        style: const TextStyle(color: AppTheme.yellowAccent, fontSize: 13),
-                      ),
-                    ],
+                  Text(
+                    "⭐ +${notification.bonusPoints} Points",
+                    style: const TextStyle(color: AppTheme.yellowAccent, fontSize: 13),
                   ),
                 ],
               ),

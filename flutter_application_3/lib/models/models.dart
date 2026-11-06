@@ -94,7 +94,6 @@ class TermMission {
   final String description;
   final String dialogue;
   final String emoji;
-  final int reward;
   final String guardianName;
   final String guardianEmoji;
   final String guardianTitle;
@@ -116,7 +115,6 @@ class TermMission {
     required this.description,
     required this.dialogue,
     required this.emoji,
-    required this.reward,
     required this.guardianName,
     required this.guardianEmoji,
     required this.guardianTitle,
@@ -204,25 +202,19 @@ class AchievementItem {
 
 class StudentProfile {
   String name;
-  int coins;
   List<int> completedGrades; // Stores completed terms (e.g. 1)
-  int lastReward;
   Map<String, bool> achievements;
   int xp;
   int level;
   int totalPoints;
-  int bonusRewards;
 
   StudentProfile({
     required this.name,
-    this.coins = 0,
     List<int>? completedGrades,
-    this.lastReward = 0,
     Map<String, bool>? achievements,
     this.xp = 0,
     this.level = 1,
     this.totalPoints = 0,
-    this.bonusRewards = 0,
   })  : completedGrades = completedGrades ?? [],
         achievements = achievements ??
             {
@@ -238,26 +230,21 @@ class StudentProfile {
 
   Map<String, dynamic> toJson() => {
         'name': name,
-        'coins': coins,
         'completedGrades': completedGrades,
-        'lastReward': lastReward,
         'achievements': achievements,
         'xp': xp,
         'level': level,
         'totalPoints': totalPoints,
-        'bonusRewards': bonusRewards,
       };
 
   factory StudentProfile.fromJson(Map<String, dynamic> json) => StudentProfile(
         name: json['name'] as String,
-        coins: (json['coins'] as num?)?.toInt() ?? 0,
+        // 'coins', 'lastReward', 'bonusRewards' are silently ignored if present in old save data
         completedGrades: (json['completedGrades'] as List?)?.map((e) => (e as num).toInt()).toList() ?? [],
-        lastReward: (json['lastReward'] as num?)?.toInt() ?? 0,
         achievements: (json['achievements'] as Map?)?.map((k, v) => MapEntry(k.toString(), v == true)) ?? {},
         xp: (json['xp'] as num?)?.toInt() ?? 0,
         level: (json['level'] as num?)?.toInt() ?? 1,
         totalPoints: (json['totalPoints'] as num?)?.toInt() ?? 0,
-        bonusRewards: (json['bonusRewards'] as num?)?.toInt() ?? 0,
       );
 }
 
@@ -339,7 +326,6 @@ final Map<int, TermMission> grade7Terms = {
     description: "Discover the microscopic foundations of living organisms, from single cells to complex fungal mycelium networks.",
     dialogue: "Welcome, Young Scientist! I am the Cell Guardian. To complete Term 1, use your biology knowledge to conquer our battle!",
     emoji: "🧬",
-    reward: 100,
     guardianName: "Cell Guardian",
     guardianEmoji: "🦠",
     guardianTitle: "Cell Biology Guardian",
@@ -703,7 +689,6 @@ final Map<int, TermMission> grade7Terms = {
     description: "Grade 7 Term 2 curriculum content will be unlocked when Term 2 officially begins.",
     dialogue: "Term 2 is currently locked. Master Term 1 Cell Biology first!",
     emoji: "🔒",
-    reward: 120,
     guardianName: "Term 2 Guardian",
     guardianEmoji: "🛡️",
     guardianTitle: "Term 2 Boss",
@@ -724,7 +709,6 @@ final Map<int, TermMission> grade7Terms = {
     description: "Grade 7 Term 3 / Level 3 curriculum content unlocks automatically at the exact configured date and time.",
     dialogue: "Level 3 is locked until official Term 3 start date and time!",
     emoji: "🔒",
-    reward: 150,
     guardianName: "Term 3 Guardian",
     guardianEmoji: "⚡",
     guardianTitle: "Level 3 Boss",

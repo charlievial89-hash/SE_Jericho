@@ -53,7 +53,7 @@ class StorageService {
         profile.xp = (gami['xp'] as num?)?.toInt() ?? profile.xp;
         profile.level = (gami['level'] as num?)?.toInt() ?? profile.level;
         profile.totalPoints = (gami['totalPoints'] as num?)?.toInt() ?? profile.totalPoints;
-        profile.bonusRewards = (gami['bonusRewards'] as num?)?.toInt() ?? profile.bonusRewards;
+        // 'bonusRewards' is silently ignored if present in old save data
       } catch (_) {}
     }
 
@@ -71,7 +71,6 @@ class StorageService {
       'xp': profile.xp,
       'level': profile.level,
       'totalPoints': profile.totalPoints,
-      'bonusRewards': profile.bonusRewards,
     }));
   }
 

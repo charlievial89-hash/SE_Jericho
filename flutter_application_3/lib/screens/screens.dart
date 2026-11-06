@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../models/models.dart';
 import '../theme/app_theme.dart';
 import '../services/storage_service.dart';
@@ -25,12 +26,17 @@ class CellGuardianAvatar extends StatelessWidget {
         gradient: RadialGradient(
           colors: isHit
               ? [const Color(0xFFF87171), const Color(0xFF991B1B)]
-              : [const Color(0xFF22D3EE), const Color(0xFF0D9488), const Color(0xFF042F2E)],
+              : [
+                  const Color(0xFF22D3EE),
+                  const Color(0xFF0D9488),
+                  const Color(0xFF042F2E),
+                ],
           radius: 0.85,
         ),
         boxShadow: [
           BoxShadow(
-            color: (isHit ? Colors.redAccent : const Color(0xFF06B6D4)).withValues(alpha: 0.45),
+            color: (isHit ? Colors.redAccent : const Color(0xFF06B6D4))
+                .withValues(alpha: 0.45),
             blurRadius: 18,
             spreadRadius: 2,
           ),
@@ -184,7 +190,8 @@ class UrgentTimerBadge extends StatefulWidget {
   State<UrgentTimerBadge> createState() => _UrgentTimerBadgeState();
 }
 
-class _UrgentTimerBadgeState extends State<UrgentTimerBadge> with SingleTickerProviderStateMixin {
+class _UrgentTimerBadgeState extends State<UrgentTimerBadge>
+    with SingleTickerProviderStateMixin {
   late AnimationController _pulseController;
 
   @override
@@ -256,9 +263,7 @@ class _UrgentTimerBadgeState extends State<UrgentTimerBadge> with SingleTickerPr
                   color: Colors.white,
                   fontWeight: FontWeight.w900,
                   fontSize: 14,
-                  shadows: [
-                    Shadow(color: Colors.black, blurRadius: 4),
-                  ],
+                  shadows: [Shadow(color: Colors.black, blurRadius: 4)],
                 ),
               ),
             ),
@@ -276,10 +281,12 @@ class CounterAttackBubblesOverlay extends StatefulWidget {
   const CounterAttackBubblesOverlay({super.key});
 
   @override
-  State<CounterAttackBubblesOverlay> createState() => _CounterAttackBubblesOverlayState();
+  State<CounterAttackBubblesOverlay> createState() =>
+      _CounterAttackBubblesOverlayState();
 }
 
-class _CounterAttackBubblesOverlayState extends State<CounterAttackBubblesOverlay>
+class _CounterAttackBubblesOverlayState
+    extends State<CounterAttackBubblesOverlay>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
@@ -315,7 +322,9 @@ class _CounterAttackBubblesOverlayState extends State<CounterAttackBubblesOverla
               bottom: 100,
               width: 140,
               child: Opacity(
-                opacity: (progress > 0.5 ? (1.0 - progress) * 2 : progress * 0.8).clamp(0.0, 0.4),
+                opacity:
+                    (progress > 0.5 ? (1.0 - progress) * 2 : progress * 0.8)
+                        .clamp(0.0, 0.4),
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.redAccent.withValues(alpha: 0.3),
@@ -383,8 +392,7 @@ class _InteractiveCellDiagramState extends State<InteractiveCellDiagram> {
       'name': 'Nucleus',
       'emoji': '🟣',
       'title': 'Control Center & DNA Vault',
-      'function':
-          'Contains the cell’s DNA in a eukaryotic cell and controls many cell activities, directing growth and reproduction.',
+      'function': 'Contains the cell’s DNA in a eukaryotic cell and controls many cell activities, directing growth and reproduction.',
       'color': const Color(0xFFA855F7),
       'tip': 'Vital for Question 9 in the battle!',
     },
@@ -392,8 +400,7 @@ class _InteractiveCellDiagramState extends State<InteractiveCellDiagram> {
       'name': 'Mitochondrion',
       'emoji': '🟠',
       'title': 'Energy Generator (Powerhouse)',
-      'function':
-          'Known as the energy generator of the cell, converting nutrients into usable ATP energy for life processes.',
+      'function': 'Known as the energy generator of the cell, converting nutrients into usable ATP energy for life processes.',
       'color': const Color(0xFFF97316),
       'tip': 'Vital for Question 7 in the battle!',
     },
@@ -401,8 +408,7 @@ class _InteractiveCellDiagramState extends State<InteractiveCellDiagram> {
       'name': 'Ribosome',
       'emoji': '🔵',
       'title': 'Protein Synthesis Factory',
-      'function':
-          'Responsible for protein synthesis, linking amino acids together into vital proteins and enzymes.',
+      'function': 'Responsible for protein synthesis, linking amino acids together into vital proteins and enzymes.',
       'color': const Color(0xFF38BDF8),
       'tip': 'Vital for Question 8 in the battle!',
     },
@@ -410,8 +416,7 @@ class _InteractiveCellDiagramState extends State<InteractiveCellDiagram> {
       'name': 'Cell Membrane',
       'emoji': '🟢',
       'title': 'The Selective Gatekeeper',
-      'function':
-          'Its main function is to control and regulate the movement of materials into and out of the cell.',
+      'function': 'Its main function is to control and regulate the movement of materials into and out of the cell.',
       'color': const Color(0xFF10B981),
       'tip': 'Vital for Question 6 in the battle!',
     },
@@ -428,7 +433,10 @@ class _InteractiveCellDiagramState extends State<InteractiveCellDiagram> {
       decoration: BoxDecoration(
         color: AppTheme.darkBg2,
         borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: (active['color'] as Color).withValues(alpha: 0.5), width: 1.5),
+        border: Border.all(
+          color: (active['color'] as Color).withValues(alpha: 0.5),
+          width: 1.5,
+        ),
         boxShadow: const [
           BoxShadow(
             color: Colors.black45,
@@ -449,11 +457,18 @@ class _InteractiveCellDiagramState extends State<InteractiveCellDiagram> {
                   children: [
                     Text(
                       "Interactive Cell Diagram",
-                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 18),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 18,
+                      ),
                     ),
                     Text(
                       "Tap an organelle to inspect its structure and role!",
-                      style: TextStyle(color: AppTheme.cyanAccent, fontSize: 12),
+                      style: TextStyle(
+                        color: AppTheme.cyanAccent,
+                        fontSize: 12,
+                      ),
                     ),
                   ],
                 ),
@@ -471,13 +486,18 @@ class _InteractiveCellDiagramState extends State<InteractiveCellDiagram> {
                 color: const Color(0xFF0F172A),
                 borderRadius: BorderRadius.circular(110),
                 border: Border.all(
-                  color: selectedOrganelle == 'membrane' ? const Color(0xFF10B981) : const Color(0xFF334155),
+                  color: selectedOrganelle == 'membrane'
+                      ? const Color(0xFF10B981)
+                      : const Color(0xFF334155),
                   width: selectedOrganelle == 'membrane' ? 4 : 2,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: (selectedOrganelle == 'membrane' ? const Color(0xFF10B981) : AppTheme.cyanAccent)
-                        .withValues(alpha: 0.25),
+                    color:
+                        (selectedOrganelle == 'membrane'
+                                ? const Color(0xFF10B981)
+                                : AppTheme.cyanAccent)
+                            .withValues(alpha: 0.25),
                     blurRadius: 16,
                   ),
                 ],
@@ -491,7 +511,10 @@ class _InteractiveCellDiagramState extends State<InteractiveCellDiagram> {
                     child: InkWell(
                       onTap: () => _select('membrane'),
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 4,
+                        ),
                         decoration: BoxDecoration(
                           color: selectedOrganelle == 'membrane'
                               ? const Color(0xFF10B981)
@@ -499,7 +522,14 @@ class _InteractiveCellDiagramState extends State<InteractiveCellDiagram> {
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(color: const Color(0xFF10B981)),
                         ),
-                        child: const Text("🟢 Cell Membrane", style: TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold)),
+                        child: const Text(
+                          "🟢 Cell Membrane",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -511,15 +541,27 @@ class _InteractiveCellDiagramState extends State<InteractiveCellDiagram> {
                     child: InkWell(
                       onTap: () => _select('mitochondrion'),
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 6,
+                        ),
                         decoration: BoxDecoration(
                           color: selectedOrganelle == 'mitochondrion'
                               ? const Color(0xFFF97316)
                               : const Color(0xFF7C2D12),
                           borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color: const Color(0xFFFB923C), width: selectedOrganelle == 'mitochondrion' ? 2 : 1),
+                          border: Border.all(
+                            color: const Color(0xFFFB923C),
+                            width: selectedOrganelle == 'mitochondrion' ? 2 : 1,
+                          ),
                           boxShadow: selectedOrganelle == 'mitochondrion'
-                              ? [BoxShadow(color: const Color(0xFFF97316).withValues(alpha: 0.5), blurRadius: 8)]
+                              ? [
+                                  BoxShadow(
+                                    color: const Color(0xFFF97316)
+                                        .withValues(alpha: 0.5),
+                                    blurRadius: 8,
+                                  ),
+                                ]
                               : [],
                         ),
                         child: const Row(
@@ -527,7 +569,14 @@ class _InteractiveCellDiagramState extends State<InteractiveCellDiagram> {
                           children: [
                             Text("🟠", style: TextStyle(fontSize: 14)),
                             SizedBox(width: 4),
-                            Text("Mitochondrion", style: TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold)),
+                            Text(
+                              "Mitochondrion",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 11,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -541,15 +590,27 @@ class _InteractiveCellDiagramState extends State<InteractiveCellDiagram> {
                     child: InkWell(
                       onTap: () => _select('ribosome'),
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 6,
+                        ),
                         decoration: BoxDecoration(
                           color: selectedOrganelle == 'ribosome'
                               ? const Color(0xFF0284C7)
                               : const Color(0xFF0369A1).withValues(alpha: 0.6),
                           borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color: const Color(0xFF38BDF8), width: selectedOrganelle == 'ribosome' ? 2 : 1),
+                          border: Border.all(
+                            color: const Color(0xFF38BDF8),
+                            width: selectedOrganelle == 'ribosome' ? 2 : 1,
+                          ),
                           boxShadow: selectedOrganelle == 'ribosome'
-                              ? [BoxShadow(color: const Color(0xFF38BDF8).withValues(alpha: 0.5), blurRadius: 8)]
+                              ? [
+                                  BoxShadow(
+                                    color: const Color(0xFF38BDF8)
+                                        .withValues(alpha: 0.5),
+                                    blurRadius: 8,
+                                  ),
+                                ]
                               : [],
                         ),
                         child: const Row(
@@ -557,7 +618,14 @@ class _InteractiveCellDiagramState extends State<InteractiveCellDiagram> {
                           children: [
                             Text("🔵", style: TextStyle(fontSize: 14)),
                             SizedBox(width: 4),
-                            Text("Ribosomes", style: TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold)),
+                            Text(
+                              "Ribosomes",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 11,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -576,14 +644,20 @@ class _InteractiveCellDiagramState extends State<InteractiveCellDiagram> {
                           colors: [Color(0xFFA855F7), Color(0xFF6B21A8)],
                         ),
                         border: Border.all(
-                          color: selectedOrganelle == 'nucleus' ? Colors.white : const Color(0xFFC084FC),
+                          color: selectedOrganelle == 'nucleus'
+                              ? Colors.white
+                              : const Color(0xFFC084FC),
                           width: selectedOrganelle == 'nucleus' ? 3 : 1.5,
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: const Color(0xFFA855F7).withValues(alpha: selectedOrganelle == 'nucleus' ? 0.7 : 0.3),
+                            color: const Color(0xFFA855F7).withValues(
+                              alpha: selectedOrganelle == 'nucleus' ? 0.7 : 0.3,
+                            ),
                             blurRadius: 14,
-                            spreadRadius: selectedOrganelle == 'nucleus' ? 3 : 1,
+                            spreadRadius: selectedOrganelle == 'nucleus'
+                                ? 3
+                                : 1,
                           ),
                         ],
                       ),
@@ -591,8 +665,21 @@ class _InteractiveCellDiagramState extends State<InteractiveCellDiagram> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text("🟣", style: TextStyle(fontSize: 22)),
-                          Text("NUCLEUS", style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.w900)),
-                          Text("DNA", style: TextStyle(color: Color(0xFFE9D5FF), fontSize: 9)),
+                          Text(
+                            "NUCLEUS",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                          Text(
+                            "DNA",
+                            style: TextStyle(
+                              color: Color(0xFFE9D5FF),
+                              fontSize: 9,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -625,15 +712,21 @@ class _InteractiveCellDiagramState extends State<InteractiveCellDiagram> {
                     ),
                     selected: isSelected,
                     onSelected: (_) => _select(key),
-                    selectedColor: (data['color'] as Color).withValues(alpha: 0.35),
+                    selectedColor: (data['color'] as Color).withValues(
+                      alpha: 0.35,
+                    ),
                     backgroundColor: AppTheme.darkBg,
                     labelStyle: TextStyle(
                       color: isSelected ? Colors.white : Colors.white60,
-                      fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                      fontWeight: isSelected
+                          ? FontWeight.bold
+                          : FontWeight.normal,
                       fontSize: 12,
                     ),
                     side: BorderSide(
-                      color: isSelected ? (data['color'] as Color) : Colors.white10,
+                      color: isSelected
+                          ? (data['color'] as Color)
+                          : Colors.white10,
                       width: isSelected ? 1.5 : 1,
                     ),
                   ),
@@ -649,7 +742,9 @@ class _InteractiveCellDiagramState extends State<InteractiveCellDiagram> {
             decoration: BoxDecoration(
               color: AppTheme.darkBg,
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: (active['color'] as Color).withValues(alpha: 0.4)),
+              border: Border.all(
+                color: (active['color'] as Color).withValues(alpha: 0.4),
+              ),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -657,29 +752,53 @@ class _InteractiveCellDiagramState extends State<InteractiveCellDiagram> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: [
-                        Text(active['emoji'] as String, style: const TextStyle(fontSize: 20)),
-                        const SizedBox(width: 8),
-                        Text(
-                          active['name'] as String,
+                    Flexible(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            active['emoji'] as String,
+                            style: const TextStyle(fontSize: 20),
+                          ),
+                          const SizedBox(width: 8),
+                          Flexible(
+                            child: Text(
+                              active['name'] as String,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              style: TextStyle(
+                                color: active['color'] as Color,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Flexible(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 3,
+                        ),
+                        decoration: BoxDecoration(
+                          color: (active['color'] as Color).withValues(
+                            alpha: 0.2,
+                          ),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Text(
+                          active['title'] as String,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                           style: TextStyle(
                             color: active['color'] as Color,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w900,
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                      ],
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                      decoration: BoxDecoration(
-                        color: (active['color'] as Color).withValues(alpha: 0.2),
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: Text(
-                        active['title'] as String,
-                        style: TextStyle(color: active['color'] as Color, fontSize: 11, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
@@ -687,7 +806,11 @@ class _InteractiveCellDiagramState extends State<InteractiveCellDiagram> {
                 const SizedBox(height: 8),
                 Text(
                   active['function'] as String,
-                  style: const TextStyle(color: Colors.white, fontSize: 14, height: 1.45),
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    height: 1.45,
+                  ),
                 ),
                 const SizedBox(height: 10),
                 Container(
@@ -695,7 +818,9 @@ class _InteractiveCellDiagramState extends State<InteractiveCellDiagram> {
                   decoration: BoxDecoration(
                     color: Colors.amber.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Colors.amber.withValues(alpha: 0.3)),
+                    border: Border.all(
+                      color: Colors.amber.withValues(alpha: 0.3),
+                    ),
                   ),
                   child: Row(
                     children: [
@@ -703,7 +828,11 @@ class _InteractiveCellDiagramState extends State<InteractiveCellDiagram> {
                       Expanded(
                         child: Text(
                           active['tip'] as String,
-                          style: const TextStyle(color: Color(0xFFFDE68A), fontSize: 12, fontWeight: FontWeight.w600),
+                          style: const TextStyle(
+                            color: Color(0xFFFDE68A),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ],
@@ -747,73 +876,75 @@ class MainMenuScreen extends StatelessWidget {
                   children: [
                     // Topbar
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 12,
+                      ),
                       decoration: BoxDecoration(
                         color: AppTheme.darkBg.withValues(alpha: 0.85),
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(color: Colors.white10),
                       ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            children: [
-                              const Text("🧪 ", style: TextStyle(fontSize: 18)),
-                              const Text(
-                                "SCIENCE QUEST",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w900,
-                                  color: Colors.white,
+                          const Text(
+                            "🧪 ",
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          const Text(
+                            "SCIENCE QUEST",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Flexible(
+                            child: InkWell(
+                              onTap: () => _showNameDialog(context),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 4,
                                 ),
-                              ),
-                              const SizedBox(width: 12),
-                              InkWell(
-                                onTap: () => _showNameDialog(context),
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                                  decoration: BoxDecoration(
-                                    color: AppTheme.cyanAccent.withValues(alpha: 0.15),
-                                    borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(color: AppTheme.cyanAccent.withValues(alpha: 0.3)),
+                                decoration: BoxDecoration(
+                                  color: AppTheme.cyanAccent.withValues(
+                                    alpha: 0.15,
                                   ),
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        profile.name.isEmpty ? "Tap to Set Name" : profile.name,
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                    color: AppTheme.cyanAccent.withValues(
+                                      alpha: 0.3,
+                                    ),
+                                  ),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Flexible(
+                                      child: Text(
+                                        profile.name.isEmpty
+                                            ? "Tap to Set Name"
+                                            : profile.name,
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 1,
                                         style: const TextStyle(
                                           color: AppTheme.cyanAccent,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 13,
                                         ),
                                       ),
-                                      const SizedBox(width: 4),
-                                      const Icon(Icons.edit, size: 12, color: AppTheme.cyanAccent),
-                                    ],
-                                  ),
+                                    ),
+                                    const SizedBox(width: 4),
+                                    const Icon(
+                                      Icons.edit,
+                                      size: 12,
+                                      color: AppTheme.cyanAccent,
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ],
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF241D08),
-                              borderRadius: BorderRadius.circular(30),
-                              border: Border.all(color: const Color(0xFF725C16)),
-                            ),
-                            child: Row(
-                              children: [
-                                const Text("🪙 ", style: TextStyle(fontSize: 14)),
-                                Text(
-                                  "${profile.coins}",
-                                  style: const TextStyle(
-                                    color: AppTheme.yellowAccent,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ],
                             ),
                           ),
                         ],
@@ -832,7 +963,9 @@ class MainMenuScreen extends StatelessWidget {
                           end: Alignment.bottomRight,
                         ),
                         borderRadius: BorderRadius.circular(28),
-                        border: Border.all(color: AppTheme.cyanAccent.withValues(alpha: 0.3)),
+                        border: Border.all(
+                          color: AppTheme.cyanAccent.withValues(alpha: 0.3),
+                        ),
                         boxShadow: const [
                           BoxShadow(
                             color: Colors.black45,
@@ -844,11 +977,18 @@ class MainMenuScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 14,
+                              vertical: 6,
+                            ),
                             decoration: BoxDecoration(
                               color: AppTheme.blueAccent.withValues(alpha: 0.2),
                               borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: AppTheme.blueAccent.withValues(alpha: 0.4)),
+                              border: Border.all(
+                                color: AppTheme.blueAccent.withValues(
+                                  alpha: 0.4,
+                                ),
+                              ),
                             ),
                             child: const Text(
                               "GRADE 7 • SCIENCE ADVENTURE",
@@ -875,7 +1015,10 @@ class MainMenuScreen extends StatelessWidget {
                           const Text(
                             "Journey through the 3 terms of Grade 7. Master Cell Biology in Term 1 and conquer the Cell Guardian!",
                             textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.white70, fontSize: 15),
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 15,
+                            ),
                           ),
                           const SizedBox(height: 24),
                           ElevatedButton(
@@ -888,7 +1031,10 @@ class MainMenuScreen extends StatelessWidget {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppTheme.blueAccent,
-                              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 32,
+                                vertical: 16,
+                              ),
                             ),
                             child: const Text("🚀 START GRADE 7 MISSION"),
                           ),
@@ -899,7 +1045,9 @@ class MainMenuScreen extends StatelessWidget {
 
                     // Menu Grid
                     GridView.count(
-                      crossAxisCount: MediaQuery.of(context).size.width > 600 ? 4 : 2,
+                      crossAxisCount: MediaQuery.of(context).size.width > 600
+                          ? 4
+                          : 2,
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       crossAxisSpacing: 16,
@@ -932,7 +1080,9 @@ class MainMenuScreen extends StatelessWidget {
                             if (profile.completedGrades.isEmpty) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content: Text("🔒 Complete Grade 7 Term 1 first to unlock your certificate."),
+                                  content: Text(
+                                    "🔒 Complete Grade 7 Term 1 first to unlock your certificate.",
+                                  ),
                                 ),
                               );
                             } else {
@@ -1021,7 +1171,10 @@ class MainMenuScreen extends StatelessWidget {
       context: context,
       builder: (ctx) => AlertDialog(
         backgroundColor: AppTheme.darkBg,
-        title: const Text("Enter Student Name", style: TextStyle(color: Colors.white)),
+        title: const Text(
+          "Enter Student Name",
+          style: TextStyle(color: Colors.white),
+        ),
         content: TextField(
           controller: controller,
           autofocus: true,
@@ -1095,18 +1248,10 @@ class GradeSelectionScreen extends StatelessWidget {
                   children: [
                     Text(
                       "🧑‍🔬 ${profile.name.isEmpty ? 'Young Scientist' : profile.name}",
-                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF241D08),
-                        borderRadius: BorderRadius.circular(30),
-                        border: Border.all(color: const Color(0xFF725C16)),
-                      ),
-                      child: Text(
-                        "🪙 ${profile.coins}",
-                        style: const TextStyle(color: AppTheme.yellowAccent, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
                       ),
                     ),
                   ],
@@ -1126,21 +1271,36 @@ class GradeSelectionScreen extends StatelessWidget {
                       Row(
                         children: [
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 6,
+                            ),
                             decoration: BoxDecoration(
                               color: AppTheme.cyanAccent.withValues(alpha: 0.2),
                               borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: AppTheme.cyanAccent.withValues(alpha: 0.4)),
+                              border: Border.all(
+                                color: AppTheme.cyanAccent.withValues(
+                                  alpha: 0.4,
+                                ),
+                              ),
                             ),
                             child: const Text(
                               "GRADE 7",
-                              style: TextStyle(color: AppTheme.cyanAccent, fontWeight: FontWeight.w900, fontSize: 13),
+                              style: TextStyle(
+                                color: AppTheme.cyanAccent,
+                                fontWeight: FontWeight.w900,
+                                fontSize: 13,
+                              ),
                             ),
                           ),
                           const SizedBox(width: 10),
                           const Text(
                             "Three-Term Progression",
-                            style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w900),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontWeight: FontWeight.w900,
+                            ),
                           ),
                         ],
                       ),
@@ -1167,7 +1327,9 @@ class GradeSelectionScreen extends StatelessWidget {
                       const SizedBox(height: 16),
                       ElevatedButton(
                         onPressed: () => onNavigate('main'),
-                        style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF1E293B)),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF1E293B),
+                        ),
                         child: const Text("← Main Menu"),
                       ),
                     ],
@@ -1181,7 +1343,11 @@ class GradeSelectionScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTerm1Card(BuildContext context, TermMission term, StudentProfile profile) {
+  Widget _buildTerm1Card(
+    BuildContext context,
+    TermMission term,
+    StudentProfile profile,
+  ) {
     final completed = profile.completedGrades.contains(1);
 
     return InkWell(
@@ -1195,7 +1361,10 @@ class GradeSelectionScreen extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppTheme.darkBg2,
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: AppTheme.cyanAccent.withValues(alpha: 0.4), width: 1.5),
+          border: Border.all(
+            color: AppTheme.cyanAccent.withValues(alpha: 0.4),
+            width: 1.5,
+          ),
         ),
         child: Row(
           children: [
@@ -1205,50 +1374,56 @@ class GradeSelectionScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        "🟢 TERM 1 — Cell Biology",
-                        style: TextStyle(color: Color(0xFF93C5FD), fontWeight: FontWeight.w900, fontSize: 13),
-                      ),
-                      Text(
-                        "🪙 +${term.reward}",
-                        style: const TextStyle(color: AppTheme.yellowAccent, fontWeight: FontWeight.w900, fontSize: 13),
-                      ),
-                    ],
+                  const Text(
+                    "🟢 TERM 1 — Cell Biology",
+                    style: TextStyle(
+                      color: Color(0xFF93C5FD),
+                      fontWeight: FontWeight.w900,
+                      fontSize: 13,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   const Text(
                     "Cell Biology",
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
                   ),
                   Text(
                     term.subtitle,
-                    style: const TextStyle(color: AppTheme.mutedText, fontSize: 13),
+                    style: const TextStyle(
+                      color: AppTheme.mutedText,
+                      fontSize: 13,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 3,
+                        ),
                         decoration: BoxDecoration(
-                          color: (completed ? AppTheme.greenAccent : AppTheme.cyanAccent).withValues(alpha: 0.15),
+                          color:
+                              (completed
+                                      ? AppTheme.greenAccent
+                                      : AppTheme.cyanAccent)
+                                  .withValues(alpha: 0.15),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         child: Text(
                           completed ? "🏆 COMPLETED" : "⚔️ READY FOR BATTLE",
                           style: TextStyle(
-                            color: completed ? AppTheme.greenAccent : AppTheme.cyanAccent,
+                            color: completed
+                                ? AppTheme.greenAccent
+                                : AppTheme.cyanAccent,
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 8),
-                      const Text(
-                        "Status: OPEN",
-                        style: TextStyle(color: AppTheme.greenAccent, fontSize: 12, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -1259,7 +1434,9 @@ class GradeSelectionScreen extends StatelessWidget {
                       value: completed ? 1.0 : 0.0,
                       minHeight: 8,
                       backgroundColor: const Color(0xFF334155),
-                      valueColor: const AlwaysStoppedAnimation<Color>(AppTheme.greenAccent),
+                      valueColor: const AlwaysStoppedAnimation<Color>(
+                        AppTheme.greenAccent,
+                      ),
                     ),
                   ),
                 ],
@@ -1271,7 +1448,11 @@ class GradeSelectionScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTerm2Card(BuildContext context, TermMission term, TermUnlockConfig config) {
+  Widget _buildTerm2Card(
+    BuildContext context,
+    TermMission term,
+    TermUnlockConfig config,
+  ) {
     final bool isUnlocked = config.isTermUnlocked(2);
 
     return InkWell(
@@ -1281,7 +1462,10 @@ class GradeSelectionScreen extends StatelessWidget {
             context: context,
             builder: (ctx) => AlertDialog(
               backgroundColor: AppTheme.darkBg,
-              title: const Text("🔒 TERM 2 LOCKED", style: TextStyle(color: Colors.white)),
+              title: const Text(
+                "🔒 TERM 2 LOCKED",
+                style: TextStyle(color: Colors.white),
+              ),
               content: Text(
                 "Term 2 is scheduled to start on:\n${_formatDateTime(config.term2Start)} (${config.timezoneName})\n\nPlease master Term 1 Cell Biology while new content is being prepared!",
                 style: const TextStyle(color: Colors.white70),
@@ -1296,7 +1480,9 @@ class GradeSelectionScreen extends StatelessWidget {
           );
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Term 2 questions will be provided soon!")),
+            const SnackBar(
+              content: Text("Term 2 questions will be provided soon!"),
+            ),
           );
         }
       },
@@ -1312,43 +1498,52 @@ class GradeSelectionScreen extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Text(isUnlocked ? "🔓" : "🔒", style: const TextStyle(fontSize: 48)),
+              Text(
+                isUnlocked ? "🔓" : "🔒",
+                style: const TextStyle(fontSize: 48),
+              ),
               const SizedBox(width: 18),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          isUnlocked ? "🔓 TERM 2 — UNLOCKED" : "🔒 TERM 2 — LOCKED",
-                          style: TextStyle(
-                            color: isUnlocked ? AppTheme.cyanAccent : AppTheme.mutedText,
-                            fontWeight: FontWeight.w900,
-                            fontSize: 13,
-                          ),
-                        ),
-                        Text(
-                          "🪙 +${term.reward}",
-                          style: const TextStyle(color: AppTheme.yellowAccent, fontWeight: FontWeight.w900, fontSize: 13),
-                        ),
-                      ],
+                    Text(
+                      isUnlocked
+                          ? "🔓 TERM 2 — UNLOCKED"
+                          : "🔒 TERM 2 — LOCKED",
+                      style: TextStyle(
+                        color: isUnlocked
+                            ? AppTheme.cyanAccent
+                            : AppTheme.mutedText,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 13,
+                      ),
                     ),
                     const SizedBox(height: 4),
                     const Text(
                       "Grade 7 Term 2",
-                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
                     ),
                     Text(
-                      isUnlocked ? "Content Coming Soon" : "Locked until ${_formatDateTime(config.term2Start)}",
-                      style: const TextStyle(color: AppTheme.mutedText, fontSize: 13),
+                      isUnlocked
+                          ? "Content Coming Soon"
+                          : "Locked until ${_formatDateTime(config.term2Start)}",
+                      style: const TextStyle(
+                        color: AppTheme.mutedText,
+                        fontSize: 13,
+                      ),
                     ),
                     const SizedBox(height: 8),
                     Text(
                       isUnlocked ? "Status: OPEN" : "Status: Coming Soon",
                       style: TextStyle(
-                        color: isUnlocked ? AppTheme.cyanAccent : AppTheme.mutedText,
+                        color: isUnlocked
+                            ? AppTheme.cyanAccent
+                            : AppTheme.mutedText,
                         fontWeight: FontWeight.bold,
                         fontSize: 12,
                       ),
@@ -1363,7 +1558,11 @@ class GradeSelectionScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTerm3Card(BuildContext context, TermMission term, TermUnlockConfig config) {
+  Widget _buildTerm3Card(
+    BuildContext context,
+    TermMission term,
+    TermUnlockConfig config,
+  ) {
     final bool isUnlocked = config.isTermUnlocked(3);
 
     return InkWell(
@@ -1373,7 +1572,10 @@ class GradeSelectionScreen extends StatelessWidget {
             context: context,
             builder: (ctx) => AlertDialog(
               backgroundColor: AppTheme.darkBg,
-              title: const Text("🔒 LEVEL 3 LOCKED", style: TextStyle(color: Colors.white)),
+              title: const Text(
+                "🔒 LEVEL 3 LOCKED",
+                style: TextStyle(color: Colors.white),
+              ),
               content: Text(
                 "Unlocks on: ${_formatDateTime(config.term3Start)}\nSchool Timezone: ${config.timezoneName}\n\nTerm 3 unlocks automatically once the exact system date and time is reached.",
                 style: const TextStyle(color: Colors.white70),
@@ -1388,7 +1590,11 @@ class GradeSelectionScreen extends StatelessWidget {
           );
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("🔓 LEVEL 3 UNLOCKED! Curriculum will be provided soon.")),
+            const SnackBar(
+              content: Text(
+                "🔓 LEVEL 3 UNLOCKED! Curriculum will be provided soon.",
+              ),
+            ),
           );
         }
       },
@@ -1401,51 +1607,60 @@ class GradeSelectionScreen extends StatelessWidget {
             color: AppTheme.darkBg2,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: isUnlocked ? AppTheme.greenAccent.withValues(alpha: 0.5) : Colors.white10,
+              color: isUnlocked
+                  ? AppTheme.greenAccent.withValues(alpha: 0.5)
+                  : Colors.white10,
               width: isUnlocked ? 1.5 : 1,
             ),
           ),
           child: Row(
             children: [
-              Text(isUnlocked ? "🔓" : "🔒", style: const TextStyle(fontSize: 48)),
+              Text(
+                isUnlocked ? "🔓" : "🔒",
+                style: const TextStyle(fontSize: 48),
+              ),
               const SizedBox(width: 18),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          isUnlocked ? "🔓 LEVEL 3 UNLOCKED" : "🔒 LEVEL 3 LOCKED",
-                          style: TextStyle(
-                            color: isUnlocked ? AppTheme.greenAccent : const Color(0xFFF87171),
-                            fontWeight: FontWeight.w900,
-                            fontSize: 13,
-                          ),
-                        ),
-                        Text(
-                          "🪙 +${term.reward}",
-                          style: const TextStyle(color: AppTheme.yellowAccent, fontWeight: FontWeight.w900, fontSize: 13),
-                        ),
-                      ],
+                    Text(
+                      isUnlocked
+                          ? "🔓 LEVEL 3 UNLOCKED"
+                          : "🔒 LEVEL 3 LOCKED",
+                      style: TextStyle(
+                        color: isUnlocked
+                            ? AppTheme.greenAccent
+                            : const Color(0xFFF87171),
+                        fontWeight: FontWeight.w900,
+                        fontSize: 13,
+                      ),
                     ),
                     const SizedBox(height: 4),
                     const Text(
                       "Grade 7 Term 3",
-                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
                     ),
                     Text(
                       isUnlocked
                           ? "Unlocked based on scheduled start date/time"
                           : "Unlocks on: ${_formatDateTime(config.term3Start)}",
-                      style: const TextStyle(color: AppTheme.mutedText, fontSize: 13),
+                      style: const TextStyle(
+                        color: AppTheme.mutedText,
+                        fontSize: 13,
+                      ),
                     ),
                     const SizedBox(height: 8),
                     Text(
                       isUnlocked ? "Status: OPEN" : "Status: Coming Soon",
                       style: TextStyle(
-                        color: isUnlocked ? AppTheme.greenAccent : AppTheme.mutedText,
+                        color: isUnlocked
+                            ? AppTheme.greenAccent
+                            : AppTheme.mutedText,
                         fontWeight: FontWeight.bold,
                         fontSize: 12,
                       ),
@@ -1497,15 +1712,24 @@ class GuardianBriefingScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 6,
+                      ),
                       decoration: BoxDecoration(
                         color: AppTheme.blueAccent.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: AppTheme.blueAccent.withValues(alpha: 0.4)),
+                        border: Border.all(
+                          color: AppTheme.blueAccent.withValues(alpha: 0.4),
+                        ),
                       ),
                       child: const Text(
                         "GRADE 7 • TERM 1",
-                        style: TextStyle(color: Color(0xFF60A5FA), fontWeight: FontWeight.w900, fontSize: 13),
+                        style: TextStyle(
+                          color: Color(0xFF60A5FA),
+                          fontWeight: FontWeight.w900,
+                          fontSize: 13,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -1513,11 +1737,19 @@ class GuardianBriefingScreen extends StatelessWidget {
                     const SizedBox(height: 16),
                     Text(
                       grade.guardianName,
-                      style: const TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.w900),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 28,
+                        fontWeight: FontWeight.w900,
+                      ),
                     ),
                     Text(
                       grade.guardianTitle,
-                      style: const TextStyle(color: AppTheme.cyanAccent, fontSize: 14, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                        color: AppTheme.cyanAccent,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 16),
                     Container(
@@ -1529,7 +1761,11 @@ class GuardianBriefingScreen extends StatelessWidget {
                       child: Text(
                         grade.dialogue,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(color: Colors.white70, fontSize: 15, height: 1.5),
+                        style: const TextStyle(
+                          color: Colors.white70,
+                          fontSize: 15,
+                          height: 1.5,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 24),
@@ -1556,7 +1792,10 @@ class GuardianBriefingScreen extends StatelessWidget {
                     const SizedBox(height: 12),
                     TextButton(
                       onPressed: () => onNavigate('grades'),
-                      child: const Text("← Grade 7 Terms", style: TextStyle(color: AppTheme.mutedText)),
+                      child: const Text(
+                        "← Grade 7 Terms",
+                        style: TextStyle(color: AppTheme.mutedText),
+                      ),
                     ),
                   ],
                 ),
@@ -1633,20 +1872,32 @@ class _LessonScreenState extends State<LessonScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 6,
+                        ),
                         decoration: BoxDecoration(
                           color: AppTheme.cyanAccent.withValues(alpha: 0.15),
                           borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: AppTheme.cyanAccent.withValues(alpha: 0.3)),
+                          border: Border.all(
+                            color: AppTheme.cyanAccent.withValues(alpha: 0.3),
+                          ),
                         ),
                         child: const Text(
                           "GRADE 7 • TERM 1",
-                          style: TextStyle(color: AppTheme.cyanAccent, fontWeight: FontWeight.bold, fontSize: 12),
+                          style: TextStyle(
+                            color: AppTheme.cyanAccent,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                          ),
                         ),
                       ),
                       Text(
                         "🧬 ${grade.topic}",
-                        style: const TextStyle(color: Colors.white70, fontWeight: FontWeight.bold),
+                        style: const TextStyle(
+                          color: Colors.white70,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
@@ -1666,7 +1917,9 @@ class _LessonScreenState extends State<LessonScreen> {
                         end: Alignment.bottomRight,
                       ),
                       borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: AppTheme.cyanAccent.withValues(alpha: 0.35)),
+                      border: Border.all(
+                        color: AppTheme.cyanAccent.withValues(alpha: 0.35),
+                      ),
                     ),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -1680,7 +1933,10 @@ class _LessonScreenState extends State<LessonScreen> {
                             border: Border.all(color: AppTheme.cyanAccent),
                           ),
                           child: const Center(
-                            child: Text("👩‍🔬", style: TextStyle(fontSize: 26)),
+                            child: Text(
+                              "👩‍🔬",
+                              style: TextStyle(fontSize: 26),
+                            ),
                           ),
                         ),
                         const SizedBox(width: 14),
@@ -1699,7 +1955,11 @@ class _LessonScreenState extends State<LessonScreen> {
                               SizedBox(height: 4),
                               Text(
                                 "I am your Lesson Guide and Quiz Master. Study each card below, check out the analogies and Filipino tips ('Ibig sabihin...'), and try the quick Warm-Up checks so you can conquer the Cell Guardian with confidence!",
-                                style: TextStyle(color: Colors.white70, fontSize: 13, height: 1.45),
+                                style: TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 13,
+                                  height: 1.45,
+                                ),
                               ),
                               SizedBox(height: 8),
                               Wrap(
@@ -1708,7 +1968,10 @@ class _LessonScreenState extends State<LessonScreen> {
                                 children: [
                                   _HeaderPill(icon: "📖", label: "13 Topics"),
                                   _HeaderPill(icon: "⚡", label: "4 Warm-Ups"),
-                                  _HeaderPill(icon: "🔬", label: "Interactive Diagram"),
+                                  _HeaderPill(
+                                    icon: "🔬",
+                                    label: "Interactive Diagram",
+                                  ),
                                 ],
                               ),
                             ],
@@ -1722,10 +1985,17 @@ class _LessonScreenState extends State<LessonScreen> {
                   // Main Title
                   const Text(
                     "🧬 Grade 7: The Cell, the Basic Unit of Life",
-                    style: TextStyle(color: Colors.white, fontSize: 26, fontWeight: FontWeight.w900),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 26,
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
                   const SizedBox(height: 6),
-                  Text(grade.description, style: const TextStyle(color: Colors.white70, fontSize: 14)),
+                  Text(
+                    grade.description,
+                    style: const TextStyle(color: Colors.white70, fontSize: 14),
+                  ),
                   const SizedBox(height: 18),
 
                   // Interactive Cell Diagram (Explore organelles)
@@ -1747,20 +2017,43 @@ class _LessonScreenState extends State<LessonScreen> {
                         const Row(
                           children: [
                             Text("🎯 ", style: TextStyle(fontSize: 18)),
-                            Text("Learning Objectives", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
+                            Text(
+                              "Learning Objectives",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
                           ],
                         ),
                         const SizedBox(height: 10),
-                        ...grade.objectives.map((o) => Padding(
-                              padding: const EdgeInsets.only(bottom: 6),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text("• ", style: TextStyle(color: AppTheme.cyanAccent, fontWeight: FontWeight.bold)),
-                                  Expanded(child: Text(o, style: const TextStyle(color: Colors.white70, fontSize: 13))),
-                                ],
-                              ),
-                            )),
+                        ...grade.objectives.map(
+                          (o) => Padding(
+                            padding: const EdgeInsets.only(bottom: 6),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  "• ",
+                                  style: TextStyle(
+                                    color: AppTheme.cyanAccent,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    o,
+                                    style: const TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -1769,7 +2062,11 @@ class _LessonScreenState extends State<LessonScreen> {
                   // Category Filter Tabs
                   const Text(
                     "📂 Filter by Topic Area",
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   SingleChildScrollView(
@@ -1782,15 +2079,23 @@ class _LessonScreenState extends State<LessonScreen> {
                           child: ChoiceChip(
                             label: Text(cat),
                             selected: isSelected,
-                            selectedColor: AppTheme.cyanAccent.withValues(alpha: 0.25),
+                            selectedColor: AppTheme.cyanAccent.withValues(
+                              alpha: 0.25,
+                            ),
                             backgroundColor: AppTheme.darkBg2,
                             labelStyle: TextStyle(
-                              color: isSelected ? AppTheme.cyanAccent : Colors.white70,
-                              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                              color: isSelected
+                                  ? AppTheme.cyanAccent
+                                  : Colors.white70,
+                              fontWeight: isSelected
+                                  ? FontWeight.bold
+                                  : FontWeight.normal,
                               fontSize: 12,
                             ),
                             side: BorderSide(
-                              color: isSelected ? AppTheme.cyanAccent : Colors.white10,
+                              color: isSelected
+                                  ? AppTheme.cyanAccent
+                                  : Colors.white10,
                             ),
                             onSelected: (selected) {
                               if (selected) {
@@ -1812,11 +2117,18 @@ class _LessonScreenState extends State<LessonScreen> {
                     children: [
                       const Text(
                         "📖 Learn Cards",
-                        style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       Text(
                         "${filteredCards.length} of ${grade.cards.length} cards",
-                        style: const TextStyle(color: AppTheme.mutedText, fontSize: 12),
+                        style: const TextStyle(
+                          color: AppTheme.mutedText,
+                          fontSize: 12,
+                        ),
                       ),
                     ],
                   ),
@@ -1824,12 +2136,12 @@ class _LessonScreenState extends State<LessonScreen> {
 
                   // List of Cards + In-Line Warm-Ups
                   ...filteredCards.expand((card) {
-                    final widgets = <Widget>[
-                      _buildLessonCard(card),
-                    ];
+                    final widgets = <Widget>[_buildLessonCard(card)];
 
                     // Check if a warm-up belongs after this card's topic
-                    final warmUp = grade.warmUps.where((w) => w.afterTopicNumber == card.topicNumber).firstOrNull;
+                    final warmUp = grade.warmUps
+                        .where((w) => w.afterTopicNumber == card.topicNumber)
+                        .firstOrNull;
                     if (warmUp != null) {
                       widgets.add(const SizedBox(height: 6));
                       widgets.add(_buildWarmUpCard(warmUp));
@@ -1847,7 +2159,9 @@ class _LessonScreenState extends State<LessonScreen> {
                     decoration: BoxDecoration(
                       color: AppTheme.blueAccent.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(18),
-                      border: Border.all(color: AppTheme.blueAccent.withValues(alpha: 0.3)),
+                      border: Border.all(
+                        color: AppTheme.blueAccent.withValues(alpha: 0.3),
+                      ),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -1857,14 +2171,22 @@ class _LessonScreenState extends State<LessonScreen> {
                             Text("📚 ", style: TextStyle(fontSize: 20)),
                             Text(
                               "Lesson Summary & Key Takeaway",
-                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
                             ),
                           ],
                         ),
                         const SizedBox(height: 10),
                         Text(
                           grade.summary,
-                          style: const TextStyle(color: Colors.white70, height: 1.5, fontSize: 14),
+                          style: const TextStyle(
+                            color: Colors.white70,
+                            height: 1.5,
+                            fontSize: 14,
+                          ),
                         ),
                       ],
                     ),
@@ -1880,10 +2202,16 @@ class _LessonScreenState extends State<LessonScreen> {
                             widget.quizController.startQuiz(grade);
                             widget.onNavigate('quiz');
                           },
-                          icon: const Text("⚔️", style: TextStyle(fontSize: 18)),
+                          icon: const Text(
+                            "⚔️",
+                            style: TextStyle(fontSize: 18),
+                          ),
                           label: const Text(
                             "START QUIZ / ENTER BATTLE",
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
                           ),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppTheme.greenAccent,
@@ -1898,7 +2226,10 @@ class _LessonScreenState extends State<LessonScreen> {
                         onPressed: () => widget.onNavigate('guardian'),
                         style: OutlinedButton.styleFrom(
                           foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 16,
+                            horizontal: 20,
+                          ),
                           side: const BorderSide(color: Colors.white24),
                         ),
                         child: const Text("← Briefing"),
@@ -1958,7 +2289,10 @@ class _LessonScreenState extends State<LessonScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 3,
+                          ),
                           decoration: BoxDecoration(
                             color: AppTheme.cyanAccent.withValues(alpha: 0.12),
                             borderRadius: BorderRadius.circular(6),
@@ -1974,18 +2308,30 @@ class _LessonScreenState extends State<LessonScreen> {
                         ),
                         Text(
                           "Topic ${card.topicNumber}",
-                          style: const TextStyle(color: Colors.white38, fontSize: 11, fontWeight: FontWeight.bold),
+                          style: const TextStyle(
+                            color: Colors.white38,
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 4),
                     Text(
                       card.title,
-                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 17),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17,
+                      ),
                     ),
                     Text(
                       card.subtitle,
-                      style: const TextStyle(color: Color(0xFF93C5FD), fontSize: 13, fontWeight: FontWeight.w500),
+                      style: const TextStyle(
+                        color: Color(0xFF93C5FD),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ],
                 ),
@@ -1997,7 +2343,11 @@ class _LessonScreenState extends State<LessonScreen> {
           // Main Content
           Text(
             card.content,
-            style: const TextStyle(color: Colors.white70, fontSize: 14, height: 1.5),
+            style: const TextStyle(
+              color: Colors.white70,
+              fontSize: 14,
+              height: 1.5,
+            ),
           ),
 
           // Bullet Points
@@ -2018,12 +2368,20 @@ class _LessonScreenState extends State<LessonScreen> {
                       children: [
                         const Text(
                           "✓ ",
-                          style: TextStyle(color: AppTheme.greenAccent, fontSize: 13, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                            color: AppTheme.greenAccent,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         Expanded(
                           child: Text(
                             bp,
-                            style: const TextStyle(color: Colors.white60, fontSize: 13, height: 1.4),
+                            style: const TextStyle(
+                              color: Colors.white60,
+                              fontSize: 13,
+                              height: 1.4,
+                            ),
                           ),
                         ),
                       ],
@@ -2043,7 +2401,9 @@ class _LessonScreenState extends State<LessonScreen> {
               decoration: BoxDecoration(
                 color: AppTheme.purpleAccent.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: AppTheme.purpleAccent.withValues(alpha: 0.3)),
+                border: Border.all(
+                  color: AppTheme.purpleAccent.withValues(alpha: 0.3),
+                ),
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -2063,7 +2423,11 @@ class _LessonScreenState extends State<LessonScreen> {
                           ),
                           TextSpan(
                             text: card.analogy!,
-                            style: const TextStyle(color: Colors.white70, fontSize: 13, height: 1.4),
+                            style: const TextStyle(
+                              color: Colors.white70,
+                              fontSize: 13,
+                              height: 1.4,
+                            ),
                           ),
                         ],
                       ),
@@ -2083,7 +2447,9 @@ class _LessonScreenState extends State<LessonScreen> {
               decoration: BoxDecoration(
                 color: AppTheme.yellowAccent.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: AppTheme.yellowAccent.withValues(alpha: 0.25)),
+                border: Border.all(
+                  color: AppTheme.yellowAccent.withValues(alpha: 0.25),
+                ),
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -2114,7 +2480,9 @@ class _LessonScreenState extends State<LessonScreen> {
               decoration: BoxDecoration(
                 color: AppTheme.cyanAccent.withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: AppTheme.cyanAccent.withValues(alpha: 0.4)),
+                border: Border.all(
+                  color: AppTheme.cyanAccent.withValues(alpha: 0.4),
+                ),
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -2167,7 +2535,9 @@ class _LessonScreenState extends State<LessonScreen> {
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: isSubmitted
-              ? (isCorrect ? AppTheme.greenAccent : AppTheme.redAccent.withValues(alpha: 0.8))
+              ? (isCorrect
+                    ? AppTheme.greenAccent
+                    : AppTheme.redAccent.withValues(alpha: 0.8))
               : AppTheme.cyanAccent.withValues(alpha: 0.4),
           width: 1.5,
         ),
@@ -2189,11 +2559,16 @@ class _LessonScreenState extends State<LessonScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
                   color: AppTheme.yellowAccent.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: AppTheme.yellowAccent.withValues(alpha: 0.4)),
+                  border: Border.all(
+                    color: AppTheme.yellowAccent.withValues(alpha: 0.4),
+                  ),
                 ),
                 child: const Row(
                   mainAxisSize: MainAxisSize.min,
@@ -2273,7 +2648,10 @@ class _LessonScreenState extends State<LessonScreen> {
                       },
                 borderRadius: BorderRadius.circular(12),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 12,
+                  ),
                   decoration: BoxDecoration(
                     color: tileColor,
                     borderRadius: BorderRadius.circular(12),
@@ -2304,13 +2682,25 @@ class _LessonScreenState extends State<LessonScreen> {
                       Expanded(
                         child: Text(
                           optionText,
-                          style: TextStyle(color: textColor, fontSize: 14, fontWeight: FontWeight.w500),
+                          style: TextStyle(
+                            color: textColor,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                       if (isSubmitted && isTheCorrectAnswer)
-                        const Icon(Icons.check_circle, color: AppTheme.greenAccent, size: 20)
+                        const Icon(
+                          Icons.check_circle,
+                          color: AppTheme.greenAccent,
+                          size: 20,
+                        )
                       else if (isSubmitted && isCurrentChoice && !isCorrect)
-                        const Icon(Icons.cancel, color: AppTheme.redAccent, size: 20),
+                        const Icon(
+                          Icons.cancel,
+                          color: AppTheme.redAccent,
+                          size: 20,
+                        ),
                     ],
                   ),
                 ),
@@ -2340,12 +2730,19 @@ class _LessonScreenState extends State<LessonScreen> {
                 children: [
                   Row(
                     children: [
-                      Text(isCorrect ? "🎉 " : "💡 ", style: const TextStyle(fontSize: 18)),
+                      Text(
+                        isCorrect ? "🎉 " : "💡 ",
+                        style: const TextStyle(fontSize: 18),
+                      ),
                       Expanded(
                         child: Text(
-                          isCorrect ? "Great job! That's correct!" : "Almost there! Let's review:",
+                          isCorrect
+                              ? "Great job! That's correct!"
+                              : "Almost there! Let's review:",
                           style: TextStyle(
-                            color: isCorrect ? AppTheme.greenAccent : const Color(0xFFFCA5A5),
+                            color: isCorrect
+                                ? AppTheme.greenAccent
+                                : const Color(0xFFFCA5A5),
                             fontWeight: FontWeight.bold,
                             fontSize: 14,
                           ),
@@ -2356,7 +2753,11 @@ class _LessonScreenState extends State<LessonScreen> {
                   const SizedBox(height: 6),
                   Text(
                     warmUp.explanation,
-                    style: const TextStyle(color: Colors.white70, fontSize: 13, height: 1.4),
+                    style: const TextStyle(
+                      color: Colors.white70,
+                      fontSize: 13,
+                      height: 1.4,
+                    ),
                   ),
 
                   // Kind clue for student when not correct
@@ -2372,7 +2773,10 @@ class _LessonScreenState extends State<LessonScreen> {
                         ),
                         child: Text(
                           warmUp.clue,
-                          style: const TextStyle(color: AppTheme.yellowAccent, fontSize: 12),
+                          style: const TextStyle(
+                            color: AppTheme.yellowAccent,
+                            fontSize: 12,
+                          ),
                         ),
                       )
                     else
@@ -2382,10 +2786,17 @@ class _LessonScreenState extends State<LessonScreen> {
                             _showClues[warmUp.id] = true;
                           });
                         },
-                        icon: const Icon(Icons.help_outline, color: AppTheme.yellowAccent, size: 16),
+                        icon: const Icon(
+                          Icons.help_outline,
+                          color: AppTheme.yellowAccent,
+                          size: 16,
+                        ),
                         label: const Text(
                           "Show Friendly Clue",
-                          style: TextStyle(color: AppTheme.yellowAccent, fontSize: 12),
+                          style: TextStyle(
+                            color: AppTheme.yellowAccent,
+                            fontSize: 12,
+                          ),
                         ),
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,
@@ -2406,10 +2817,18 @@ class _LessonScreenState extends State<LessonScreen> {
                             _selectedWarmUpAnswers.remove(warmUp.id);
                           });
                         },
-                        icon: const Icon(Icons.refresh, size: 16, color: AppTheme.cyanAccent),
+                        icon: const Icon(
+                          Icons.refresh,
+                          size: 16,
+                          color: AppTheme.cyanAccent,
+                        ),
                         label: const Text(
                           "Try Again",
-                          style: TextStyle(color: AppTheme.cyanAccent, fontWeight: FontWeight.bold, fontSize: 13),
+                          style: TextStyle(
+                            color: AppTheme.cyanAccent,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                          ),
                         ),
                       ),
                     ),
@@ -2445,14 +2864,17 @@ class _HeaderPill extends StatelessWidget {
           const SizedBox(width: 4),
           Text(
             label,
-            style: const TextStyle(color: Colors.white70, fontSize: 11, fontWeight: FontWeight.w600),
+            style: const TextStyle(
+              color: Colors.white70,
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ],
       ),
     );
   }
 }
-
 
 // =========================================================
 // QUIZ BATTLE SCREEN - 10-ITEM BATTLE AGAINST CELL GUARDIAN
@@ -2472,13 +2894,15 @@ class QuizBattleScreen extends StatelessWidget {
     return AnimatedBuilder(
       animation: quizController,
       builder: (context, _) {
-        if (quizController.battleEnded && quizController.selectedGrade != null) {
+        if (quizController.battleEnded &&
+            quizController.selectedGrade != null) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             onNavigate('result');
           });
         }
 
-        final currentQ = quizController.questionIndex < quizController.quizQuestions.length
+        final currentQ =
+            quizController.questionIndex < quizController.quizQuestions.length
             ? quizController.quizQuestions[quizController.questionIndex]
             : null;
 
@@ -2514,15 +2938,24 @@ class QuizBattleScreen extends StatelessWidget {
                           child: Column(
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   // Player
                                   Column(
                                     children: [
-                                      const Text("🧑‍🔬", style: TextStyle(fontSize: 54)),
+                                      const Text(
+                                        "🧑‍🔬",
+                                        style: TextStyle(fontSize: 54),
+                                      ),
                                       Text(
-                                        quizController.profile.name.isEmpty ? "YOU" : quizController.profile.name,
-                                        style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                                        quizController.profile.name.isEmpty
+                                            ? "YOU"
+                                            : quizController.profile.name,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
                                       ),
                                       const SizedBox(height: 4),
                                       SizedBox(
@@ -2530,48 +2963,93 @@ class QuizBattleScreen extends StatelessWidget {
                                         child: LinearProgressIndicator(
                                           value: quizController.playerHP / 3,
                                           backgroundColor: Colors.white10,
-                                          valueColor: const AlwaysStoppedAnimation<Color>(AppTheme.greenAccent),
+                                          valueColor:
+                                              const AlwaysStoppedAnimation<
+                                                Color
+                                              >(AppTheme.greenAccent),
                                         ),
                                       ),
-                                      Text("${quizController.playerHP}/3 HP", style: const TextStyle(fontSize: 11, color: AppTheme.mutedText)),
+                                      Text(
+                                        "${quizController.playerHP}/3 HP",
+                                        style: const TextStyle(
+                                          fontSize: 11,
+                                          color: AppTheme.mutedText,
+                                        ),
+                                      ),
                                     ],
                                   ),
-                                  const Text("VS", style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: AppTheme.redAccent)),
+                                  const Text(
+                                    "VS",
+                                    style: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w900,
+                                      color: AppTheme.redAccent,
+                                    ),
+                                  ),
                                   // Enemy: Cell Guardian
                                   Column(
                                     children: [
                                       CellGuardianAvatar(
                                         size: 64,
-                                        isHit: quizController.isLaserActive && quizController.lastAnswerWasCorrect,
+                                        isHit:
+                                            quizController.isLaserActive &&
+                                            quizController.lastAnswerWasCorrect,
                                       ),
                                       const SizedBox(height: 4),
-                                      const Text("Cell Guardian", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+                                      const Text(
+                                        "Cell Guardian",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
                                       const SizedBox(height: 4),
                                       SizedBox(
                                         width: 110,
                                         child: LinearProgressIndicator(
-                                          value: quizController.enemyMaxHP > 0 ? quizController.enemyHP / quizController.enemyMaxHP : 0,
+                                          value: quizController.enemyMaxHP > 0
+                                              ? quizController.enemyHP /
+                                                    quizController.enemyMaxHP
+                                              : 0,
                                           backgroundColor: Colors.white10,
-                                          valueColor: AlwaysStoppedAnimation<Color>(
-                                            quizController.enemyHP > 3 ? AppTheme.redAccent : Colors.orangeAccent,
-                                          ),
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                                quizController.enemyHP > 3
+                                                    ? AppTheme.redAccent
+                                                    : Colors.orangeAccent,
+                                              ),
                                         ),
                                       ),
-                                      Text("${quizController.enemyHP}/${quizController.enemyMaxHP} HP", style: const TextStyle(fontSize: 11, color: AppTheme.mutedText)),
+                                      Text(
+                                        "${quizController.enemyHP}/${quizController.enemyMaxHP} HP",
+                                        style: const TextStyle(
+                                          fontSize: 11,
+                                          color: AppTheme.mutedText,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ],
                               ),
                               const SizedBox(height: 12),
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 4,
+                                ),
                                 decoration: BoxDecoration(
-                                  color: AppTheme.cyanAccent.withValues(alpha: 0.15),
+                                  color: AppTheme.cyanAccent.withValues(
+                                    alpha: 0.15,
+                                  ),
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                 child: const Text(
                                   "🦠 CELL GUARDIAN BOSS BATTLE",
-                                  style: TextStyle(color: AppTheme.cyanAccent, fontWeight: FontWeight.w900, fontSize: 11),
+                                  style: TextStyle(
+                                    color: AppTheme.cyanAccent,
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 11,
+                                  ),
                                 ),
                               ),
                             ],
@@ -2582,7 +3060,10 @@ class QuizBattleScreen extends StatelessWidget {
                         // Biology Streak Banner
                         if (quizController.currentStreak >= 2) ...[
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 8,
+                            ),
                             decoration: BoxDecoration(
                               gradient: const LinearGradient(
                                 colors: [Color(0xFFEA580C), Color(0xFFDC2626)],
@@ -2590,19 +3071,26 @@ class QuizBattleScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20),
                               boxShadow: [
                                 BoxShadow(
-                                  color: const Color(0xFFEA580C).withValues(alpha: 0.6),
+                                  color: const Color(0xFFEA580C)
+                                      .withValues(alpha: 0.6),
                                   blurRadius: 12,
                                   spreadRadius: 2,
                                 ),
                               ],
-                              border: Border.all(color: Colors.amberAccent, width: 1.5),
+                              border: Border.all(
+                                color: Colors.amberAccent,
+                                width: 1.5,
+                              ),
                             ),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                const Text("🔥 ", style: TextStyle(fontSize: 18)),
+                                const Text(
+                                  "🔥 ",
+                                  style: TextStyle(fontSize: 18),
+                                ),
                                 Text(
-                                  "${quizController.currentStreak}x Biology Streak! (+${quizController.currentStreak * 2} Coins)",
+                                  "${quizController.currentStreak}x Biology Streak!",
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w900,
@@ -2628,19 +3116,35 @@ class QuizBattleScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       "Question ${quizController.questionIndex + 1} of ${quizController.quizQuestions.length}",
-                                      style: const TextStyle(color: Color(0xFF60A5FA), fontWeight: FontWeight.bold),
+                                      style: const TextStyle(
+                                        color: Color(0xFF60A5FA),
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                     Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 8,
+                                        vertical: 4,
+                                      ),
                                       decoration: BoxDecoration(
-                                        color: AppTheme.blueAccent.withValues(alpha: 0.2),
+                                        color: AppTheme.blueAccent.withValues(
+                                          alpha: 0.2,
+                                        ),
                                         borderRadius: BorderRadius.circular(10),
                                       ),
-                                      child: const Text("🔀 RANDOMIZED BATTLE", style: TextStyle(color: Color(0xFF93C5FD), fontSize: 10, fontWeight: FontWeight.bold)),
+                                      child: const Text(
+                                        "🔀 RANDOMIZED BATTLE",
+                                        style: TextStyle(
+                                          color: Color(0xFF93C5FD),
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -2648,25 +3152,38 @@ class QuizBattleScreen extends StatelessWidget {
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
                                   child: LinearProgressIndicator(
-                                    value: (quizController.questionIndex + 1) / quizController.quizQuestions.length,
+                                    value:
+                                        (quizController.questionIndex + 1) /
+                                        quizController.quizQuestions.length,
                                     minHeight: 6,
                                     backgroundColor: Colors.white10,
-                                    valueColor: const AlwaysStoppedAnimation<Color>(AppTheme.cyanAccent),
+                                    valueColor:
+                                        const AlwaysStoppedAnimation<Color>(
+                                          AppTheme.cyanAccent,
+                                        ),
                                   ),
                                 ),
                                 const SizedBox(height: 16),
                                 Text(
                                   currentQ.q,
-                                  style: const TextStyle(color: Colors.white, fontSize: 19, fontWeight: FontWeight.bold),
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 const SizedBox(height: 18),
 
                                 // Options List (A, B, C, D)
-                                ...currentQ.options.asMap().entries.map((entry) {
+                                ...currentQ.options.asMap().entries.map((
+                                  entry,
+                                ) {
                                   final int idx = entry.key;
                                   final String optionText = entry.value;
-                                  final bool isSelected = quizController.selectedAnswerIndex == idx;
-                                  final bool isCorrectChoice = idx == currentQ.answer;
+                                  final bool isSelected =
+                                      quizController.selectedAnswerIndex == idx;
+                                  final bool isCorrectChoice =
+                                      idx == currentQ.answer;
 
                                   Color btnColor = AppTheme.darkBg;
                                   Color borderColor = const Color(0xFF334155);
@@ -2684,14 +3201,23 @@ class QuizBattleScreen extends StatelessWidget {
                                   return Padding(
                                     padding: const EdgeInsets.only(bottom: 10),
                                     child: InkWell(
-                                      onTap: quizController.answered ? null : () => quizController.resolveAnswer(idx),
+                                      onTap: quizController.answered
+                                          ? null
+                                          : () => quizController.resolveAnswer(
+                                              idx,
+                                            ),
                                       borderRadius: BorderRadius.circular(14),
                                       child: Container(
                                         padding: const EdgeInsets.all(14),
                                         decoration: BoxDecoration(
                                           color: btnColor,
-                                          borderRadius: BorderRadius.circular(14),
-                                          border: Border.all(color: borderColor, width: 2),
+                                          borderRadius: BorderRadius.circular(
+                                            14,
+                                          ),
+                                          border: Border.all(
+                                            color: borderColor,
+                                            width: 2,
+                                          ),
                                         ),
                                         child: Row(
                                           children: [
@@ -2701,18 +3227,25 @@ class QuizBattleScreen extends StatelessWidget {
                                               alignment: Alignment.center,
                                               decoration: BoxDecoration(
                                                 color: const Color(0xFF334155),
-                                                borderRadius: BorderRadius.circular(8),
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
                                               ),
                                               child: Text(
                                                 String.fromCharCode(65 + idx),
-                                                style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                                style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
                                             ),
                                             const SizedBox(width: 12),
                                             Expanded(
                                               child: Text(
                                                 optionText,
-                                                style: const TextStyle(color: Colors.white, fontSize: 15),
+                                                style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 15,
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -2731,25 +3264,36 @@ class QuizBattleScreen extends StatelessWidget {
                                       color: AppTheme.darkBg,
                                       borderRadius: BorderRadius.circular(14),
                                       border: Border.all(
-                                        color: quizController.lastAnswerWasCorrect ? AppTheme.greenAccent : AppTheme.redAccent,
+                                        color:
+                                            quizController.lastAnswerWasCorrect
+                                            ? AppTheme.greenAccent
+                                            : AppTheme.redAccent,
                                       ),
                                     ),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           quizController.lastAnswerWasCorrect
                                               ? "⚔️ DIRECT HIT! Cell Guardian loses 1 HP!"
                                               : "💔 WRONG ANSWER! Cell Guardian took no damage!",
                                           style: TextStyle(
-                                            color: quizController.lastAnswerWasCorrect ? AppTheme.greenAccent : AppTheme.redAccent,
+                                            color:
+                                                quizController
+                                                    .lastAnswerWasCorrect
+                                                ? AppTheme.greenAccent
+                                                : AppTheme.redAccent,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                         const SizedBox(height: 4),
                                         Text(
                                           "Explanation: ${currentQ.explanation}",
-                                          style: const TextStyle(color: AppTheme.mutedText, fontSize: 13),
+                                          style: const TextStyle(
+                                            color: AppTheme.mutedText,
+                                            fontSize: 13,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -2766,7 +3310,11 @@ class QuizBattleScreen extends StatelessWidget {
                     Positioned.fill(
                       child: IgnorePointer(
                         child: Container(
-                          color: (quizController.isLaserWrong ? AppTheme.redAccent : AppTheme.cyanAccent).withValues(alpha: 0.18),
+                          color:
+                              (quizController.isLaserWrong
+                                      ? AppTheme.redAccent
+                                      : AppTheme.cyanAccent)
+                                  .withValues(alpha: 0.18),
                         ),
                       ),
                     ),
@@ -2821,9 +3369,12 @@ class QuizResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool victory = quizController.playerHP > 0 && quizController.correct >= 5;
+    final bool victory =
+        quizController.playerHP > 0 && quizController.correct >= 5;
     final total = quizController.quizQuestions.length;
-    final accuracy = total > 0 ? ((quizController.correct / total) * 100).round() : 0;
+    final accuracy = total > 0
+        ? ((quizController.correct / total) * 100).round()
+        : 0;
 
     return Scaffold(
       body: Container(
@@ -2843,12 +3394,19 @@ class QuizResultScreen extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(victory ? "🏆" : "💔", style: const TextStyle(fontSize: 80)),
+                    Text(
+                      victory ? "🏆" : "💔",
+                      style: const TextStyle(fontSize: 80),
+                    ),
                     const SizedBox(height: 10),
                     Text(
                       victory ? "CELL GUARDIAN DEFEATED!" : "BATTLE ENDED",
                       textAlign: TextAlign.center,
-                      style: const TextStyle(color: Colors.white, fontSize: 26, fontWeight: FontWeight.w900),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 26,
+                        fontWeight: FontWeight.w900,
+                      ),
                     ),
                     const SizedBox(height: 8),
                     Text(
@@ -2870,11 +3428,25 @@ class QuizResultScreen extends StatelessWidget {
                       childAspectRatio: 1.3,
                       children: [
                         _buildStatBox("Score", "${quizController.score}"),
-                        _buildStatBox("Correct", "${quizController.correct}/$total"),
+                        _buildStatBox(
+                          "Correct",
+                          "${quizController.correct}/$total",
+                        ),
                         _buildStatBox("Accuracy", "$accuracy%"),
-                        _buildStatBox("Best Streak", "${quizController.bestStreak}x 🔥"),
-                        _buildStatBox("Coins", "+${quizController.profile.lastReward}"),
-                        _buildStatBox("Student", quizController.profile.name.isEmpty ? "Young Scientist" : quizController.profile.name),
+                        _buildStatBox(
+                          "Best Streak",
+                          "${quizController.bestStreak}x 🔥",
+                        ),
+                        _buildStatBox(
+                          "Level",
+                          "Level ${quizController.profile.level}",
+                        ),
+                        _buildStatBox(
+                          "Student",
+                          quizController.profile.name.isEmpty
+                              ? "Young Scientist"
+                              : quizController.profile.name,
+                        ),
                       ],
                     ),
                     const SizedBox(height: 24),
@@ -2892,7 +3464,9 @@ class QuizResultScreen extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         if (quizController.selectedGrade != null) {
-                          quizController.startQuiz(quizController.selectedGrade!);
+                          quizController.startQuiz(
+                            quizController.selectedGrade!,
+                          );
                           onNavigate('quiz');
                         }
                       },
@@ -2931,13 +3505,20 @@ class QuizResultScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(label, style: const TextStyle(color: AppTheme.mutedText, fontSize: 11)),
+          Text(
+            label,
+            style: const TextStyle(color: AppTheme.mutedText, fontSize: 11),
+          ),
           const SizedBox(height: 4),
           Text(
             value,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(color: AppTheme.cyanAccent, fontWeight: FontWeight.bold, fontSize: 15),
+            style: const TextStyle(
+              color: AppTheme.cyanAccent,
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+            ),
           ),
         ],
       ),
@@ -2979,9 +3560,19 @@ class AchievementsScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("🏆 Grade 7 Achievements", style: TextStyle(color: Colors.white, fontSize: 26, fontWeight: FontWeight.w900)),
+                  const Text(
+                    "🏆 Grade 7 Achievements",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 26,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
                   const SizedBox(height: 4),
-                  Text("Unlocked: $unlockedCount / ${allAchievements.length}", style: const TextStyle(color: AppTheme.mutedText)),
+                  Text(
+                    "Unlocked: $unlockedCount / ${allAchievements.length}",
+                    style: const TextStyle(color: AppTheme.mutedText),
+                  ),
                   const SizedBox(height: 12),
                   // Progress Bar
                   Row(
@@ -2990,17 +3581,25 @@ class AchievementsScreen extends StatelessWidget {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: LinearProgressIndicator(
-                            value: allAchievements.isEmpty ? 0.0 : unlockedCount / allAchievements.length,
+                            value: allAchievements.isEmpty
+                                ? 0.0
+                                : unlockedCount / allAchievements.length,
                             minHeight: 10,
                             backgroundColor: Colors.white12,
-                            valueColor: const AlwaysStoppedAnimation<Color>(AppTheme.cyanAccent),
+                            valueColor: const AlwaysStoppedAnimation<Color>(
+                              AppTheme.cyanAccent,
+                            ),
                           ),
                         ),
                       ),
                       const SizedBox(width: 12),
                       Text(
                         "${allAchievements.isEmpty ? 0 : ((unlockedCount / allAchievements.length) * 100).round()}%",
-                        style: const TextStyle(color: AppTheme.cyanAccent, fontWeight: FontWeight.bold, fontSize: 13),
+                        style: const TextStyle(
+                          color: AppTheme.cyanAccent,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13,
+                        ),
                       ),
                     ],
                   ),
@@ -3008,7 +3607,9 @@ class AchievementsScreen extends StatelessWidget {
 
                   GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: MediaQuery.of(context).size.width > 600 ? 4 : 2,
+                      crossAxisCount: MediaQuery.of(context).size.width > 600
+                          ? 4
+                          : 2,
                       crossAxisSpacing: 12,
                       mainAxisSpacing: 12,
                       childAspectRatio: 0.9,
@@ -3027,13 +3628,17 @@ class AchievementsScreen extends StatelessWidget {
                             color: AppTheme.darkBg2,
                             borderRadius: BorderRadius.circular(18),
                             border: Border.all(
-                              color: unlocked ? AppTheme.greenAccent.withValues(alpha: 0.6) : const Color(0xFF334155),
+                              color: unlocked
+                                  ? AppTheme.greenAccent.withValues(alpha: 0.6)
+                                  : const Color(0xFF334155),
                               width: unlocked ? 1.5 : 1.0,
                             ),
                             boxShadow: unlocked
                                 ? [
                                     BoxShadow(
-                                      color: AppTheme.greenAccent.withValues(alpha: 0.15),
+                                      color: AppTheme.greenAccent.withValues(
+                                        alpha: 0.15,
+                                      ),
                                       blurRadius: 10,
                                       offset: const Offset(0, 4),
                                     ),
@@ -3043,12 +3648,19 @@ class AchievementsScreen extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(item.icon, style: const TextStyle(fontSize: 38)),
+                              Text(
+                                item.icon,
+                                style: const TextStyle(fontSize: 38),
+                              ),
                               const SizedBox(height: 6),
                               Text(
                                 item.title,
                                 textAlign: TextAlign.center,
-                                style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                ),
                               ),
                               const SizedBox(height: 4),
                               Expanded(
@@ -3057,20 +3669,32 @@ class AchievementsScreen extends StatelessWidget {
                                   textAlign: TextAlign.center,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(color: AppTheme.mutedText, fontSize: 11),
+                                  style: const TextStyle(
+                                    color: AppTheme.mutedText,
+                                    fontSize: 11,
+                                  ),
                                 ),
                               ),
                               const SizedBox(height: 6),
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 3,
+                                ),
                                 decoration: BoxDecoration(
-                                  color: unlocked ? AppTheme.greenAccent.withValues(alpha: 0.15) : Colors.white10,
+                                  color: unlocked
+                                      ? AppTheme.greenAccent.withValues(
+                                          alpha: 0.15,
+                                        )
+                                      : Colors.white10,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Text(
                                   unlocked ? "✓ UNLOCKED" : "🔒 LOCKED",
                                   style: TextStyle(
-                                    color: unlocked ? AppTheme.greenAccent : AppTheme.mutedText,
+                                    color: unlocked
+                                        ? AppTheme.greenAccent
+                                        : AppTheme.mutedText,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 10,
                                   ),
@@ -3085,7 +3709,9 @@ class AchievementsScreen extends StatelessWidget {
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () => onNavigate('main'),
-                    style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF1E293B)),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF1E293B),
+                    ),
                     child: const Text("← Main Menu"),
                   ),
                 ],
@@ -3130,9 +3756,19 @@ class CertificateScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  const Text("📜 Certificate of Achievement", style: TextStyle(color: Colors.white, fontSize: 26, fontWeight: FontWeight.w900)),
+                  const Text(
+                    "📜 Certificate of Achievement",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 26,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
                   const SizedBox(height: 6),
-                  const Text("Official Grade 7 Science Quest certificate.", style: TextStyle(color: AppTheme.mutedText)),
+                  const Text(
+                    "Official Grade 7 Science Quest certificate.",
+                    style: TextStyle(color: AppTheme.mutedText),
+                  ),
                   const SizedBox(height: 20),
 
                   AspectRatio(
@@ -3141,9 +3777,12 @@ class CertificateScreen extends StatelessWidget {
                       painter: CertificatePainter(
                         profile: quizController.profile,
                         gradeMission: grade,
-                        score: quizController.score > 0 ? quizController.score : 100,
+                        score: quizController.score > 0
+                            ? quizController.score
+                            : 100,
                         accuracy: 100,
-                        date: "${DateTime.now().year}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')}",
+                        date:
+                            "${DateTime.now().year}-${DateTime.now().month.toString().padLeft(2, '0')}-${DateTime.now().day.toString().padLeft(2, '0')}",
                       ),
                     ),
                   ),
@@ -3155,7 +3794,11 @@ class CertificateScreen extends StatelessWidget {
                       ElevatedButton.icon(
                         onPressed: () {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text("🖼️ Certificate saved successfully!")),
+                            const SnackBar(
+                              content: Text(
+                                "🖼️ Certificate saved successfully!",
+                              ),
+                            ),
                           );
                         },
                         icon: const Icon(Icons.download),
@@ -3164,7 +3807,9 @@ class CertificateScreen extends StatelessWidget {
                       const SizedBox(width: 14),
                       ElevatedButton(
                         onPressed: () => onNavigate('main'),
-                        style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF1E293B)),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF1E293B),
+                        ),
                         child: const Text("← BACK"),
                       ),
                     ],
@@ -3209,14 +3854,20 @@ class LeaderboardScreen extends StatelessWidget {
                 for (var r in results) {
                   final name = r.studentName;
                   if (!byStudent.containsKey(name)) {
-                    byStudent[name] = {'name': name, 'score': 0, 'missions': 0, 'accuracy': 0};
+                    byStudent[name] = {
+                      'name': name,
+                      'score': 0,
+                      'missions': 0,
+                      'accuracy': 0,
+                    };
                   }
                   byStudent[name]!['score'] += r.score;
                   byStudent[name]!['missions'] += 1;
                   byStudent[name]!['accuracy'] += r.accuracy;
                 }
 
-                if (quizController.profile.name.isNotEmpty && !byStudent.containsKey(quizController.profile.name)) {
+                if (quizController.profile.name.isNotEmpty &&
+                    !byStudent.containsKey(quizController.profile.name)) {
                   byStudent[quizController.profile.name] = {
                     'name': quizController.profile.name,
                     'score': quizController.profile.totalPoints,
@@ -3226,7 +3877,9 @@ class LeaderboardScreen extends StatelessWidget {
                 }
 
                 final rows = byStudent.values.toList()
-                  ..sort((a, b) => (b['score'] as int).compareTo(a['score'] as int));
+                  ..sort(
+                    (a, b) => (b['score'] as int).compareTo(a['score'] as int),
+                  );
 
                 return Container(
                   padding: const EdgeInsets.all(24),
@@ -3238,20 +3891,41 @@ class LeaderboardScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text("🥇 Grade 7 Leaderboard", style: TextStyle(color: Colors.white, fontSize: 26, fontWeight: FontWeight.w900)),
+                      const Text(
+                        "🥇 Grade 7 Leaderboard",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
                       const SizedBox(height: 4),
-                      const Text("Top student scores on this device.", style: TextStyle(color: AppTheme.mutedText)),
+                      const Text(
+                        "Top student scores on this device.",
+                        style: TextStyle(color: AppTheme.mutedText),
+                      ),
                       const SizedBox(height: 20),
 
                       if (rows.isEmpty)
-                        const Text("No scores recorded yet. Complete Term 1 mission!", style: TextStyle(color: Colors.white70))
+                        const Text(
+                          "No scores recorded yet. Complete Term 1 mission!",
+                          style: TextStyle(color: Colors.white70),
+                        )
                       else
                         ...rows.asMap().entries.map((entry) {
                           final rank = entry.key + 1;
                           final data = entry.value;
-                          final medal = rank == 1 ? "🥇" : rank == 2 ? "🥈" : rank == 3 ? "🥉" : "#$rank";
+                          final medal = rank == 1
+                              ? "🥇"
+                              : rank == 2
+                              ? "🥈"
+                              : rank == 3
+                              ? "🥉"
+                              : "#$rank";
                           final int missions = data['missions'] as int;
-                          final int avgAcc = missions > 0 ? (data['accuracy'] / missions).round() : 0;
+                          final int avgAcc = missions > 0
+                              ? (data['accuracy'] / missions).round()
+                              : 0;
 
                           return Container(
                             margin: const EdgeInsets.only(bottom: 10),
@@ -3265,19 +3939,47 @@ class LeaderboardScreen extends StatelessWidget {
                               children: [
                                 SizedBox(
                                   width: 40,
-                                  child: Text(medal, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white)),
+                                  child: Text(
+                                    medal,
+                                    style: const TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
                                 ),
                                 const SizedBox(width: 12),
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text(data['name'], style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
-                                      Text("$missions mission(s) • $avgAcc% avg. accuracy", style: const TextStyle(color: AppTheme.mutedText, fontSize: 11)),
+                                      Text(
+                                        data['name'],
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                      Text(
+                                        "$missions mission(s) • $avgAcc% avg. accuracy",
+                                        style: const TextStyle(
+                                          color: AppTheme.mutedText,
+                                          fontSize: 11,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
-                                Text("⭐ ${data['score']}", style: const TextStyle(color: AppTheme.cyanAccent, fontWeight: FontWeight.bold, fontSize: 16)),
+                                Text(
+                                  "⭐ ${data['score']}",
+                                  style: const TextStyle(
+                                    color: AppTheme.cyanAccent,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
                               ],
                             ),
                           );
@@ -3286,7 +3988,9 @@ class LeaderboardScreen extends StatelessWidget {
                       const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () => onNavigate('main'),
-                        style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF1E293B)),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF1E293B),
+                        ),
                         child: const Text("← Main Menu"),
                       ),
                     ],
@@ -3351,9 +4055,20 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                   children: [
                     const Text("👨‍🏫", style: TextStyle(fontSize: 60)),
                     const SizedBox(height: 12),
-                    const Text("Teacher Admin", style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
+                    const Text(
+                      "Teacher Admin",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     const SizedBox(height: 6),
-                    const Text("Manage term unlocks and view student results.", textAlign: TextAlign.center, style: TextStyle(color: AppTheme.mutedText)),
+                    const Text(
+                      "Manage term unlocks and view student results.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: AppTheme.mutedText),
+                    ),
                     const SizedBox(height: 20),
 
                     TextField(
@@ -3368,19 +4083,30 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                     ),
                     if (errorMsg.isNotEmpty) ...[
                       const SizedBox(height: 8),
-                      Text(errorMsg, style: const TextStyle(color: AppTheme.redAccent, fontSize: 12)),
+                      Text(
+                        errorMsg,
+                        style: const TextStyle(
+                          color: AppTheme.redAccent,
+                          fontSize: 12,
+                        ),
+                      ),
                     ],
                     const SizedBox(height: 20),
 
                     ElevatedButton(
                       onPressed: _login,
-                      style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(48)),
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(48),
+                      ),
                       child: const Text("LOGIN TO DASHBOARD"),
                     ),
                     const SizedBox(height: 10),
                     TextButton(
                       onPressed: () => widget.onNavigate('main'),
-                      child: const Text("← Return to Game", style: TextStyle(color: AppTheme.mutedText)),
+                      child: const Text(
+                        "← Return to Game",
+                        style: TextStyle(color: AppTheme.mutedText),
+                      ),
                     ),
                   ],
                 ),
@@ -3438,10 +4164,23 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final filtered = allResults.where((r) => r.studentName.toLowerCase().contains(searchQuery.toLowerCase())).toList();
+    final filtered = allResults
+        .where(
+          (r) =>
+              r.studentName.toLowerCase().contains(searchQuery.toLowerCase()),
+        )
+        .toList();
     final studentSet = allResults.map((r) => r.studentName).toSet();
-    final avgScore = allResults.isNotEmpty ? (allResults.map((r) => r.score).reduce((a, b) => a + b) / allResults.length).round() : 0;
-    final avgAccuracy = allResults.isNotEmpty ? (allResults.map((r) => r.accuracy).reduce((a, b) => a + b) / allResults.length).round() : 0;
+    final avgScore = allResults.isNotEmpty
+        ? (allResults.map((r) => r.score).reduce((a, b) => a + b) /
+                  allResults.length)
+              .round()
+        : 0;
+    final avgAccuracy = allResults.isNotEmpty
+        ? (allResults.map((r) => r.accuracy).reduce((a, b) => a + b) /
+                  allResults.length)
+              .round()
+        : 0;
 
     return Scaffold(
       body: Container(
@@ -3455,13 +4194,22 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text("👨‍🏫 Teacher Dashboard", style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.w900)),
+                    const Text(
+                      "👨‍🏫 Teacher Dashboard",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
                     ElevatedButton(
                       onPressed: () async {
                         await StorageService.setAdminLoggedIn(false);
                         widget.onNavigate('main');
                       },
-                      style: ElevatedButton.styleFrom(backgroundColor: AppTheme.redAccent),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppTheme.redAccent,
+                      ),
                       child: const Text("Logout"),
                     ),
                   ],
@@ -3470,7 +4218,9 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
 
                 // Metrics
                 GridView.count(
-                  crossAxisCount: MediaQuery.of(context).size.width > 600 ? 4 : 2,
+                  crossAxisCount: MediaQuery.of(context).size.width > 600
+                      ? 4
+                      : 2,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   crossAxisSpacing: 12,
@@ -3491,7 +4241,9 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                   decoration: BoxDecoration(
                     color: AppTheme.darkBg.withValues(alpha: 0.9),
                     borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: AppTheme.cyanAccent.withValues(alpha: 0.3)),
+                    border: Border.all(
+                      color: AppTheme.cyanAccent.withValues(alpha: 0.3),
+                    ),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -3500,27 +4252,61 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                         children: [
                           Icon(Icons.lock_clock, color: AppTheme.cyanAccent),
                           SizedBox(width: 8),
-                          Text("⚙️ Grade 7 Term Unlock System Configuration", style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                          Text(
+                            "⚙️ Grade 7 Term Unlock System Configuration",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ],
                       ),
                       const SizedBox(height: 8),
                       const Text(
                         "Configure official term start dates, times, and school timezone. Terms unlock automatically based on system date and time.",
-                        style: TextStyle(color: AppTheme.mutedText, fontSize: 13),
+                        style: TextStyle(
+                          color: AppTheme.mutedText,
+                          fontSize: 13,
+                        ),
                       ),
                       const SizedBox(height: 16),
 
-                      _buildTermConfigRow("Term 1 (Cell Biology)", unlockConfig.term1Start, unlockConfig.isTermUnlocked(1)),
+                      _buildTermConfigRow(
+                        "Term 1 (Cell Biology)",
+                        unlockConfig.term1Start,
+                        unlockConfig.isTermUnlocked(1),
+                      ),
                       const Divider(color: Colors.white10),
-                      _buildTermConfigRow("Term 2 (Upcoming)", unlockConfig.term2Start, unlockConfig.isTermUnlocked(2)),
+                      _buildTermConfigRow(
+                        "Term 2 (Upcoming)",
+                        unlockConfig.term2Start,
+                        unlockConfig.isTermUnlocked(2),
+                      ),
                       const Divider(color: Colors.white10),
-                      _buildTermConfigRow("Term 3 (Level 3)", unlockConfig.term3Start, unlockConfig.isTermUnlocked(3)),
+                      _buildTermConfigRow(
+                        "Term 3 (Level 3)",
+                        unlockConfig.term3Start,
+                        unlockConfig.isTermUnlocked(3),
+                      ),
 
                       const SizedBox(height: 12),
                       Row(
                         children: [
-                          const Text("🏫 School Timezone: ", style: TextStyle(color: Colors.white70, fontWeight: FontWeight.bold)),
-                          Text(unlockConfig.timezoneName, style: const TextStyle(color: AppTheme.cyanAccent, fontWeight: FontWeight.bold)),
+                          const Text(
+                            "🏫 School Timezone: ",
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            unlockConfig.timezoneName,
+                            style: const TextStyle(
+                              color: AppTheme.cyanAccent,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ],
                       ),
                       const SizedBox(height: 16),
@@ -3533,17 +4319,26 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                             onPressed: () async {
                               // Test unlock Term 3 by setting its start date to past
                               setState(() {
-                                unlockConfig.term3Start = DateTime.now().subtract(const Duration(hours: 1));
+                                unlockConfig.term3Start = DateTime.now()
+                                    .subtract(const Duration(hours: 1));
                               });
-                              await StorageService.saveTermUnlockConfig(unlockConfig);
+                              await StorageService.saveTermUnlockConfig(
+                                unlockConfig,
+                              );
                               if (context.mounted) {
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text("🔓 Term 3 has been unlocked for testing!")),
+                                  const SnackBar(
+                                    content: Text(
+                                      "🔓 Term 3 has been unlocked for testing!",
+                                    ),
+                                  ),
                                 );
                               }
                             },
                             icon: const Icon(Icons.lock_open, size: 16),
-                            style: ElevatedButton.styleFrom(backgroundColor: AppTheme.greenAccent),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppTheme.greenAccent,
+                            ),
                             label: const Text("TEST: UNLOCK TERM 3 NOW"),
                           ),
                           ElevatedButton.icon(
@@ -3552,15 +4347,23 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                               setState(() {
                                 unlockConfig = TermUnlockConfig.defaultConfig();
                               });
-                              await StorageService.saveTermUnlockConfig(unlockConfig);
+                              await StorageService.saveTermUnlockConfig(
+                                unlockConfig,
+                              );
                               if (context.mounted) {
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text("🔒 Reset to official schedule (Term 3 locked until Feb 2027).")),
+                                  const SnackBar(
+                                    content: Text(
+                                      "🔒 Reset to official schedule (Term 3 locked until Feb 2027).",
+                                    ),
+                                  ),
                                 );
                               }
                             },
                             icon: const Icon(Icons.refresh, size: 16),
-                            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF334155)),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF334155),
+                            ),
                             label: const Text("RESET OFFICIAL SCHEDULE"),
                           ),
                         ],
@@ -3584,12 +4387,23 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text("📊 Student Results", style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                          const Text(
+                            "📊 Student Results",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                           SizedBox(
                             width: 200,
                             child: TextField(
-                              decoration: const InputDecoration(hintText: "Search student...", isDense: true),
-                              onChanged: (val) => setState(() => searchQuery = val),
+                              decoration: const InputDecoration(
+                                hintText: "Search student...",
+                                isDense: true,
+                              ),
+                              onChanged: (val) =>
+                                  setState(() => searchQuery = val),
                             ),
                           ),
                         ],
@@ -3600,20 +4414,82 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                         scrollDirection: Axis.horizontal,
                         child: DataTable(
                           columns: const [
-                            DataColumn(label: Text("Student", style: TextStyle(color: AppTheme.cyanAccent))),
-                            DataColumn(label: Text("Mission", style: TextStyle(color: AppTheme.cyanAccent))),
-                            DataColumn(label: Text("Score", style: TextStyle(color: AppTheme.cyanAccent))),
-                            DataColumn(label: Text("Accuracy", style: TextStyle(color: AppTheme.cyanAccent))),
-                            DataColumn(label: Text("Date", style: TextStyle(color: AppTheme.cyanAccent))),
+                            DataColumn(
+                              label: Text(
+                                "Student",
+                                style: TextStyle(color: AppTheme.cyanAccent),
+                              ),
+                            ),
+                            DataColumn(
+                              label: Text(
+                                "Mission",
+                                style: TextStyle(color: AppTheme.cyanAccent),
+                              ),
+                            ),
+                            DataColumn(
+                              label: Text(
+                                "Score",
+                                style: TextStyle(color: AppTheme.cyanAccent),
+                              ),
+                            ),
+                            DataColumn(
+                              label: Text(
+                                "Accuracy",
+                                style: TextStyle(color: AppTheme.cyanAccent),
+                              ),
+                            ),
+                            DataColumn(
+                              label: Text(
+                                "Date",
+                                style: TextStyle(color: AppTheme.cyanAccent),
+                              ),
+                            ),
                           ],
                           rows: filtered.reversed.map((r) {
-                            return DataRow(cells: [
-                              DataCell(Text(r.studentName, style: const TextStyle(color: Colors.white))),
-                              DataCell(Text(r.mission, style: const TextStyle(color: Colors.white70))),
-                              DataCell(Text("${r.score}", style: const TextStyle(color: Colors.white))),
-                              DataCell(Text("${r.accuracy}%", style: TextStyle(color: r.accuracy >= 80 ? AppTheme.greenAccent : AppTheme.yellowAccent, fontWeight: FontWeight.bold))),
-                              DataCell(Text(r.date, style: const TextStyle(color: AppTheme.mutedText, fontSize: 12))),
-                            ]);
+                            return DataRow(
+                              cells: [
+                                DataCell(
+                                  Text(
+                                    r.studentName,
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                                DataCell(
+                                  Text(
+                                    r.mission,
+                                    style: const TextStyle(
+                                      color: Colors.white70,
+                                    ),
+                                  ),
+                                ),
+                                DataCell(
+                                  Text(
+                                    "${r.score}",
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                                DataCell(
+                                  Text(
+                                    "${r.accuracy}%",
+                                    style: TextStyle(
+                                      color: r.accuracy >= 80
+                                          ? AppTheme.greenAccent
+                                          : AppTheme.yellowAccent,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                DataCell(
+                                  Text(
+                                    r.date,
+                                    style: const TextStyle(
+                                      color: AppTheme.mutedText,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            );
                           }).toList(),
                         ),
                       ),
@@ -3624,11 +4500,17 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                           ElevatedButton.icon(
                             onPressed: () {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text("📥 Student results exported to CSV.")),
+                                const SnackBar(
+                                  content: Text(
+                                    "📥 Student results exported to CSV.",
+                                  ),
+                                ),
                               );
                             },
                             icon: const Icon(Icons.download),
-                            style: ElevatedButton.styleFrom(backgroundColor: AppTheme.greenAccent),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppTheme.greenAccent,
+                            ),
                             label: const Text("EXPORT CSV"),
                           ),
                           const SizedBox(width: 12),
@@ -3638,7 +4520,9 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                               loadData();
                             },
                             icon: const Icon(Icons.delete),
-                            style: ElevatedButton.styleFrom(backgroundColor: AppTheme.redAccent),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppTheme.redAccent,
+                            ),
                             label: const Text("CLEAR RESULTS"),
                           ),
                         ],
@@ -3660,21 +4544,34 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(name, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          Text(
+            name,
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           Row(
             children: [
-              Text(_formatDateTime(start), style: const TextStyle(color: Colors.white70, fontSize: 13)),
+              Text(
+                _formatDateTime(start),
+                style: const TextStyle(color: Colors.white70, fontSize: 13),
+              ),
               const SizedBox(width: 10),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 decoration: BoxDecoration(
-                  color: (isUnlocked ? AppTheme.greenAccent : AppTheme.redAccent).withValues(alpha: 0.15),
+                  color:
+                      (isUnlocked ? AppTheme.greenAccent : AppTheme.redAccent)
+                          .withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Text(
                   isUnlocked ? "UNLOCKED" : "LOCKED",
                   style: TextStyle(
-                    color: isUnlocked ? AppTheme.greenAccent : AppTheme.redAccent,
+                    color: isUnlocked
+                        ? AppTheme.greenAccent
+                        : AppTheme.redAccent,
                     fontSize: 11,
                     fontWeight: FontWeight.bold,
                   ),
@@ -3698,9 +4595,19 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(title, style: const TextStyle(color: AppTheme.mutedText, fontSize: 12)),
+          Text(
+            title,
+            style: const TextStyle(color: AppTheme.mutedText, fontSize: 12),
+          ),
           const SizedBox(height: 6),
-          Text(val, style: const TextStyle(color: AppTheme.cyanAccent, fontSize: 24, fontWeight: FontWeight.bold)),
+          Text(
+            val,
+            style: const TextStyle(
+              color: AppTheme.cyanAccent,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ],
       ),
     );

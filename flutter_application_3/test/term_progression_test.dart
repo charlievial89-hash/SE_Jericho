@@ -135,7 +135,7 @@ void main() {
       expect(controller.playerHP, equals(2), reason: "Player loses 1 HP on wrong answer");
     });
 
-    test('Biology Streak / Combo mechanics and bonus coins', () {
+    test('Biology Streak / Combo mechanics and bonus score', () {
       final profile = StudentProfile(name: "Scientist Bob");
       final controller = QuizController(profile: profile);
       final term1 = grade7Terms[1]!;
@@ -147,7 +147,6 @@ void main() {
       controller.resolveAnswer(controller.quizQuestions[0].answer);
       expect(controller.currentStreak, equals(1));
       expect(controller.bestStreak, equals(1));
-      expect(controller.streakBonusCoins, equals(0));
 
       // 2nd consecutive correct answer -> Streak = 2 (2x Biology Streak!)
       controller.answered = false;
@@ -155,7 +154,6 @@ void main() {
       controller.resolveAnswer(controller.quizQuestions[1].answer);
       expect(controller.currentStreak, equals(2));
       expect(controller.bestStreak, equals(2));
-      expect(controller.streakBonusCoins, equals(4), reason: "2 * 2 bonus coins awarded");
 
       // 3rd consecutive correct answer -> Streak = 3 (3x Biology Streak!)
       controller.answered = false;
@@ -163,7 +161,6 @@ void main() {
       controller.resolveAnswer(controller.quizQuestions[2].answer);
       expect(controller.currentStreak, equals(3));
       expect(controller.bestStreak, equals(3));
-      expect(controller.streakBonusCoins, equals(10), reason: "4 + (3 * 2) = 10 bonus coins awarded");
 
       // Wrong answer resets streak to 0 and triggers counter-attack
       controller.answered = false;

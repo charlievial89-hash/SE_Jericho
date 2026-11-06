@@ -7,13 +7,11 @@ import '../services/storage_service.dart';
 class LevelUpNotification {
   final int oldLevel;
   final int newLevel;
-  final int bonusCoins;
   final int bonusPoints;
 
   LevelUpNotification({
     required this.oldLevel,
     required this.newLevel,
-    required this.bonusCoins,
     required this.bonusPoints,
   });
 }
@@ -55,7 +53,6 @@ class QuizController extends ChangeNotifier {
 
   int currentStreak = 0;
   int bestStreak = 0;
-  int streakBonusCoins = 0;
   bool isCounterAttacking = false;
 
   TermUnlockConfig unlockConfig = TermUnlockConfig.defaultConfig();
@@ -129,7 +126,6 @@ class QuizController extends ChangeNotifier {
 
     currentStreak = 0;
     bestStreak = 0;
-    streakBonusCoins = 0;
     isCounterAttacking = false;
 
     battleStage = "guardian";
@@ -206,18 +202,14 @@ class QuizController extends ChangeNotifier {
         unlockAchievement("streakMaster");
       }
 
-      // Bonus rewards for Biology Streaks!
-      int bonusCoinsEarned = 0;
+      // Bonus XP for Biology Streaks
       if (currentStreak >= 2) {
-        bonusCoinsEarned = currentStreak * 2;
-        streakBonusCoins += bonusCoinsEarned;
-        profile.coins += bonusCoinsEarned;
-        score += bonusCoinsEarned;
+        score += currentStreak * 2;
       }
 
       // Correct answer damages Cell Guardian
       enemyHP = max(0, enemyHP - 1);
-      addXP(20 + (currentStreak >= 2 ? currentStreak * 5 : 0), 10 + bonusCoinsEarned);
+      addXP(20 + (currentStreak >= 2 ? currentStreak * 5 : 0), 10 + (currentStreak >= 2 ? currentStreak * 2 : 0));
     } else {
       wrong++;
       currentStreak = 0;
@@ -274,10 +266,6 @@ class QuizController extends ChangeNotifier {
 
     final totalQ = quizQuestions.length;
     final accuracy = totalQ > 0 ? ((correct / totalQ) * 100).round() : 0;
-    final reward = selectedGrade?.reward ?? 100;
-
-    profile.coins += reward;
-    profile.lastReward = reward;
 
     if (selectedGrade != null && !profile.completedGrades.contains(selectedGrade!.termNumber)) {
       profile.completedGrades.add(selectedGrade!.termNumber);
@@ -296,10 +284,7 @@ class QuizController extends ChangeNotifier {
     // Extra mission XP
     final missionXP = 50 + correct * 10 + (accuracy / 10).round();
     final bonusPoints = accuracy == 100 ? 50 : 25;
-    final bonusCoins = accuracy == 100 ? 30 : 15;
 
-    profile.coins += bonusCoins;
-    profile.bonusRewards += bonusCoins;
     addXP(missionXP, score + bonusPoints);
 
     _saveQuizResult(accuracy);
@@ -319,7 +304,6 @@ class QuizController extends ChangeNotifier {
     final accuracy = totalQ > 0 ? ((correct / totalQ) * 100).round() : 0;
 
     _saveQuizResult(accuracy);
-    profile.lastReward = 0;
     StorageService.saveStudentProfile(profile);
 
     notifyListeners();
@@ -355,15 +339,11 @@ class QuizController extends ChangeNotifier {
     profile.level = newLevel;
 
     if (newLevel > oldLevel) {
-      final bonusCoins = newLevel * 10;
       final bonusPoints = newLevel * 25;
-      profile.coins += bonusCoins;
-      profile.bonusRewards += bonusCoins;
 
       pendingLevelUp = LevelUpNotification(
         oldLevel: oldLevel,
         newLevel: newLevel,
-        bonusCoins: bonusCoins,
         bonusPoints: bonusPoints,
       );
     }
